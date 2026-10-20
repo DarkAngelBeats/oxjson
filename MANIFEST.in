@@ -1,0 +1,17 @@
+include LICENSE
+include THIRD_PARTY.md
+include README.md
+include README.ru.md
+include make_ext.py
+include pyproject.toml
+include requirements-dev.txt
+recursive-include licenses *
+recursive-include src *
+recursive-include include *
+recursive-include oxjson *.py *.pyi py.typed
+recursive-include tests *
+recursive-include testdata *
+recursive-include tools *
+recursive-include docs *
+recursive-include bench *.py
+global-exclude *.pyd *.so *.o *.obj *.pyc __pycache__ .venv

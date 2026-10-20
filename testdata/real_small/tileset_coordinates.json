@@ -1,0 +1,171 @@
+{
+  "atlas_info": {
+    "width": 512,
+    "height": 1792,
+    "tile_size": 32,
+    "columns": 16,
+    "rows": 56,
+    "total_tiles": 896
+  },
+  "tile_categories": {
+    "tech_surfaces": {
+      "description": "Технические поверхности для космических станций",
+      "range": "0-127",
+      "tiles": {
+        "0": {"name": "TECH_GRID", "desc": "Металлическая сетка", "pos": [0, 0], "pixel": [0, 0]},
+        "1": {"name": "TECH_DIAGONAL", "desc": "Диагональная штриховка", "pos": [1, 0], "pixel": [32, 0]},
+        "2": {"name": "TECH_HORIZONTAL", "desc": "Горизонтальные линии", "pos": [2, 0], "pixel": [64, 0]},
+        "3": {"name": "TECH_DIAMOND", "desc": "Ромбовидная плитка", "pos": [3, 0], "pixel": [96, 0]},
+        "4": {"name": "TECH_GREEN", "desc": "Зеленая панель", "pos": [4, 0], "pixel": [128, 0]},
+        "5": {"name": "TECH_CHECKER", "desc": "Шахматная доска", "pos": [5, 0], "pixel": [160, 0]},
+        "6": {"name": "TECH_DOTS", "desc": "Точечная текстура", "pos": [6, 0], "pixel": [192, 0]},
+        "7": {"name": "TECH_CROSS", "desc": "Крестовая текстура", "pos": [7, 0], "pixel": [224, 0]},
+        "8": {"name": "TECH_MESH", "desc": "Мелкая сетка", "pos": [8, 0], "pixel": [256, 0]},
+        "9": {"name": "TECH_PLATE", "desc": "Металлическая плита", "pos": [9, 0], "pixel": [288, 0]},
+        "10": {"name": "TECH_VENT", "desc": "Вентиляционная решетка", "pos": [10, 0], "pixel": [320, 0]},
+        "11": {"name": "TECH_STRIPE", "desc": "Полосатая текстура", "pos": [11, 0], "pixel": [352, 0]},
+        "12": {"name": "TECH_SOLID", "desc": "Сплошная серая поверхность", "pos": [12, 0], "pixel": [384, 0]},
+        "13": {"name": "TECH_ROUGH", "desc": "Шероховатая поверхность", "pos": [13, 0], "pixel": [416, 0]},
+        "14": {"name": "TECH_SMOOTH", "desc": "Гладкая поверхность", "pos": [14, 0], "pixel": [448, 0]},
+        "15": {"name": "TECH_PATTERN", "desc": "Узорная текстура", "pos": [15, 0], "pixel": [480, 0]}
+      }
+    },
+    "ui_elements": {
+      "description": "UI элементы для интерфейса",
+      "range": "128-511",
+      "tiles": {
+        "128": {"name": "UI_PANEL_DARK", "desc": "Темная панель", "pos": [0, 8], "pixel": [0, 256]},
+        "129": {"name": "UI_PANEL_FRAME", "desc": "Рамка панели", "pos": [1, 8], "pixel": [32, 256]},
+        "130": {"name": "UI_PANEL_BORDER", "desc": "Граница панели", "pos": [2, 8], "pixel": [64, 256]},
+        "131": {"name": "UI_PANEL_CORNER", "desc": "Угол панели", "pos": [3, 8], "pixel": [96, 256]},
+        "132": {"name": "UI_PANEL_SIDE", "desc": "Боковая панель", "pos": [4, 8], "pixel": [128, 256]},
+        "256": {"name": "UI_BUTTON_NORMAL", "desc": "Обычная кнопка", "pos": [0, 16], "pixel": [0, 512]},
+        "257": {"name": "UI_BUTTON_PRESSED", "desc": "Нажатая кнопка", "pos": [1, 16], "pixel": [32, 512]},
+        "258": {"name": "UI_BUTTON_HOVER", "desc": "Кнопка при наведении", "pos": [2, 16], "pixel": [64, 512]},
+        "259": {"name": "UI_BUTTON_DISABLED", "desc": "Неактивная кнопка", "pos": [3, 16], "pixel": [96, 512]},
+        "260": {"name": "UI_BUTTON_SPECIAL", "desc": "Специальная кнопка", "pos": [4, 16], "pixel": [128, 512]}
+      }
+    },
+    "characters": {
+      "description": "Персонажи и роботы",
+      "range": "384-399",
+      "tiles": {
+        "384": {"name": "CHAR_ROBOT_1", "desc": "Робот тип 1", "pos": [0, 24], "pixel": [0, 768]},
+        "385": {"name": "CHAR_ROBOT_2", "desc": "Робот тип 2", "pos": [1, 24], "pixel": [32, 768]},
+        "386": {"name": "CHAR_HUMAN_1", "desc": "Человек тип 1", "pos": [2, 24], "pixel": [64, 768]},
+        "387": {"name": "CHAR_HUMAN_2", "desc": "Человек тип 2", "pos": [3, 24], "pixel": [96, 768]},
+        "388": {"name": "CHAR_ANDROID", "desc": "Андроид", "pos": [4, 24], "pixel": [128, 768]},
+        "389": {"name": "CHAR_SCIENTIST", "desc": "Ученый", "pos": [5, 24], "pixel": [160, 768]},
+        "390": {"name": "CHAR_ENGINEER", "desc": "Инженер", "pos": [6, 24], "pixel": [192, 768]},
+        "391": {"name": "CHAR_PILOT", "desc": "Пилот", "pos": [7, 24], "pixel": [224, 768]}
+      }
+    },
+    "objects": {
+      "description": "Объекты и оборудование",
+      "range": "512-767",
+      "tiles": {
+        "512": {"name": "OBJ_CONSOLE", "desc": "Консоль управления", "pos": [0, 32], "pixel": [0, 1024]},
+        "513": {"name": "OBJ_COMPUTER", "desc": "Компьютер", "pos": [1, 32], "pixel": [32, 1024]},
+        "514": {"name": "OBJ_MONITOR", "desc": "Монитор", "pos": [2, 32], "pixel": [64, 1024]},
+        "515": {"name": "OBJ_TERMINAL", "desc": "Терминал", "pos": [3, 32], "pixel": [96, 1024]},
+        "516": {"name": "OBJ_SCANNER", "desc": "Сканер", "pos": [4, 32], "pixel": [128, 1024]},
+        "517": {"name": "OBJ_GENERATOR", "desc": "Генератор", "pos": [5, 32], "pixel": [160, 1024]},
+        "518": {"name": "OBJ_REACTOR", "desc": "Реактор", "pos": [6, 32], "pixel": [192, 1024]},
+        "519": {"name": "OBJ_ENGINE", "desc": "Двигатель", "pos": [7, 32], "pixel": [224, 1024]}
+      }
+    },
+    "furniture": {
+      "description": "Мебель и интерьер",
+      "range": "640-767",
+      "tiles": {
+        "640": {"name": "FURN_CHAIR", "desc": "Стул", "pos": [0, 40], "pixel": [0, 1280]},
+        "641": {"name": "FURN_TABLE", "desc": "Стол", "pos": [1, 40], "pixel": [32, 1280]},
+        "642": {"name": "FURN_BED", "desc": "Кровать", "pos": [2, 40], "pixel": [64, 1280]},
+        "643": {"name": "FURN_CABINET", "desc": "Шкаф", "pos": [3, 40], "pixel": [96, 1280]},
+        "644": {"name": "FURN_SHELF", "desc": "Полка", "pos": [4, 40], "pixel": [128, 1280]},
+        "645": {"name": "FURN_LAMP", "desc": "Лампа", "pos": [5, 40], "pixel": [160, 1280]},
+        "646": {"name": "FURN_COUCH", "desc": "Диван", "pos": [6, 40], "pixel": [192, 1280]},
+        "647": {"name": "FURN_DESK", "desc": "Письменный стол", "pos": [7, 40], "pixel": [224, 1280]}
+      }
+    },
+    "nature": {
+      "description": "Природные элементы",
+      "range": "768-895",
+      "tiles": {
+        "768": {"name": "NATURE_TREE_1", "desc": "Дерево тип 1", "pos": [0, 48], "pixel": [0, 1536]},
+        "769": {"name": "NATURE_TREE_2", "desc": "Дерево тип 2", "pos": [1, 48], "pixel": [32, 1536]},
+        "770": {"name": "NATURE_BUSH", "desc": "Куст", "pos": [2, 48], "pixel": [64, 1536]},
+        "771": {"name": "NATURE_FLOWER", "desc": "Цветок", "pos": [3, 48], "pixel": [96, 1536]},
+        "772": {"name": "NATURE_GRASS", "desc": "Трава", "pos": [4, 48], "pixel": [128, 1536]},
+        "773": {"name": "NATURE_ROCK", "desc": "Камень", "pos": [5, 48], "pixel": [160, 1536]},
+        "774": {"name": "NATURE_CRYSTAL", "desc": "Кристалл", "pos": [6, 48], "pixel": [192, 1536]},
+        "775": {"name": "NATURE_PLANT", "desc": "Растение", "pos": [7, 48], "pixel": [224, 1536]}
+      }
+    },
+    "icons": {
+      "description": "Иконки и символы",
+      "range": "832-847",
+      "tiles": {
+        "832": {"name": "ICON_ENERGY", "desc": "Энергия", "pos": [0, 52], "pixel": [0, 1664]},
+        "833": {"name": "ICON_SHIELD", "desc": "Щит", "pos": [1, 52], "pixel": [32, 1664]},
+        "834": {"name": "ICON_WEAPON", "desc": "Оружие", "pos": [2, 52], "pixel": [64, 1664]},
+        "835": {"name": "ICON_HEALTH", "desc": "Здоровье", "pos": [3, 52], "pixel": [96, 1664]},
+        "836": {"name": "ICON_AMMO", "desc": "Боеприпасы", "pos": [4, 52], "pixel": [128, 1664]},
+        "837": {"name": "ICON_TOOL", "desc": "Инструмент", "pos": [5, 52], "pixel": [160, 1664]},
+        "838": {"name": "ICON_KEY", "desc": "Ключ", "pos": [6, 52], "pixel": [192, 1664]},
+        "839": {"name": "ICON_COIN", "desc": "Монета", "pos": [7, 52], "pixel": [224, 1664]}
+      }
+    }
+  },
+  "game_states": {
+    "MENU": {
+      "description": "Элементы для главного меню",
+      "background": [0, 1, 2, 3, 4],
+      "panels": [128, 129, 130, 131, 132],
+      "buttons": [256, 257, 258, 259, 260],
+      "title_area": [128, 129, 130]
+    },
+    "MAP": {
+      "description": "Элементы для тактической карты",
+      "terrain": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      "objects": [512, 513, 514, 515, 516, 517, 518, 519],
+      "units": [384, 385, 386, 387, 388, 389, 390, 391],
+      "buildings": [640, 641, 642, 643, 644, 645, 646, 647]
+    },
+    "PLAYING": {
+      "description": "Элементы для игрового процесса",
+      "all_terrain": "0-127",
+      "all_ui": "128-511",
+      "all_objects": "512-767",
+      "all_nature": "768-895",
+      "hud_icons": [832, 833, 834, 835, 836, 837, 838, 839]
+    }
+  },
+  "assembly_constants": {
+    "TECH_GRID": 0,
+    "TECH_DIAGONAL": 1,
+    "TECH_HORIZONTAL": 2,
+    "TECH_DIAMOND": 3,
+    "TECH_GREEN": 4,
+    "UI_PANEL_DARK": 128,
+    "UI_BUTTON_NORMAL": 256,
+    "UI_BUTTON_PRESSED": 257,
+    "UI_BUTTON_HOVER": 258,
+    "CHAR_ROBOT_1": 384,
+    "CHAR_HUMAN_1": 386,
+    "OBJ_CONSOLE": 512,
+    "OBJ_COMPUTER": 513,
+    "FURN_CHAIR": 640,
+    "FURN_TABLE": 641,
+    "NATURE_TREE_1": 768,
+    "NATURE_TREE_2": 769,
+    "ICON_ENERGY": 832,
+    "ICON_SHIELD": 833
+  },
+  "helper_functions": {
+    "index_to_coordinates": "tileX = index % 16, tileY = index / 16",
+    "coordinates_to_pixel": "pixelX = tileX * 32, pixelY = tileY * 32",
+    "pixel_to_coordinates": "tileX = pixelX / 32, tileY = pixelY / 32",
+    "coordinates_to_index": "index = tileY * 16 + tileX"
+  }
+} 

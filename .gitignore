@@ -1,0 +1,47 @@
+# local archive of experiments, old kernels and reports (not published)
+archive/
+
+# article draft, not for the public repo
+docs/history.md
+
+# internal diagnostic runs (not for the public repo)
+bench/results/farmgpu-*/
+
+# build outputs
+build/
+obj/
+dist/
+wheelhouse/
+*.egg-info/
+oxjson.egg-info/
+*.o
+*.obj
+*.pyd
+*.so
+*.dll
+*.exe
+*.lib
+*.exp
+*.pdb
+*.ilk
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# editors
+.idea/
+.vscode/
+.cursor/
+.vs/
+
+# test suites cloned for tests/check_conformance.py
+suites/
+
+# per-machine output of tests/run_all.py and the transfer archive
+report-*.txt
+*.zip
+
+_ci_reports/
+

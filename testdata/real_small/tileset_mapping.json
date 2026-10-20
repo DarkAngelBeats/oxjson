@@ -1,0 +1,157 @@
+{
+  "atlas_info": {
+    "name": "tileset.png",
+    "size": {
+      "width": 512,
+      "height": 1792
+    },
+    "tile_size": {
+      "width": 32,
+      "height": 32
+    },
+    "grid": {
+      "columns": 16,
+      "rows": 56
+    },
+    "total_tiles": 896
+  },
+  "coordinate_system": {
+    "description": "Система координат атласа",
+    "formulas": {
+      "tile_to_index": "tileIndex = tileY * 16 + tileX",
+      "index_to_tile": "tileX = tileIndex % 16, tileY = tileIndex / 16",
+      "tile_to_pixel": "pixelX = tileX * 32, pixelY = tileY * 32"
+    }
+  },
+  "defined_tiles": {
+    "0": {
+      "type": "TILE_GRASS",
+      "description": "Трава",
+      "grid": [0, 0],
+      "pixel": [0, 0],
+      "color": "green",
+      "category": "terrain"
+    },
+    "1": {
+      "type": "TILE_DIRT",
+      "description": "Грунт",
+      "grid": [1, 0],
+      "pixel": [32, 0],
+      "color": "brown",
+      "category": "terrain"
+    },
+    "2": {
+      "type": "TILE_STONE",
+      "description": "Камень",
+      "grid": [2, 0],
+      "pixel": [64, 0],
+      "color": "gray",
+      "category": "terrain"
+    },
+    "3": {
+      "type": "TILE_WATER",
+      "description": "Вода",
+      "grid": [3, 0],
+      "pixel": [96, 0],
+      "color": "blue",
+      "category": "terrain"
+    },
+    "4": {
+      "type": "TILE_SAND",
+      "description": "Песок",
+      "grid": [4, 0],
+      "pixel": [128, 0],
+      "color": "yellow",
+      "category": "terrain"
+    },
+    "5": {
+      "type": "TILE_CONCRETE",
+      "description": "Бетон",
+      "grid": [5, 0],
+      "pixel": [160, 0],
+      "color": "light_gray",
+      "category": "terrain"
+    },
+    "6": {
+      "type": "TILE_METAL",
+      "description": "Металл",
+      "grid": [6, 0],
+      "pixel": [192, 0],
+      "color": "silver",
+      "category": "terrain"
+    }
+  },
+  "reserved_tiles": {
+    "range": "7-895",
+    "description": "Резерв для дополнительных тайлов",
+    "categories": {
+      "7-127": "Вариации базовых тайлов (8 строк)",
+      "128-511": "UI элементы (кнопки, панели, иконки) - 24 строки",
+      "512-639": "Игровые объекты и персонажи - 8 строк",
+      "640-767": "Спецэффекты и анимация - 8 строк",
+      "768-895": "Дополнительные игровые тайлы - 8 строк"
+    }
+  },
+  "grid_layout": {
+    "row_0": {
+      "y_pixel": 0,
+      "tiles": [
+        {"index": 0, "type": "TILE_GRASS", "x_pixel": 0},
+        {"index": 1, "type": "TILE_DIRT", "x_pixel": 32},
+        {"index": 2, "type": "TILE_STONE", "x_pixel": 64},
+        {"index": 3, "type": "TILE_WATER", "x_pixel": 96},
+        {"index": 4, "type": "TILE_SAND", "x_pixel": 128},
+        {"index": 5, "type": "TILE_CONCRETE", "x_pixel": 160},
+        {"index": 6, "type": "TILE_METAL", "x_pixel": 192},
+        {"index": 7, "type": "RESERVED", "x_pixel": 224},
+        {"index": 8, "type": "RESERVED", "x_pixel": 256},
+        {"index": 9, "type": "RESERVED", "x_pixel": 288},
+        {"index": 10, "type": "RESERVED", "x_pixel": 320},
+        {"index": 11, "type": "RESERVED", "x_pixel": 352},
+        {"index": 12, "type": "RESERVED", "x_pixel": 384},
+        {"index": 13, "type": "RESERVED", "x_pixel": 416},
+        {"index": 14, "type": "RESERVED", "x_pixel": 448},
+        {"index": 15, "type": "RESERVED", "x_pixel": 480}
+      ]
+    },
+    "rows_1_to_55": {
+      "description": "Строки 1-55 содержат резервные тайлы (индексы 16-895)",
+      "tile_range": "16-895",
+      "status": "RESERVED"
+    }
+  },
+  "code_integration": {
+    "constants": {
+      "TILE_ATLAS_WIDTH": 512,
+      "TILE_ATLAS_HEIGHT": 1792,
+      "ATLAS_TILE_SIZE": 32,
+      "ATLAS_TILES_X": 16,
+      "ATLAS_TILES_Y": 56,
+      "ATLAS_TOTAL_TILES": 896,
+      "MAX_TILE_TYPES": 7
+    },
+    "functions": {
+      "InitTileAtlas": "Инициализация атласа тайлов",
+      "RenderTileFromAtlas": "Рендеринг тайла по индексу",
+      "GetPixelFromAtlas": "Получение пикселя из тайла",
+      "FillTileInAtlas": "Заполнение тайла цветом",
+      "CopyTileToScreen": "Копирование тайла на экран"
+    },
+    "files": {
+      "src/media/texture.asm": "Основная система текстур",
+      "src/game/world.asm": "Тайловая карта мира",
+      "include/world_map.inc": "Константы и структуры",
+      "include/texture_manager.inc": "Заголовки текстур"
+    }
+  },
+  "usage_examples": {
+    "render_grass": {
+      "description": "Рендеринг травы в позиции (100, 100)",
+      "code": "mov ecx, 100\nmov edx, 100\nmov eax, 0\ncall RenderTileFromAtlas"
+    },
+    "get_tile_coordinates": {
+      "description": "Получение координат тайла по индексу",
+      "code": "mov eax, tileIndex\nmov edx, 0\nmov ecx, 16\ndiv ecx  ; EAX = tileY, EDX = tileX"
+    }
+  }
+} 

@@ -1,0 +1,17 @@
+{
+  "font": {
+    "json": "assets/ui_atlas.json",
+    "size": 16,
+    "lineHeight": 14
+  },
+  "ui": {
+    "scale": 1,
+    "pad": 4,
+    "ok": true
+  },
+  "window": {
+    "w": 1280,
+    "h": 720
+  },
+  "title": "base_craft"
+}

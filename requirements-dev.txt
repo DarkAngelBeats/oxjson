@@ -1,0 +1,10 @@
+# for the tests and the benchmark; the library itself has no dependencies
+orjson
+numpy
+tzdata
+msgspec
+ssrjson
+yyjson
+pysimdjson
+ujson
+python-rapidjson

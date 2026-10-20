@@ -1,0 +1,38 @@
+name: profile-macos
+
+# loads on Apple Silicon: compiler / flag variants against orjson, plus a `sample` profile.
+# Report: the profile-macos artifact (report.md, raw sample files, results.json).
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "include/**"
+      - "make_ext.py"
+      - "tools/mac_profile.py"
+      - ".github/workflows/profile-macos.yml"
+
+jobs:
+  profile:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install orjson
+        run: python -m pip install -U pip orjson
+      - name: Variants, timings, profile
+        run: python tools/mac_profile.py --resign build/mac-profile
+      - name: Summary
+        if: always()
+        run: test -f build/mac-profile/report.md && cat build/mac-profile/report.md >> "$GITHUB_STEP_SUMMARY" || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: profile-macos
+          path: |
+            build/mac-profile/report.md
+            build/mac-profile/results.json
+            build/mac-profile/sample-*.txt

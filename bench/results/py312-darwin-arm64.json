@@ -1,0 +1,435 @@
+{
+ "python": "3.12.7",
+ "machine": "arm64",
+ "system": "Darwin",
+ "processor": "arm",
+ "libs": {
+  "oxjson": {
+   "version": "0.4.0",
+   "disk_bytes": 132618,
+   "docs": {
+    "small config, 34 KB": {
+     "loads_us": 40.62213332266159,
+     "dumps_us": 10.870766739875156,
+     "loads_peak_bytes": 49152,
+     "dumps_peak_bytes": 0
+    },
+    "float array, 150 KB": {
+     "loads_us": 111.65963339105171,
+     "dumps_us": 109.32493332802551,
+     "loads_peak_bytes": 311296,
+     "dumps_peak_bytes": 0
+    },
+    "API reply with text, 647 KB": {
+     "loads_us": 605.0958333617018,
+     "dumps_us": 105.65420000906063,
+     "loads_peak_bytes": 1277952,
+     "dumps_peak_bytes": 573440
+    },
+    "catalog, 1.8 MB": {
+     "loads_us": 1601.8792334458947,
+     "dumps_us": 227.04713346684002,
+     "loads_peak_bytes": 3489792,
+     "dumps_peak_bytes": 458752
+    },
+    "coordinates, 2.2 MB": {
+     "loads_us": 3841.1055665771223,
+     "dumps_us": 1659.6139333766284,
+     "loads_peak_bytes": 8486912,
+     "dumps_peak_bytes": 2146304
+    },
+    "3D mesh, 3.0 MB": {
+     "loads_us": 5191.430633324974,
+     "dumps_us": 1963.7416668653411,
+     "loads_peak_bytes": 12500992,
+     "dumps_peak_bytes": 1769472
+    },
+    "uniform records, 4.9 MB": {
+     "loads_us": 19765.588900130144,
+     "dumps_us": 3005.604199855346,
+     "loads_peak_bytes": 33783808,
+     "dumps_peak_bytes": 4931584
+    }
+   }
+  },
+  "orjson": {
+   "version": "3.13.0",
+   "disk_bytes": 352185,
+   "docs": {
+    "small config, 34 KB": {
+     "loads_us": 41.1944999541447,
+     "dumps_us": 12.391566694229065,
+     "loads_peak_bytes": 0,
+     "dumps_peak_bytes": 0
+    },
+    "float array, 150 KB": {
+     "loads_us": 129.22233342275527,
+     "dumps_us": 182.0319666270128,
+     "loads_peak_bytes": 344064,
+     "dumps_peak_bytes": 0
+    },
+    "API reply with text, 647 KB": {
+     "loads_us": 626.0139333183664,
+     "dumps_us": 155.74166657946384,
+     "loads_peak_bytes": 1998848,
+     "dumps_peak_bytes": 294912
+    },
+    "catalog, 1.8 MB": {
+     "loads_us": 1841.473600112901,
+     "dumps_us": 274.53753333854064,
+     "loads_peak_bytes": 5963776,
+     "dumps_peak_bytes": 212992
+    },
+    "coordinates, 2.2 MB": {
+     "loads_us": 3978.2151666562036,
+     "dumps_us": 2077.3124000091534,
+     "loads_peak_bytes": 12910592,
+     "dumps_peak_bytes": 1818624
+    },
+    "3D mesh, 3.0 MB": {
+     "loads_us": 5540.509833341882,
+     "dumps_us": 3024.2333667047205,
+     "loads_peak_bytes": 19005440,
+     "dumps_peak_bytes": 1638400
+    },
+    "uniform records, 4.9 MB": {
+     "loads_us": 19185.052833381633,
+     "dumps_us": 3491.466699991482,
+     "loads_peak_bytes": 59195392,
+     "dumps_peak_bytes": 4636672
+    }
+   }
+  },
+  "msgspec": {
+   "version": "0.22.0",
+   "disk_bytes": 580623,
+   "docs": {
+    "small config, 34 KB": {
+     "loads_us": 42.21103339053419,
+     "dumps_us": 13.437533349739775,
+     "loads_peak_bytes": 0,
+     "dumps_peak_bytes": 0
+    },
+    "float array, 150 KB": {
+     "loads_us": 140.40130002589044,
+     "dumps_us": 210.0278000398248,
+     "loads_peak_bytes": 49152,
+     "dumps_peak_bytes": 0
+    },
+    "API reply with text, 647 KB": {
+     "loads_us": 689.9416666177179,
+     "dumps_us": 203.813966557694,
+     "loads_peak_bytes": 983040,
+     "dumps_peak_bytes": 344064
+    },
+    "catalog, 1.8 MB": {
+     "loads_us": 1772.926266645906,
+     "dumps_us": 304.2945999974715,
+     "loads_peak_bytes": 3211264,
+     "dumps_peak_bytes": 262144
+    },
+    "coordinates, 2.2 MB": {
+     "loads_us": 4788.875000182695,
+     "dumps_us": 2111.420866640401,
+     "loads_peak_bytes": 8830976,
+     "dumps_peak_bytes": 1851392
+    },
+    "3D mesh, 3.0 MB": {
+     "loads_us": 5409.668033280468,
+     "dumps_us": 4126.095800074836,
+     "loads_peak_bytes": 11010048,
+     "dumps_peak_bytes": 1589248
+    },
+    "uniform records, 4.9 MB": {
+     "loads_us": 17509.076400074264,
+     "dumps_us": 5006.965300071897,
+     "loads_peak_bytes": 39927808,
+     "dumps_peak_bytes": 1163264
+    }
+   }
+  },
+  "ssrjson": {
+   "version": "0.0.24",
+   "disk_bytes": 670720,
+   "docs": {
+    "small config, 34 KB": {
+     "loads_us": 40.52493328951338,
+     "dumps_us": 7.252866665415543,
+     "loads_peak_bytes": 0,
+     "dumps_peak_bytes": 0
+    },
+    "float array, 150 KB": {
+     "loads_us": 130.5124333157437,
+     "dumps_us": 72.56516667742592,
+     "loads_peak_bytes": 278528,
+     "dumps_peak_bytes": 0
+    },
+    "API reply with text, 647 KB": {
+     "loads_us": 561.4167001416112,
+     "dumps_us": 91.43463336537631,
+     "loads_peak_bytes": 1671168,
+     "dumps_peak_bytes": 294912
+    },
+    "catalog, 1.8 MB": {
+     "loads_us": 1697.1235334191686,
+     "dumps_us": 214.5221334406718,
+     "loads_peak_bytes": 5046272,
+     "dumps_peak_bytes": 262144
+    },
+    "coordinates, 2.2 MB": {
+     "loads_us": 3561.8458333071126,
+     "dumps_us": 1224.2069667384687,
+     "loads_peak_bytes": 10207232,
+     "dumps_peak_bytes": 1884160
+    },
+    "3D mesh, 3.0 MB": {
+     "loads_us": 5209.987466605526,
+     "dumps_us": 1557.9347000311827,
+     "loads_peak_bytes": 15007744,
+     "dumps_peak_bytes": 1589248
+    },
+    "uniform records, 4.9 MB": {
+     "loads_us": 21591.822133238264,
+     "dumps_us": 2832.6581999256937,
+     "loads_peak_bytes": 45678592,
+     "dumps_peak_bytes": 524288
+    }
+   }
+  },
+  "yyjson": {
+   "version": "4.0.6",
+   "disk_bytes": 996222,
+   "docs": {
+    "small config, 34 KB": {
+     "loads_us": 54.948566776147345,
+     "dumps_us": 23.511299968959065,
+     "loads_peak_bytes": 0,
+     "dumps_peak_bytes": 0
+    },
+    "float array, 150 KB": {
+     "loads_us": 139.98066660860786,
+     "dumps_us": 138.14023322993307,
+     "loads_peak_bytes": 245760,
+     "dumps_peak_bytes": 49152
+    },
+    "API reply with text, 647 KB": {
+     "loads_us": 628.5096334371095,
+     "dumps_us": 471.98899992508814,
+     "loads_peak_bytes": 2637824,
+     "dumps_peak_bytes": 2605056
+    },
+    "catalog, 1.8 MB": {
+     "loads_us": 1606.134666599246,
+     "dumps_us": 560.3819999729845,
+     "loads_peak_bytes": 7471104,
+     "dumps_peak_bytes": 2326528
+    },
+    "coordinates, 2.2 MB": {
+     "loads_us": 3035.7859666158524,
+     "dumps_us": 2267.5861999535605,
+     "loads_peak_bytes": 12877824,
+     "dumps_peak_bytes": 7815168
+    },
+    "3D mesh, 3.0 MB": {
+     "loads_us": 5026.155399991694,
+     "dumps_us": 3057.0680332554425,
+     "loads_peak_bytes": 21118976,
+     "dumps_peak_bytes": 11173888
+    },
+    "uniform records, 4.9 MB": {
+     "loads_us": 16662.975066689494,
+     "dumps_us": 7164.445700072974,
+     "loads_peak_bytes": 89276416,
+     "dumps_peak_bytes": 28442624
+    }
+   }
+  },
+  "pysimdjson": {
+   "version": "7.0.2",
+   "disk_bytes": 9363993,
+   "docs": {
+    "small config, 34 KB": {
+     "loads_us": 1275.8360667551945,
+     "loads_peak_bytes": 0
+    },
+    "float array, 150 KB": {
+     "loads_us": 4007.725066579345,
+     "loads_peak_bytes": 688128
+    },
+    "API reply with text, 647 KB": {
+     "loads_us": 22933.49986666726,
+     "loads_peak_bytes": 3342336
+    },
+    "catalog, 1.8 MB": {
+     "loads_us": 46390.91253323689,
+     "loads_peak_bytes": 8273920
+    },
+    "coordinates, 2.2 MB": {
+     "loads_us": 73270.14716671935,
+     "loads_peak_bytes": 14434304
+    },
+    "3D mesh, 3.0 MB": {
+     "loads_us": 107478.90699994967,
+     "loads_peak_bytes": 23887872
+    },
+    "uniform records, 4.9 MB": {
+     "loads_us": 320417.3138000139,
+     "loads_peak_bytes": 71254016
+    }
+   }
+  },
+  "ujson": {
+   "version": "6.0.0",
+   "disk_bytes": 161311,
+   "docs": {
+    "small config, 34 KB": {
+     "loads_us": 56.02066679178582,
+     "dumps_us": 50.38896654999311,
+     "loads_peak_bytes": 0,
+     "dumps_peak_bytes": 0
+    },
+    "float array, 150 KB": {
+     "loads_us": 323.3541999785909,
+     "dumps_us": 556.8111001593934,
+     "loads_peak_bytes": 32768,
+     "dumps_peak_bytes": 0
+    },
+    "API reply with text, 647 KB": {
+     "loads_us": 985.8749333943706,
+     "dumps_us": 699.9776998175852,
+     "loads_peak_bytes": 1540096,
+     "dumps_peak_bytes": 868352
+    },
+    "catalog, 1.8 MB": {
+     "loads_us": 2084.902699940964,
+     "dumps_us": 1280.5763333744835,
+     "loads_peak_bytes": 4603904,
+     "dumps_peak_bytes": 720896
+    },
+    "coordinates, 2.2 MB": {
+     "loads_us": 6896.922266635859,
+     "dumps_us": 8615.240400013136,
+     "loads_peak_bytes": 8945664,
+     "dumps_peak_bytes": 1835008
+    },
+    "3D mesh, 3.0 MB": {
+     "loads_us": 7618.613899982544,
+     "dumps_us": 8174.862433315866,
+     "loads_peak_bytes": 12910592,
+     "dumps_peak_bytes": 3407872
+    },
+    "uniform records, 4.9 MB": {
+     "loads_us": 19406.961066579242,
+     "dumps_us": 14455.058366547746,
+     "loads_peak_bytes": 45137920,
+     "dumps_peak_bytes": 4653056
+    }
+   }
+  },
+  "rapidjson": {
+   "version": "1.25",
+   "disk_bytes": 928635,
+   "docs": {
+    "small config, 34 KB": {
+     "loads_us": 112.82503340529122,
+     "dumps_us": 74.2833332878945,
+     "loads_peak_bytes": 0,
+     "dumps_peak_bytes": 0
+    },
+    "float array, 150 KB": {
+     "loads_us": 445.7834334971267,
+     "dumps_us": 2039.3958999799604,
+     "loads_peak_bytes": 376832,
+     "dumps_peak_bytes": 81920
+    },
+    "API reply with text, 647 KB": {
+     "loads_us": 2010.3556999250334,
+     "dumps_us": 908.3096667078886,
+     "loads_peak_bytes": 5144576,
+     "dumps_peak_bytes": 983040
+    },
+    "catalog, 1.8 MB": {
+     "loads_us": 3976.4610666376634,
+     "dumps_us": 1399.623766701552,
+     "loads_peak_bytes": 12156928,
+     "dumps_peak_bytes": 737280
+    },
+    "coordinates, 2.2 MB": {
+     "loads_us": 15551.27913331186,
+     "dumps_us": 27869.472166761017,
+     "loads_peak_bytes": 13418496,
+     "dumps_peak_bytes": 1835008
+    },
+    "3D mesh, 3.0 MB": {
+     "loads_us": 11469.020833404405,
+     "dumps_us": 21316.43610006601,
+     "loads_peak_bytes": 17154048,
+     "dumps_peak_bytes": 1572864
+    },
+    "uniform records, 4.9 MB": {
+     "loads_us": 29724.130533334876,
+     "dumps_us": 14451.813866799057,
+     "loads_peak_bytes": 42975232,
+     "dumps_peak_bytes": 9584640
+    }
+   }
+  },
+  "json": {
+   "version": "stdlib",
+   "disk_bytes": null,
+   "docs": {
+    "small config, 34 KB": {
+     "loads_us": 105.8722333861321,
+     "dumps_us": 99.96953337273833,
+     "loads_peak_bytes": 0,
+     "dumps_peak_bytes": 0
+    },
+    "float array, 150 KB": {
+     "loads_us": 469.99163341752137,
+     "dumps_us": 1897.340266714309,
+     "loads_peak_bytes": 376832,
+     "dumps_peak_bytes": 81920
+    },
+    "API reply with text, 647 KB": {
+     "loads_us": 1485.5915999457163,
+     "dumps_us": 1385.0054998935473,
+     "loads_peak_bytes": 3309568,
+     "dumps_peak_bytes": 1638400
+    },
+    "catalog, 1.8 MB": {
+     "loads_us": 3123.1124333923312,
+     "dumps_us": 2393.5709000397765,
+     "loads_peak_bytes": 7159808,
+     "dumps_peak_bytes": 1441792
+    },
+    "coordinates, 2.2 MB": {
+     "loads_us": 15224.695866709226,
+     "dumps_us": 28255.481966607476,
+     "loads_peak_bytes": 11436032,
+     "dumps_peak_bytes": 2015232
+    },
+    "3D mesh, 3.0 MB": {
+     "loads_us": 11630.31809989358,
+     "dumps_us": 22151.363833199866,
+     "loads_peak_bytes": 14532608,
+     "dumps_peak_bytes": 1769472
+    },
+    "uniform records, 4.9 MB": {
+     "loads_us": 28997.63046680164,
+     "dumps_us": 25485.215166706137,
+     "loads_peak_bytes": 38240256,
+     "dumps_peak_bytes": 9764864
+    }
+   }
+  }
+ },
+ "docs": [
+  "small config, 34 KB",
+  "float array, 150 KB",
+  "API reply with text, 647 KB",
+  "catalog, 1.8 MB",
+  "coordinates, 2.2 MB",
+  "3D mesh, 3.0 MB",
+  "uniform records, 4.9 MB"
+ ]
+}

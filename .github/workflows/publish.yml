@@ -1,0 +1,119 @@
+name: publish
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  # Do not rebuild or upload when this package version is already on PyPI
+  # (re-tagging v0.4.0 must not create a failed deployment).
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      should_publish: ${{ steps.check.outputs.should_publish }}
+      version: ${{ steps.check.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - id: check
+        run: |
+          ver=$(python -c "import tomllib; print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])")
+          echo "version=$ver" >> "$GITHUB_OUTPUT"
+          echo "package version: $ver"
+          if python -c "
+          import json, sys, urllib.request
+          ver = sys.argv[1]
+          data = json.load(urllib.request.urlopen('https://pypi.org/pypi/oxjson/json'))
+          raise SystemExit(0 if ver in data.get('releases', {}) else 1)
+          " "$ver"; then
+            echo "oxjson $ver is already on PyPI — skipping build and publish"
+            echo "should_publish=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "oxjson $ver is not on PyPI — will build and publish"
+            echo "should_publish=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  build:
+    needs: gate
+    if: needs.gate.outputs.should_publish == 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            kind: cibw
+          - os: macos-14
+            kind: cibw
+          - os: windows-latest
+            kind: win
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Linux / macOS wheels
+        if: matrix.kind == 'cibw'
+        run: |
+          python -m pip install -U pip cibuildwheel
+          python -m cibuildwheel --output-dir wheelhouse
+
+      - name: Windows wheel (MinGW + NASM)
+        if: matrix.kind == 'win'
+        shell: bash
+        run: |
+          choco install nasm mingw -y --no-progress
+          export PATH="/c/Program Files/NASM:/c/ProgramData/mingw64/mingw64/bin:/c/MinGW/bin:$PATH"
+          export CC=gcc
+          python -m pip install -U pip build
+          python -m build --wheel -o wheelhouse
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist-${{ matrix.os }}
+          path: wheelhouse/*
+
+  sdist:
+    needs: gate
+    if: needs.gate.outputs.should_publish == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          sudo apt-get update && sudo apt-get install -y nasm
+          python -m pip install -U pip build
+          python -m build --sdist -o wheelhouse
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist-sdist
+          path: wheelhouse/*
+
+  publish:
+    needs: [gate, build, sdist]
+    if: needs.gate.outputs.should_publish == 'true'
+    runs-on: ubuntu-latest
+    environment: pypi
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: dist-*
+          merge-multiple: true
+          path: dist
+      - name: Show files
+        run: ls -la dist
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
+          skip-existing: true
