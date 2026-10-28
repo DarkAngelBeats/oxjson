@@ -5,7 +5,7 @@
     python make_ext.py <dir>      build a copy of the package in <dir>/oxjson
 
 Windows and Linux on x86-64: needs gcc and nasm; builds the assembly kernel and
-the portable C code. Every other target (ARM64 Linux, macOS): needs a C compiler
+the portable C code. Every other target (ARM64 Linux, macOS arm64/x86-64): needs a C compiler
 only (cc, or $CC); builds the portable C code.
 
 $OXJSON_CFLAGS replaces the default optimisation flags (-O2), e.g. "-O3 -mcpu=apple-m1".
@@ -51,6 +51,11 @@ def main():
         # the extension resolves Python symbols from the interpreter that loads it
         link = ["-bundle", "-undefined", "dynamic_lookup"] if mac else ["-shared"]
         tail = ["-lm"]
+        if mac:
+            # cibuildwheel cross-compiles Intel wheels on Apple Silicon: ARCHFLAGS="-arch x86_64"
+            arch = (os.environ.get("ARCHFLAGS") or "").split()
+            cflags += arch
+            link += arch
     srcs = ["src/json_module.c", "src/jl_portable.c", "src/json_dumps_portable.c", "src/json_crt.c"]
     x86 = platform.machine().lower() in ("amd64", "x86_64")
     if x86 and not mac:

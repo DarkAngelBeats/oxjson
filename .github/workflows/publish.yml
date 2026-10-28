@@ -43,22 +43,25 @@ jobs:
   build:
     needs: gate
     if: needs.gate.outputs.should_publish == 'true'
+    name: build ${{ matrix.name }}
     strategy:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-latest
-            kind: cibw
-          - os: macos-14
-            kind: cibw
-          - os: windows-latest
-            kind: win
+          - { name: linux-x86_64, os: ubuntu-latest, kind: cibw }
+          - { name: linux-aarch64, os: ubuntu-24.04-arm, kind: cibw }
+          - { name: macos, os: macos-14, kind: cibw }
+          - { name: windows-py3.10, os: windows-latest, kind: win, python: "3.10" }
+          - { name: windows-py3.11, os: windows-latest, kind: win, python: "3.11" }
+          - { name: windows-py3.12, os: windows-latest, kind: win, python: "3.12" }
+          - { name: windows-py3.13, os: windows-latest, kind: win, python: "3.13" }
+          - { name: windows-py3.14, os: windows-latest, kind: win, python: "3.14" }
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python || '3.12' }}
 
       - name: Linux / macOS wheels
         if: matrix.kind == 'cibw'
@@ -75,10 +78,13 @@ jobs:
           export CC=gcc
           python -m pip install -U pip build
           python -m build --wheel -o wheelhouse
+          python -m pip install --force-reinstall --no-index --find-links=wheelhouse oxjson
+          cd "$RUNNER_TEMP"
+          python -c "import oxjson; assert oxjson.loads(b'{\"a\":1}')=={'a':1}"
 
       - uses: actions/upload-artifact@v4
         with:
-          name: dist-${{ matrix.os }}
+          name: dist-${{ matrix.name }}
           path: wheelhouse/*
 
   sdist:

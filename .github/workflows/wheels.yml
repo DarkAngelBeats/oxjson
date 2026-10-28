@@ -7,69 +7,44 @@ on:
   workflow_dispatch:
 
 jobs:
-  linux:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: Install cibuildwheel
-        run: python -m pip install -U pip cibuildwheel
-      - name: Build wheels
-        run: python -m cibuildwheel --output-dir wheelhouse
-      - uses: actions/upload-artifact@v4
-        with:
-          name: wheels-linux
-          path: wheelhouse/*.whl
-
-  macos:
-    runs-on: macos-14
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: Install cibuildwheel
-        run: python -m pip install -U pip cibuildwheel
-      - name: Build wheels
-        run: python -m cibuildwheel --output-dir wheelhouse
-      - uses: actions/upload-artifact@v4
-        with:
-          name: wheels-macos
-          path: wheelhouse/*.whl
-
-  # Full NEON / portable-path suite on Apple Silicon (not just wheel smoke).
-  test-macos:
-    runs-on: macos-14
+  # Linux (manylinux + musllinux) and macOS (arm64 + x86_64) via cibuildwheel.
+  cibw:
+    name: cibw ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.12", "3.13"]
+        include:
+          - { name: linux-x86_64, os: ubuntu-latest }
+          - { name: linux-aarch64, os: ubuntu-24.04-arm }
+          - { name: macos, os: macos-14 }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install cibuildwheel
+        run: python -m pip install -U pip cibuildwheel
+      - name: Build wheels
+        run: python -m cibuildwheel --output-dir wheelhouse
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wheels-${{ matrix.name }}
+          path: wheelhouse/*.whl
+
+  # Windows x86-64: MinGW gcc + NASM, one wheel per CPython version.
+  windows:
+    name: windows py${{ matrix.python-version }}
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install test deps
-        run: python -m pip install -U pip -r requirements-dev.txt
-      - name: Run full suite
-        run: python tests/run_all.py
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: report-macos-py${{ matrix.python-version }}
-          path: |
-            report-*.txt
-            bench/results/*.json
-
-  windows:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
       - name: Install NASM and MinGW
         shell: bash
         run: |
@@ -77,19 +52,17 @@ jobs:
           echo "C:/Program Files/NASM" >> "$GITHUB_PATH"
           echo "C:/ProgramData/mingw64/mingw64/bin" >> "$GITHUB_PATH"
           echo "C:/MinGW/bin" >> "$GITHUB_PATH"
-      - name: Find gcc
+      - name: Toolchain
         shell: bash
         run: |
-          export PATH="/c/Program Files/NASM:/c/ProgramData/mingw64/mingw64/bin:/c/MinGW/bin:$PATH"
-          which nasm
-          which gcc
+          which nasm gcc
           nasm -v
           gcc --version | head -1
       - name: Build wheel
         shell: bash
+        env:
+          CC: gcc
         run: |
-          export PATH="/c/Program Files/NASM:/c/ProgramData/mingw64/mingw64/bin:/c/MinGW/bin:$PATH"
-          export CC=gcc
           python -m pip install -U pip build
           python -m build --wheel -o wheelhouse
       - name: Smoke test
@@ -98,11 +71,60 @@ jobs:
           python -m pip install --force-reinstall --no-index --find-links=wheelhouse oxjson
           # import from outside the repo so the local oxjson/ package does not shadow the wheel
           cd "$RUNNER_TEMP"
-          python -c "import oxjson; assert oxjson.loads(b'{\"a\":1}')=={'a':1}"
+          python -c "import oxjson; assert oxjson.loads(b'{\"a\":1}')=={'a':1}; assert oxjson.dumps([1])==b'[1]'"
       - uses: actions/upload-artifact@v4
         with:
-          name: wheels-windows
+          name: wheels-windows-py${{ matrix.python-version }}
           path: wheelhouse/*.whl
+
+  # Full suite (against orjson and json, assembly vs portable path) on every native target,
+  # not just the wheel smoke test.
+  test:
+    name: test ${{ matrix.os }} py${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, ubuntu-24.04-arm, macos-14, windows-latest]
+        python-version: ["3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install NASM (Linux x86-64)
+        if: runner.os == 'Linux' && runner.arch == 'X64'
+        run: sudo apt-get update && sudo apt-get install -y nasm
+      - name: Install NASM and MinGW (Windows)
+        if: runner.os == 'Windows'
+        shell: bash
+        run: |
+          choco install nasm mingw -y --no-progress
+          echo "C:/Program Files/NASM" >> "$GITHUB_PATH"
+          echo "C:/ProgramData/mingw64/mingw64/bin" >> "$GITHUB_PATH"
+          echo "C:/MinGW/bin" >> "$GITHUB_PATH"
+      - name: Install test deps
+        shell: bash
+        # macOS also benchmarks the other libraries; elsewhere only what the checks need
+        run: |
+          python -m pip install -U pip
+          if [ "$RUNNER_OS" = macOS ]; then
+            python -m pip install -r requirements-dev.txt
+          else
+            python -m pip install orjson numpy tzdata
+          fi
+      - name: Run full suite
+        shell: bash
+        env:
+          CC: ${{ runner.os == 'Windows' && 'gcc' || '' }}
+        run: python tests/run_all.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: report-${{ matrix.os }}-py${{ matrix.python-version }}
+          path: |
+            report-*.txt
+            bench/results/*.json
 
   sdist:
     runs-on: ubuntu-latest

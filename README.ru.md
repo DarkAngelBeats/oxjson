@@ -20,16 +20,18 @@ text = oxjson.dumps(obj, option=oxjson.OPT_INDENT_2 | oxjson.OPT_SORT_KEYS)
 pip install oxjson
 ```
 
-Поддерживается CPython 3.10–3.14. Для версии 0.4.0 есть готовые wheels:
+Поддерживается CPython 3.10–3.14. Готовые wheels, для каждой платформы под Python 3.10–3.14:
 
-| Платформа | Python |
+| Платформа | wheel |
 |---|---|
-| Linux x86-64 (manylinux) | 3.10–3.14 |
-| macOS arm64 | 3.10–3.14 |
-| Windows x86-64 | пока только **3.12** |
+| Linux x86-64 | manylinux, musllinux |
+| Linux aarch64 | manylinux, musllinux |
+| macOS | arm64, x86-64 |
+| Windows x86-64 | win_amd64 |
 
-Wheels для musllinux пока нет: на Alpine и похожих дистрибутивах пакет собирается из исходников. На Windows
-с другой версией Python соберите пакет сами (см. [Сборка](#сборка)) или дождитесь расширенного набора wheels.
+В релизе 0.4.0 на PyPI есть только Linux x86-64 (manylinux), macOS arm64 и Windows с Python 3.12;
+полный набор появится в следующем релизе. Для остального (Windows ARM64, 32-битные системы) пакет
+собирается из исходников, см. [Сборка](#сборка).
 
 ## Производительность
 
@@ -87,7 +89,7 @@ dataclass, `datetime` / `date` / `time`, `enum.Enum`, `uuid.UUID`, а с `OPT_SE
 |---|---|
 | x86-64 с AVX2, Windows и Linux | ядро на ассемблере |
 | x86-64 без AVX2 | C с 16-байтными векторами SSE2; выбирается при импорте модуля |
-| ARM64 (Apple Silicon, Linux) | C с 16-байтными векторами NEON. Wheels для macOS arm64 собираются и тестируются в CI. Для Linux aarch64 пакет собирается кросс-компиляцией, но тестируется меньше: если собираетесь использовать его там в production, сначала запустите на этой машине `tests/vec16_selftest.c` и тесты. |
+| ARM64 (Apple Silicon, Linux) | C с 16-байтными векторами NEON. Wheels для macOS arm64 и Linux aarch64 собираются нативно, и на обеих платформах в CI прогоняется полный набор тестов. |
 | Остальные | обычный C |
 
 Поддерживается Python 3.10–3.14. Расширение использует несколько приватных функций CPython, поэтому
