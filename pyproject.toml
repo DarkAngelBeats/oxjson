@@ -40,12 +40,17 @@ oxjson = ["*.pyi", "py.typed"]
 
 [tool.cibuildwheel]
 build = "cp310-* cp311-* cp312-* cp313-* cp314-*"
-skip = "*-win32 *_i686 *-musllinux*"
+skip = "*-win32 *_i686"
 test-command = "python -c \"import oxjson; assert oxjson.loads(b'{\\\"a\\\":1}') == {'a': 1}\""
 test-skip = "*-macosx_x86_64"  # optional runners may be scarce; arm64 is enough
 
 [tool.cibuildwheel.linux]
+# NASM is only needed for the x86-64 kernel; aarch64 builds the portable C code
 before-all = """
+case "$(uname -m)" in
+  x86_64) ;;
+  *) echo "no NASM needed on $(uname -m)"; exit 0 ;;
+esac
 if command -v yum >/dev/null 2>&1; then yum install -y nasm
 elif command -v dnf >/dev/null 2>&1; then dnf install -y nasm
 elif command -v apt-get >/dev/null 2>&1; then apt-get update && apt-get install -y nasm
@@ -55,5 +60,7 @@ fi
 """
 
 [tool.cibuildwheel.macos]
-# portable C path only (no NASM kernel on macOS in make_ext.py)
+# portable C path only (no NASM kernel on macOS in make_ext.py);
+# x86_64 is cross-compiled on the arm64 runner via $ARCHFLAGS
+archs = ["arm64", "x86_64"]
 environment = { CC = "clang" }

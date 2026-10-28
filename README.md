@@ -20,16 +20,18 @@ text = oxjson.dumps(obj, option=oxjson.OPT_INDENT_2 | oxjson.OPT_SORT_KEYS)
 pip install oxjson
 ```
 
-Needs CPython 3.10–3.14. Prebuilt wheels for 0.4.0:
+Needs CPython 3.10–3.14. Prebuilt wheels, each for Python 3.10 – 3.14:
 
-| platform | Python |
+| platform | wheel |
 |---|---|
-| Linux x86-64 (manylinux) | 3.10 – 3.14 |
-| macOS arm64 | 3.10 – 3.14 |
-| Windows x86-64 | **3.12 only** for now |
+| Linux x86-64 | manylinux, musllinux |
+| Linux aarch64 | manylinux, musllinux |
+| macOS | arm64, x86-64 |
+| Windows x86-64 | win_amd64 |
 
-No musllinux wheels yet (Alpine and similar need a source build). On Windows with Python other
-than 3.12, use [Build](#build) or wait for a wider wheel set.
+The 0.4.0 release on PyPI has only Linux x86-64 (manylinux), macOS arm64 and Windows with Python 3.12;
+the full set above comes with the next release. Anything else (Windows ARM64, 32-bit) needs a
+source build, see [Build](#build).
 
 ## Performance
 
@@ -84,7 +86,7 @@ Supported options: `OPT_APPEND_NEWLINE`, `OPT_INDENT_2`, `OPT_NAIVE_UTC`, `OPT_N
 |---|---|
 | x86-64 with AVX2, Windows and Linux | assembly kernel |
 | x86-64 without AVX2 | C with 16-byte SSE2 vectors, chosen when the module is imported |
-| ARM64 (Apple Silicon, Linux) | C with 16-byte NEON vectors. macOS arm64 wheels are built and tested in CI; Linux aarch64 is cross-compiled but less exercised — run `tests/vec16_selftest.c` and the tests there if you ship on it. |
+| ARM64 (Apple Silicon, Linux) | C with 16-byte NEON vectors. macOS arm64 and Linux aarch64 wheels are built natively and the full test suite runs on both in CI. |
 | anything else | plain C |
 
 Python 3.10 – 3.14. The extension uses a few private CPython functions, so a new Python release may need a fix.
