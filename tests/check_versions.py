@@ -208,8 +208,10 @@ def part_memory():
         for _ in range(20):
             fn()
         gc.collect()
+        # five rounds: caches and freelists still warm up in the first ones on slow runners
+        # (e.g. [183, 42, 21, ...]); a real leak grows by the same amount every round
         grow = []
-        for _ in range(3):
+        for _ in range(5):
             b0 = sys.getallocatedblocks()
             for _ in range(reps):
                 fn()
@@ -217,7 +219,7 @@ def part_memory():
             grow.append(sys.getallocatedblocks() - b0)
         leak = min(grow) > 20
         bad += leak
-        print("   %-13s blocks after %d repeats, three rounds: %s%s" % (name, reps, grow, "  LEAK" if leak else ""))
+        print("   %-13s blocks after %d repeats, five rounds: %s%s" % (name, reps, grow, "  LEAK" if leak else ""))
     # memory outside Python objects (malloc buffers): the whole run again must not add megabytes
     for fn, reps in ((loads_ok, 300), (loads_err, 60), (dumps_ok, 300), (dumps_err, 3000)):
         for _ in range(reps):
