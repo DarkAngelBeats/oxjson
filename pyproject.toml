@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "oxjson"
-version = "0.4.0"
+version = "0.4.1"
 description = "Fast JSON for CPython: orjson-compatible loads/dumps with an x86-64 NASM kernel and portable C fallback"
 readme = "README.md"
 requires-python = ">=3.10"

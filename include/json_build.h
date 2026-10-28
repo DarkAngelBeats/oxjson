@@ -8,7 +8,7 @@
 #ifndef JSON_BUILD_NAME
 #define JSON_BUILD_NAME "prod"
 #endif
-#define OXJSON_VERSION "0.4.0"
+#define OXJSON_VERSION "0.4.1"
 
 static int json_build_export(PyObject *m)
 {

@@ -29,9 +29,8 @@ Needs CPython 3.10–3.14. Prebuilt wheels, each for Python 3.10 – 3.14:
 | macOS | arm64, x86-64 |
 | Windows x86-64 | win_amd64 |
 
-The 0.4.0 release on PyPI has only Linux x86-64 (manylinux), macOS arm64 and Windows with Python 3.12;
-the full set above comes with the next release. Anything else (Windows ARM64, 32-bit) needs a
-source build, see [Build](#build).
+The full set is on PyPI since 0.4.1 (0.4.0 had only Linux x86-64 manylinux, macOS arm64 and Windows
+with Python 3.12). Anything else (Windows ARM64, 32-bit) needs a source build, see [Build](#build).
 
 ## Performance
 
