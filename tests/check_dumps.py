@@ -1,8 +1,20 @@
-import os, sys, json, random, glob
+import os, re, sys, json, random, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 import oxjson as j
-def std(o): return json.dumps(o, ensure_ascii=False, separators=(',', ':')).encode('utf-8')
+# json writes floats the way Python prints them (1e-05, 1e-07); oxjson writes them
+# as orjson 3.13 does (0.00001, 1e-7). Strings are matched first and left alone.
+TOK = re.compile(rb'"(?:[^"\\]|\\.)*"|-?\d(?:\.\d+)?e-0[5-9]')
+def orjson_float(m):
+    t = m.group(0)
+    if t[:1] == b'"':
+        return t
+    if not t.endswith(b'5'):
+        return t.replace(b'e-0', b'e-')
+    sign, mant = (b'-', t[1:-4]) if t[:1] == b'-' else (b'', t[:-4])
+    return sign + b'0.0000' + mant.replace(b'.', b'')
+def std(o): return TOK.sub(orjson_float, json.dumps(o, ensure_ascii=False, separators=(',', ':')).encode('utf-8'))
+assert std([1e-05, -1.5e-05, 1e-06, 2.5e-09, 1e-10, "1e-05"]) == b'[0.00001,-0.000015,1e-6,2.5e-9,1e-10,"1e-05"]'
 bad = 0
 files = [ROOT + '/testdata/bench/large_50k.json', ROOT + '/testdata/engine/atlas.json'] + glob.glob(ROOT + '/testdata/real_small/*.json')
 for f in files:

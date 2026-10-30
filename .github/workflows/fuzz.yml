@@ -1,0 +1,73 @@
+name: fuzz
+
+# Differential fuzzing of loads and dumps against orjson (tests/fuzz.py).
+# One minute per machine on every push and pull request; a longer run only by
+# hand (workflow_dispatch, "seconds"). Each run uses a new seed, so every run
+# covers new cases; whatever it finds
+# is uploaded as the "fuzz-out-*" artifact and can be replayed with
+#   python tests/fuzz.py --replay <file>.bin       (loads)
+#   python tests/fuzz.py --replay-case dumps:<seed>:<case>
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      seconds:
+        description: "Seconds of fuzzing per machine"
+        default: "60"
+
+jobs:
+  fuzz:
+    name: fuzz ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, ubuntu-24.04-arm, macos-14, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install NASM (Linux x86-64)
+        if: runner.os == 'Linux' && runner.arch == 'X64'
+        run: sudo apt-get update && sudo apt-get install -y nasm
+      - name: Install NASM and MinGW (Windows)
+        if: runner.os == 'Windows'
+        shell: bash
+        run: |
+          choco install nasm mingw -y --no-progress
+          echo "C:/Program Files/NASM" >> "$GITHUB_PATH"
+          echo "C:/ProgramData/mingw64/mingw64/bin" >> "$GITHUB_PATH"
+          echo "C:/MinGW/bin" >> "$GITHUB_PATH"
+      - name: Install test deps
+        run: python -m pip install -U pip orjson numpy tzdata
+      - name: Build the extension
+        shell: bash
+        env:
+          CC: ${{ runner.os == 'Windows' && 'gcc' || '' }}
+        run: python make_ext.py
+      - name: "Self-test: a crashing case must be caught"
+        shell: bash
+        run: |
+          set +e
+          FUZZ_SELFTEST_CRASH=5 python tests/fuzz.py --seconds 1 --jobs 2 --target loads
+          rc=$?
+          set -e
+          ls fuzz-out/crash-loads-*.bin
+          test "$rc" = 1
+          rm -rf fuzz-out
+      - name: Fuzz
+        shell: bash
+        run: |
+          secs=60
+          if [ -n "${{ github.event.inputs.seconds }}" ]; then secs="${{ github.event.inputs.seconds }}"; fi
+          python tests/fuzz.py --seconds "$secs" --jobs 4 --seed "${{ github.run_number }}"
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: fuzz-out-${{ matrix.os }}
+          path: fuzz-out/

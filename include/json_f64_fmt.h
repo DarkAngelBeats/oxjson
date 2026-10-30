@@ -1,5 +1,7 @@
-/* Shortest round-trip binary64 -> text in Python repr / json layout
- * (1.0, 0.0, -0.0, 1e-05, 1e+16, 0.0001, 1234567890123456.0).
+/* Shortest round-trip binary64 -> text in orjson 3.13 layout
+ * (1.0, 0.0, -0.0, 0.00001, 1e-6, 1e+16, 1234567890123456.0): Python repr
+ * except that exponent -5 is written in decimal form and exponents are not
+ * zero padded.
  * Digits: the Zmij algorithm (Victor Zverovich, https://github.com/vitaut/zmij),
  * ported from its Rust port by David Tolnay (zmij 1.0.23):
  * one 128x64-bit multiplication and no branch on the digit count.
@@ -189,7 +191,9 @@ __attribute__((always_inline)) static inline JzmDec jzm_dec_of(uint64_t bits)
     return jzm_decimal(m | (1ULL << 52), raw - 1075, m != 0);
 }
 
-/* "e+XX" / "e-XXX" at o; returns the end */
+/* "e+XX" / "e-X" / "e-XXX" at o, as orjson 3.13 writes it: no zero padding
+ * (e-6, e-10). A positive exponent only comes after the decimal range, so it
+ * always has two or three digits (e+16). Returns the end. */
 static inline char *jf64_exp(char *o, int x)
 {
     o[0] = 'e';
@@ -204,17 +208,29 @@ static inline char *jf64_exp(char *o, int x)
         jf64_cpy2(o + 1, (unsigned)(x % 100));
         return o + 3;
     }
+    if (x < 10) {
+        o[0] = (char)('0' + x);
+        return o + 1;
+    }
     jf64_cpy2(o, (unsigned)x);
     return o + 2;
 }
 
+/* Decimal (not exponent) form for first-digit exponents lo..hi, as orjson
+ * 3.13 writes them: binary64 -5..15 (0.00001, 1e-6, 1e+16), numpy float32 and
+ * float16 values -6..12 (0.000001, 1e-7, 1e+13). */
+#define JF64_LO (-5)
+#define JF64_HI 15
+#define JF32_LO (-6)
+#define JF32_HI 12
+
 #ifdef JF64_PORTABLE
 #define JF64_ATTR __attribute__((always_inline))
 
-/* Python repr layout. The significant digits S (n of them, then '0' bytes)
- * sit in T, so every copy has a fixed size. */
+/* orjson layout with decimal range lo..hi. The significant digits S (n of
+ * them, then '0' bytes) sit in T, so every copy has a fixed size. */
 JF64_ATTR
-static inline int jf64_write(char *out, double v)
+static inline int jf64_write_lay(char *out, double v, int lo, int hi)
 {
     char T[48];
     const char *S = T + 1;
@@ -254,7 +270,7 @@ static inline int jf64_write(char *out, double v)
         T[16 + has_extra] = (char)('0' + (d.last & -d.has_last));
     }
     n = has_extra - 1 + nd + ((17 - nd) & -d.has_last);
-    if (x >= -4 && x <= 15) {
+    if (x >= lo && x <= hi) {
         if (x >= n - 1) {
             memcpy(o, S, 16);
             o[x + 1] = '.';
@@ -314,9 +330,10 @@ static inline __m128i jzm_digits16(uint64_t sig, int *nd)
                         _mm_set1_epi8('0'));
 }
 
-/* Python repr layout. W = the first 16 significant digits (then '0'), s16 = the 17th. */
+/* orjson layout with decimal range lo..hi. W = the first 16 significant
+ * digits (then '0'), s16 = the 17th. */
 JF64_ATTR
-static inline int jf64_write(char *out, double v)
+static inline int jf64_write_lay(char *out, double v, int lo, int hi)
 {
     uint64_t bits;
     JzmDec d;
@@ -349,7 +366,7 @@ static inline int jf64_write(char *out, double v)
     /* 15-digit sig: drop the pad digit, the last digit becomes the 16th */
     W = _mm_blendv_epi8(_mm_insert_epi8(_mm_srli_si128(V, 1), L, 15), V, _mm_set1_epi8((char)-has_extra));
     s16 = (char)('0' + ((L - '0') & -has_extra));
-    if (x >= -4 && x <= 15) {
+    if (x >= lo && x <= hi) {
         if (x >= n - 1) {
             _mm_storeu_si128((__m128i *)o, W);
             o[x + 1] = '.';
@@ -375,5 +392,12 @@ static inline int jf64_write(char *out, double v)
     return (int)(jf64_exp(o + (n > 1 ? n + 1 : 1), x) - out);
 }
 #endif /* JF64_PORTABLE */
+
+/* a Python float (binary64) */
+JF64_ATTR
+static inline int jf64_write(char *out, double v)
+{
+    return jf64_write_lay(out, v, JF64_LO, JF64_HI);
+}
 
 #endif

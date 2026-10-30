@@ -75,6 +75,9 @@ typedef struct {
     int allow_nan;
     int avx2;
     unsigned opt; /* orjson OPT_* bits (src/json_dumps_ext.inc) */
+    int flo;      /* decimal float range of write_float: JF64_* or, inside numpy */
+    int fhi;      /* float32 / float16 content, JF32_* (include/json_f64_fmt.h) */
+    int np_narrow; /* set by ext_try: the numpy value it converted was float32 / float16 */
     Ent small[STACK_INIT];
 } Ctx;
 
@@ -600,7 +603,7 @@ static int write_float(Ctx *restrict c, double d)
         c->cur += n;
         return 0;
     }
-    c->cur += jf64_write(c->cur, d);
+    c->cur += jf64_write_lay(c->cur, d, c->flo, c->fhi);
     return 0;
 }
 
@@ -712,8 +715,14 @@ static int write_slow(Ctx *restrict c, PyObject *o, int owned)
                 /* numpy content: one value through the general writer */
                 unsigned save = c->opt;
                 c->opt &= ~(JOPT_STRICT_INTEGER | JOPT_PASSTHROUGH_DATETIME);
+                if (c->np_narrow) {
+                    c->flo = JF32_LO;
+                    c->fhi = JF32_HI;
+                }
                 rc = opt_value(c, conv, 0);
                 c->opt = save;
+                c->flo = JF64_LO;
+                c->fhi = JF64_HI;
                 Py_DECREF(conv);
                 if (owned) {
                     Py_DECREF(o);
@@ -1326,6 +1335,9 @@ static PyObject *dumps_obj(PyObject *obj, PyObject *default_fn, int allow_nan, u
     c.default_fn = (default_fn && default_fn != Py_None) ? default_fn : NULL;
     c.allow_nan = allow_nan;
     c.opt = opt;
+    c.flo = JF64_LO;
+    c.fhi = JF64_HI;
+    c.np_narrow = 0;
 #ifdef JD_PORTABLE
 #ifdef JV16
     c.avx2 = 1; /* the short-string paths exist in their 16-byte form */
