@@ -325,7 +325,10 @@ def main():
             sweep()
         gc.collect()
         grow.append(sys.getallocatedblocks() - b0)
-    leak = grow[2] > 80 and grow[2] > 3 * max(grow[0], 1) and grow[1] > 2 * max(grow[0], 1)
+    # A leak of k blocks per sweep leaves about 5k, 20k, 80k: it must keep growing
+    # from 20 to 80 sweeps. Comparing only with the 5-sweep value flagged noise
+    # whenever that value happened to be 0 (Windows CI: [0, 173, 137]).
+    leak = grow[2] > 80 and grow[2] > 2 * grow[1] and grow[1] > grow[0]
     bad += leak
     print("memory: blocks left after 5 / 20 / 80 sweeps: %s%s" % (grow, "  LEAK" if leak else ""))
     print("RESULT", "FAIL" if bad else "OK")

@@ -32,6 +32,31 @@ print(json.dumps([a,b]))
         self.assertGreater(held["current_bytes"] - before["current_bytes"], 16 * 1048576)
         self.assertGreaterEqual(held["peak_bytes"], before["peak_bytes"])
 
+    def test_freed_buffers_do_not_accumulate_after_warmup(self):
+        # The growth flag compares rounds with a snapshot taken after warmup.
+        # An allocator may keep a freed buffer for reuse (glibc keeps one, so
+        # Linux RSS stays one buffer higher), but freeing a buffer of the same
+        # size again and again must not keep adding to current memory. On
+        # macOS, RSS from ps did: it rose by one freed buffer every few rounds.
+        code = """import gc, json, memory_audit as m
+def churn():
+    b=bytearray(16*1024*1024)
+    for i in range(0,len(b),4096): b[i]=1
+    keep.append(bytearray(64*1024))  # shifts the heap so a new region may be used
+    del b
+    gc.collect()
+keep=[]
+for r in range(3): churn()
+a=m.snapshot()
+for r in range(12): churn()
+c=m.snapshot()
+print(json.dumps([a,c]))
+"""
+        p = subprocess.run([sys.executable, "-c", code], cwd=ROOT / "bench", capture_output=True, text=True, check=True)
+        warm, after = json.loads(p.stdout)
+        # 12 x 64 KiB is kept on purpose (0.75 MiB); a freed 16 MiB buffer must not add to it
+        self.assertLess(after["current_bytes"] - warm["current_bytes"], 8 * 1048576)
+
     @unittest.skipIf(sys.platform == "darwin", "macOS ru_maxrss did not keep a freed 32 MiB buffer as the peak "
                      "(CI, macos-14: the later 8 MiB buffer raised it by 8.0 MiB); this masking is Windows/Linux behaviour")
     def test_zero_peak_delta_can_hide_a_real_buffer(self):
@@ -79,13 +104,7 @@ print(json.dumps([len(small),m.peak_memory()-peak]))
     def test_intermediate_growth_is_not_hidden_by_final_drop(self):
         warm = {"current_bytes": 100}
         rounds = [{"current_bytes": 100 + 9 * 1048576}, {"current_bytes": 100}]
-        self.assertEqual(audit.growth_metrics(warm, rounds, audit.growth_threshold(1000)), (0, 9 * 1048576, True))
-
-    def test_growth_threshold_scales_with_large_input_only(self):
-        self.assertEqual(audit.growth_threshold(1000), 8 * 1048576)
-        self.assertEqual(audit.growth_threshold(5 * 1048576), 15 * 1048576)
-        # a buffer kept per call crosses it within one round of 20 calls
-        self.assertGreater(20 * 5 * 1048576, audit.growth_threshold(5 * 1048576))
+        self.assertEqual(audit.growth_metrics(warm, rounds), (0, 9 * 1048576, True))
 
     def test_library_probe_crash_is_not_missing_package(self):
         failed = subprocess.CompletedProcess([], 1, '{"version":"x", "disk":0}', "crash")

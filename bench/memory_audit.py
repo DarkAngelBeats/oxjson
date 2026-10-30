@@ -21,11 +21,34 @@ sys.path.insert(0, str(ROOT))
 from bench import peak_memory, windows_memory_reader
 
 
+def macos_footprint_reader():
+    """Physical footprint of this process (proc_pid_rusage, RUSAGE_INFO_V2).
+    RSS from ps still counts pages that malloc has freed and marked reusable
+    (MADV_FREE_REUSABLE) until the kernel takes them back, so it rises in
+    steps of a freed buffer. The footprint, which Activity Monitor and the
+    kernel's memory limits use, leaves those pages out."""
+    import ctypes
+    lib = ctypes.CDLL("/usr/lib/libproc.dylib")
+    info = (ctypes.c_uint64 * 64)()  # rusage_info_v2 is 16 bytes of uuid + 17 uint64
+    pid = os.getpid()
+    def read():
+        if lib.proc_pid_rusage(pid, 2, ctypes.byref(info)) != 0:
+            raise OSError("proc_pid_rusage failed")
+        return int(info[9])  # uuid occupies slots 0-1; ri_phys_footprint is slot 9
+    return read
+
+
+_macos_footprint = None
+
+
 def current_memory():
+    global _macos_footprint
     if os.name == "nt":
         return windows_memory_reader()().PagefileUsage
     if sys.platform == "darwin":
-        return int(subprocess.check_output(["ps", "-o", "rss=", "-p", str(os.getpid())]).strip()) * 1024
+        if _macos_footprint is None:
+            _macos_footprint = macos_footprint_reader()
+        return _macos_footprint()
     if sys.platform.startswith("linux"):
         for line in Path("/proc/self/status").read_text().splitlines():
             if line.startswith("VmRSS:"):
@@ -41,18 +64,10 @@ def snapshot():
 OPERATIONS = ("loads", "dumps", "loads_error", "loads_truncated", "dumps_error", "default_error", "noop")
 
 
-def growth_threshold(input_bytes):
-    """Growth that flags a run: 8 MiB, or three input sizes for large inputs.
-    An allocator may keep a few freed buffers of the input's size resident
-    (seen on macOS: one-time steps of one buffer, then a plateau); a leak per
-    call grows by a buffer every call and still crosses this in one round."""
-    return max(8 * 1048576, 3 * input_bytes)
-
-
-def growth_metrics(warm, samples, threshold):
+def growth_metrics(warm, samples):
     final = samples[-1]["current_bytes"] - warm["current_bytes"]
     maximum = max(s["current_bytes"] - warm["current_bytes"] for s in samples)
-    return final, maximum, maximum > threshold
+    return final, maximum, maximum > 8 * 1048576
 
 
 def worker(lib, document, operation, rounds, calls, retain):
@@ -122,8 +137,7 @@ def worker(lib, document, operation, rounds, calls, retain):
             invoke()
         gc.collect()
         samples.append(snapshot())
-    threshold = growth_threshold(len(data))
-    delta, max_delta, flagged = growth_metrics(warm, samples, threshold)
+    delta, max_delta, flagged = growth_metrics(warm, samples)
     module_file = Path(importlib.import_module(lib + "." + lib).__file__)
     binaries = [module_file]
     return {"library": lib, "version": module.__version__, "document": document,
@@ -131,15 +145,14 @@ def worker(lib, document, operation, rounds, calls, retain):
             "workload": {"loads_error": "fixed malformed JSON", "loads_truncated": "document truncated at last non-whitespace byte",
                          "dumps_error": "self-referential list", "default_error": "failing default callback", "noop": "observer control"}.get(operation, "document"),
             "malformed_input_sha256": hashlib.sha256(malformed).hexdigest() if operation in ("loads_error", "loads_truncated") else None,
-            "input_sha256": hashlib.sha256(data).hexdigest(), "input_bytes": len(data),
+            "input_sha256": hashlib.sha256(data).hexdigest(),
             "binaries": [{"path": str(p), "sha256": hashlib.sha256(p.read_bytes()).hexdigest()} for p in binaries],
             "baseline": baseline, "held": held, "released": released, "warm": warm,
             "held_many": held_many, "released_many": released_many, "retain_count": retain,
             "rounds": samples, "calls_per_round": calls,
             "first_call_peak_delta_bytes": held["peak_bytes"] - baseline["peak_bytes"],
             "post_warm_growth_bytes": delta,
-            "maximum_post_warm_growth_bytes": max_delta, "growth_threshold_bytes": threshold,
-            "growth_flag": flagged}
+            "maximum_post_warm_growth_bytes": max_delta, "growth_flag": flagged}
 
 
 def collect(command, env):
@@ -162,9 +175,7 @@ def validate_sample(value):
             for field in ("current_bytes", "peak_bytes", "python_blocks"):
                 if type(point[field]) is not int or point[field] < 0:
                     raise ValueError("invalid memory metric")
-        if value["growth_threshold_bytes"] != growth_threshold(value["input_bytes"]):
-            raise ValueError("inconsistent growth threshold")
-        final, maximum, flag = growth_metrics(value["warm"], value["rounds"], value["growth_threshold_bytes"])
+        final, maximum, flag = growth_metrics(value["warm"], value["rounds"])
         if (value["post_warm_growth_bytes"], value["maximum_post_warm_growth_bytes"], value["growth_flag"]) != (final, maximum, flag):
             raise ValueError("inconsistent growth metrics")
         if value["first_call_peak_delta_bytes"] != value["held"]["peak_bytes"] - value["baseline"]["peak_bytes"]:
@@ -200,10 +211,10 @@ def main():
               "metrics_script_sha256": hashlib.sha256((ROOT / "bench/bench.py").read_bytes()).hexdigest(),
               "python": sys.version, "executable": sys.executable, "command": sys.argv,
               "processor": platform.processor(), "platform": platform.platform(),
-              "metric": "private_commit_bytes" if os.name == "nt" else "resident_bytes",
+              "metric": "private_commit_bytes" if os.name == "nt" else ("phys_footprint_bytes" if sys.platform == "darwin" else "resident_bytes"),
               "portable_requested": env.get("OXJSON_NO_AVX2") == "1",
               "gc_enabled_in_workers": True, "settings": vars(args) | {"output": str(args.output)}, "samples": [], "summaries": [], "errors": [],
-              "interpretation": "Process-level measurements include runtime and results. Zero HWM delta is inconclusive. Growth flags require investigation; absence of a flag does not prove no leaks. Threshold: max(8 MiB, 3 x input size) at any sampled round after warmup, recorded per sample."}
+              "interpretation": "Process-level measurements include runtime and results. Zero HWM delta is inconclusive. Growth flags require investigation; absence of a flag does not prove no leaks. Threshold: 8 MiB at any sampled round after warmup."}
     for lib in args.libs:
         for doc in args.docs:
             for op in args.operations:
