@@ -32,8 +32,10 @@ print(json.dumps([a,b]))
         self.assertGreater(held["current_bytes"] - before["current_bytes"], 16 * 1048576)
         self.assertGreaterEqual(held["peak_bytes"], before["peak_bytes"])
 
+    @unittest.skipIf(sys.platform == "darwin", "macOS ru_maxrss did not keep a freed 32 MiB buffer as the peak "
+                     "(CI, macos-14: the later 8 MiB buffer raised it by 8.0 MiB); this masking is Windows/Linux behaviour")
     def test_zero_peak_delta_can_hide_a_real_buffer(self):
-        code = """import gc,json,memory_audit as m
+        code ="""import gc,json,memory_audit as m
 m.snapshot()
 big=bytearray(32*1024*1024)
 for i in range(0,len(big),4096): big[i]=1
@@ -77,7 +79,13 @@ print(json.dumps([len(small),m.peak_memory()-peak]))
     def test_intermediate_growth_is_not_hidden_by_final_drop(self):
         warm = {"current_bytes": 100}
         rounds = [{"current_bytes": 100 + 9 * 1048576}, {"current_bytes": 100}]
-        self.assertEqual(audit.growth_metrics(warm, rounds), (0, 9 * 1048576, True))
+        self.assertEqual(audit.growth_metrics(warm, rounds, audit.growth_threshold(1000)), (0, 9 * 1048576, True))
+
+    def test_growth_threshold_scales_with_large_input_only(self):
+        self.assertEqual(audit.growth_threshold(1000), 8 * 1048576)
+        self.assertEqual(audit.growth_threshold(5 * 1048576), 15 * 1048576)
+        # a buffer kept per call crosses it within one round of 20 calls
+        self.assertGreater(20 * 5 * 1048576, audit.growth_threshold(5 * 1048576))
 
     def test_library_probe_crash_is_not_missing_package(self):
         failed = subprocess.CompletedProcess([], 1, '{"version":"x", "disk":0}', "crash")
