@@ -33,7 +33,7 @@ Version 0.4.1 expands the configured wheel matrix. This table describes build ta
 
 ## Performance
 
-Current local **oxjson 0.4.1** versus **orjson 3.13.0**, measured 29 October 2026 on Windows AMD64, Ryzen 9 5900X, CPython 3.11.4. Median of seven fresh-process speed samples per library/document, GC enabled. oxjson has lower medians in 11 of 14 tested scenarios; the summary includes all three losses.
+**oxjson 0.4.1** (the 0.4.2 sources before the float format change) versus **orjson 3.13.0**, measured 29 October 2026 on Windows AMD64, Ryzen 9 5900X, CPython 3.11.4. Median of seven fresh-process speed samples per library/document, GC enabled. oxjson has lower medians in 11 of 14 tested scenarios; the summary includes all three losses. On 30 October `dumps` of 0.4.2 was compared with that build on this machine and on Linux: no change in speed or memory ([report](bench/results/dumps-remeasure-20261030/report.md)).
 
 | Scenario | oxjson | orjson |
 |---|---:|---:|
