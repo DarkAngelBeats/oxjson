@@ -11,6 +11,7 @@ memory   growth of the process peak memory across the first call on a fresh proc
 disk     bytes of the installed package files
 """
 import gc
+from functools import lru_cache
 import importlib
 import json
 import os
@@ -67,25 +68,33 @@ def adapter(name):
     return mod.loads, mod.dumps, ver
 
 
-def peak_memory():
-    """Peak memory of this process in bytes."""
-    if os.name == "nt":
-        import ctypes
-        from ctypes import wintypes
+@lru_cache(maxsize=1)
+def windows_memory_reader():
+    """Initialize ctypes once; repeated measurements must not rebuild FFI classes."""
+    import ctypes
+    from ctypes import wintypes
+    class PMC(ctypes.Structure):
+        _fields_ = [("cb", wintypes.DWORD), ("PageFaultCount", wintypes.DWORD)] + [
+            (n, ctypes.c_size_t) for n in ("PeakWorkingSetSize", "WorkingSetSize", "QuotaPeakPagedPoolUsage",
+                "QuotaPagedPoolUsage", "QuotaPeakNonPagedPoolUsage", "QuotaNonPagedPoolUsage",
+                "PagefileUsage", "PeakPagefileUsage")]
+    pmc = PMC()
+    pmc.cb = ctypes.sizeof(pmc)
+    kernel = ctypes.WinDLL("kernel32")
+    kernel.GetCurrentProcess.restype = wintypes.HANDLE
+    api = ctypes.WinDLL("psapi")
+    api.GetProcessMemoryInfo.argtypes = [wintypes.HANDLE, ctypes.POINTER(PMC), wintypes.DWORD]
+    def read():
+        if not api.GetProcessMemoryInfo(kernel.GetCurrentProcess(), ctypes.byref(pmc), pmc.cb):
+            raise OSError("GetProcessMemoryInfo failed")
+        return pmc
+    return read
 
-        class PMC(ctypes.Structure):
-            _fields_ = [("cb", wintypes.DWORD), ("PageFaultCount", wintypes.DWORD)] + [
-                (n, ctypes.c_size_t) for n in ("PeakWorkingSetSize", "WorkingSetSize", "QuotaPeakPagedPoolUsage",
-                                               "QuotaPagedPoolUsage", "QuotaPeakNonPagedPoolUsage",
-                                               "QuotaNonPagedPoolUsage", "PagefileUsage", "PeakPagefileUsage")]
-        pmc = PMC()
-        pmc.cb = ctypes.sizeof(PMC)
-        k32 = ctypes.WinDLL("kernel32")
-        k32.GetCurrentProcess.restype = wintypes.HANDLE
-        psapi = ctypes.WinDLL("psapi")
-        psapi.GetProcessMemoryInfo.argtypes = [wintypes.HANDLE, ctypes.POINTER(PMC), wintypes.DWORD]
-        psapi.GetProcessMemoryInfo(k32.GetCurrentProcess(), ctypes.byref(pmc), pmc.cb)
-        return pmc.PeakPagefileUsage
+
+def peak_memory():
+    """Peak private commit on Windows; peak RSS on Linux/macOS, in bytes."""
+    if os.name == "nt":
+        return windows_memory_reader()().PeakPagefileUsage
     if sys.platform == "darwin":
         import resource
         return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss  # bytes on macOS
@@ -93,7 +102,7 @@ def peak_memory():
         for line in f:
             if line.startswith("VmHWM:"):
                 return int(line.split()[1]) * 1024
-    return 0
+    raise RuntimeError("process peak memory unavailable")
 
 
 def disk_size(name, pkg_dir):
@@ -153,28 +162,38 @@ def worker(name, doc, what, pkg_dir):
 def main():
     pkg_dir = str(Path(sys.argv[1]).resolve()) if len(sys.argv) > 1 else str(ROOT)
     res = {"python": platform.python_version(), "machine": platform.machine(), "system": platform.system(),
-           "processor": platform.processor(), "libs": {}, "docs": [d[0] for d in DOCS]}
+           "processor": platform.processor(),
+           "memory_metric": "peak_private_commit_bytes" if os.name == "nt" else "peak_rss_bytes",
+           "memory_summary": "minimum_of_three_hwm_deltas; zero_is_inconclusive", "libs": {}, "docs": [d[0] for d in DOCS]}
     for name in LIBS:
-        try:
-            p = subprocess.run([sys.executable, __file__, "--probe", name, pkg_dir], capture_output=True, text=True, timeout=120)
-            info = json.loads(p.stdout.strip().splitlines()[-1])
-        except Exception:
-            print("%-12s not installed" % name)
+        p = subprocess.run([sys.executable, __file__, "--probe", name, pkg_dir], capture_output=True, text=True, timeout=120)
+        if p.returncode != 0:
+            raise RuntimeError("library probe failed: %s: %s" % (name, p.stderr))
+        info = json.loads(p.stdout.strip().splitlines()[-1])
+        if "unavailable" in info:
+            print("%-12s not installed: %s" % (name, info["unavailable"]))
             continue
         lib = {"version": info["version"], "disk_bytes": info["disk"], "docs": {}}
         for label, doc in DOCS:
             row = {}
             for what in ("speed", "mem_loads", "mem_dumps"):
-                # peak memory of a fresh process: best of three removes loader noise
+                # Historical summary: minimum of three HWM deltas; retain every sample.
+                # A zero delta is inconclusive, not zero allocation.
                 runs = 1 if what == "speed" else 3
                 vals = []
                 for _ in range(runs):
                     p = subprocess.run([sys.executable, __file__, "--worker", name, doc, what, pkg_dir],
                                        capture_output=True, text=True, timeout=900)
                     try:
+                        if p.returncode != 0:
+                            raise RuntimeError("worker exit %s: %s" % (p.returncode, p.stderr[-200:]))
                         vals.append(json.loads(p.stdout.strip().splitlines()[-1]))
                     except Exception:
-                        vals.append({"error": (p.stderr or "no output")[-200:]})
+                        vals.append({"error": (p.stderr or "worker failed or no output")[-200:]})
+                row.setdefault("raw_samples", {})[what] = vals
+                if any("error" in v for v in vals):
+                    row["error"] = next(v["error"] for v in vals if "error" in v)
+                    continue
                 for k in ("loads_us", "dumps_us", "loads_peak_bytes", "dumps_peak_bytes", "error"):
                     xs = [v[k] for v in vals if k in v]
                     if xs:
@@ -187,6 +206,8 @@ def main():
     f = out / ("py%d%d-%s-%s.json" % (*sys.version_info[:2], platform.system().lower(), platform.machine().lower()))
     f.write_text(json.dumps(res, indent=1), encoding="utf-8")
     print("wrote", f)
+    if any("error" in row for lib in res["libs"].values() for row in lib["docs"].values()):
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":
@@ -194,7 +215,13 @@ if __name__ == "__main__":
         worker(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
     elif len(sys.argv) > 1 and sys.argv[1] == "--probe":
         sys.path.insert(0, sys.argv[3])
-        _, _, v = adapter(sys.argv[2])
-        print(json.dumps({"version": v, "disk": disk_size(sys.argv[2], sys.argv[3])}))
+        try:
+            _, _, v = adapter(sys.argv[2])
+        except ModuleNotFoundError as exc:
+            if exc.name != LIBS[sys.argv[2]][0].split(".")[0]:
+                raise
+            print(json.dumps({"unavailable": str(exc)}))
+        else:
+            print(json.dumps({"version": v, "disk": disk_size(sys.argv[2], sys.argv[3])}))
     else:
         main()

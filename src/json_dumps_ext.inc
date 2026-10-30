@@ -209,8 +209,9 @@ static PyObject *ext_dataclass_dict(PyObject *o, PyObject *fields)
 }
 
 /* numpy array or scalar -> a new plain Python object with the same content.
- * Returns NULL with an exception, or with none set when o is not numpy. */
-static PyObject *ext_numpy(PyObject *o)
+ * Returns NULL with an exception, or with none set when o is not numpy.
+ * *narrow = 1 for float32 / float16 content (written in the float32 layout). */
+static PyObject *ext_numpy(PyObject *o, int *narrow)
 {
     PyTypeObject *t = Py_TYPE(o);
     PyObject *dtype;
@@ -270,8 +271,12 @@ static PyObject *ext_numpy(PyObject *o)
     if (k == 'b' || k == 'i' || k == 'u' || (k == 'f' && size == 8)) {
         res = PyObject_CallMethod(o, is_array ? "tolist" : "item", NULL);
     } else if (k == 'f' && (size == 4 || size == 2)) {
-        /* shortest text of the narrow float, read back as a double */
-        PyObject *s = PyObject_CallMethod(o, "astype", "s", "U32");
+        /* shortest float32 text, read back as a double; float16 goes through
+         * float32 first, as in orjson (np.float16(6e-6) -> 0.000006020069) */
+        PyObject *f32 = size == 2 ? PyObject_CallMethod(o, "astype", "s", "float32") : Py_NewRef(o);
+        PyObject *s = f32 ? PyObject_CallMethod(f32, "astype", "s", "U32") : NULL;
+        Py_XDECREF(f32);
+        *narrow = 1;
         if (s) {
             PyObject *d = PyObject_CallMethod(s, "astype", "s", "float64");
             Py_DECREF(s);
@@ -350,8 +355,10 @@ static int ext_try(Ctx *restrict c, PyObject *o, PyObject **conv)
         }
     }
     if (c->opt & JOPT_SERIALIZE_NUMPY) {
-        *conv = ext_numpy(o);
+        int narrow = 0;
+        *conv = ext_numpy(o, &narrow);
         if (*conv) {
+            c->np_narrow = narrow;
             return 4;
         }
         if (PyErr_Occurred()) {
@@ -521,6 +528,11 @@ static int opt_dict(Ctx *restrict c, PyObject *o, int depth, int sort)
     PyObject *v;
     OptPair *ps;
     int rc = -1;
+    if (depth >= OPT_DEPTH_LIMIT) {
+        /* as orjson: the 255th nested container is refused, even an empty one */
+        PyErr_SetString(PyExc_TypeError, "Recursion limit reached");
+        return -1;
+    }
     RESERVE(c, 2);
     if (n == 0) {
         *c->cur++ = '{';
@@ -593,6 +605,11 @@ done:
 static int opt_seq(Ctx *restrict c, PyObject *o, int is_list, int depth)
 {
     Py_ssize_t i;
+    if (depth >= OPT_DEPTH_LIMIT) {
+        /* as orjson: the 255th nested container is refused, even an empty one */
+        PyErr_SetString(PyExc_TypeError, "Recursion limit reached");
+        return -1;
+    }
     RESERVE(c, 2);
     if ((is_list ? PyList_GET_SIZE(o) : PyTuple_GET_SIZE(o)) == 0) {
         *c->cur++ = '[';
@@ -656,9 +673,17 @@ static int opt_value(Ctx *restrict c, PyObject *o, int depth)
             }
             if (rc == 4) {
                 unsigned save = c->opt;
+                int flo = c->flo;
+                int fhi = c->fhi;
                 c->opt &= ~(JOPT_STRICT_INTEGER | JOPT_PASSTHROUGH_DATETIME);
+                if (c->np_narrow) {
+                    c->flo = JF32_LO;
+                    c->fhi = JF32_HI;
+                }
                 rc = opt_value(c, conv, depth);
                 c->opt = save;
+                c->flo = flo;
+                c->fhi = fhi;
                 Py_DECREF(conv);
                 break;
             }

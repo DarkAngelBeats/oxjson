@@ -4,13 +4,14 @@
     python tests/check_dumps_orjson.py [dir that holds the oxjson package]
 
 Covers the types and OPT_* options orjson has beyond plain JSON values.
-Floats in the cases print the same in both libraries (no exponent forms).
+Float text is compared byte for byte too, every exponent included (check_float_text).
 """
 import dataclasses
 import datetime as dt
 import enum
 import itertools
 import random
+import struct
 import sys
 import uuid
 from pathlib import Path
@@ -185,6 +186,72 @@ def run(m, obj, **kw):
         return ("err", type(e).__name__)
 
 
+def check_float_text():
+    """Float text must match orjson byte for byte: every decimal exponent of
+    binary64, random bit patterns, float keys, and numpy float64 / float32 /
+    float16 (orjson writes the narrow types with float32 digits and layout)."""
+    r = random.Random(17)
+    xs = [0.0, -0.0, 5e-324, 2.2250738585072014e-308, 1.7976931348623157e308, 9007199254740993.0]
+    for e in range(-325, 309):
+        for m in (1.0, 1.5, 9.99, 1.2345678901234567, 2.5, 7.0, 9.999999999999999):
+            try:
+                xs.append(m * 10.0 ** e)
+            except OverflowError:
+                pass
+    for _ in range(20000):
+        xs.append(struct.unpack("<d", struct.pack("<Q", r.getrandbits(64)))[0])
+        xs.append(r.random() * 10 ** r.randint(-12, 20) * r.choice([1, -1]))
+    xs = [x for x in xs if x == x and abs(x) != float("inf")]
+    objs = [[x] for x in xs] + [xs[i:i + 50] for i in range(0, len(xs), 50)]
+    objs += [{x: 1} for x in xs[:3000]]
+    if np is not None:
+        with np.errstate(over="ignore"):
+            f32 = np.array(xs, dtype=np.float32)
+            f16 = np.array(xs, dtype=np.float16)
+        f32 = f32[np.isfinite(f32)]
+        f16 = f16[np.isfinite(f16)]
+        objs += [f32[i:i + 50] for i in range(0, len(f32), 50)]
+        objs += [f16[i:i + 50] for i in range(0, len(f16), 50)]
+        objs += [f32[i] for i in range(0, len(f32), 7)] + [f16[i] for i in range(0, len(f16), 7)]
+        objs += [np.array(xs[:500], dtype=np.float64), [np.float32(1e-5), 1e-5, {"a": np.float16(6e-6)}]]
+    bad = 0
+    opt = orjson.OPT_NON_STR_KEYS | orjson.OPT_SERIALIZE_NUMPY
+    for o in objs:
+        a, b = run(jp, o, option=opt), run(orjson, o, option=opt)
+        if a != b:
+            bad += 1
+            if bad <= 5:
+                print("   FLOAT %s: ours %s, orjson %s" % (ascii(o)[:60], ascii(a[1])[:80], ascii(b[1])[:80]))
+    print("float text: %d objects, %d differ from orjson" % (len(objs), bad))
+    return bad
+
+
+def check_layout_depth():
+    """With a layout option both libraries refuse a container 254 levels deep
+    (the 255th nested one) and accept a scalar there. Tuples are left out:
+    orjson counts them inconsistently, oxjson counts them like lists."""
+    bad = 0
+    leaves = [("int", lambda: 1), ("str", lambda: "s"), ("[]", list), ("{}", dict)]
+    wraps = [("list", lambda o: [o]), ("dict", lambda o: {"d": o}), ("dataclass", lambda o: Point(o, 1.0))]
+    layout = [orjson.OPT_INDENT_2, orjson.OPT_SORT_KEYS, orjson.OPT_NON_STR_KEYS, orjson.OPT_STRICT_INTEGER,
+              orjson.OPT_INDENT_2 | orjson.OPT_SORT_KEYS]
+    for wname, wrap in wraps:
+        for lname, leaf in leaves:
+            for n in (252, 253, 254, 255):
+                o = leaf()
+                for _ in range(n):
+                    o = wrap(o)
+                for opt in layout:
+                    a, b = run(jp, o, option=opt), run(orjson, o, option=opt)
+                    if a[0] != b[0]:
+                        bad += 1
+                        if bad <= 5:
+                            print("   DEPTH %s x%d around %s, opt=%d: ours %s, orjson %s" % (
+                                wname, n, lname, opt, a[0], b[0]))
+    print("layout depth limit: %d differ from orjson" % bad)
+    return bad
+
+
 def main():
     bits = [orjson.OPT_INDENT_2, orjson.OPT_NAIVE_UTC, orjson.OPT_NON_STR_KEYS, orjson.OPT_OMIT_MICROSECONDS,
             orjson.OPT_SERIALIZE_NUMPY, orjson.OPT_SORT_KEYS, orjson.OPT_STRICT_INTEGER, orjson.OPT_UTC_Z,
@@ -227,6 +294,8 @@ def main():
                         shown[key] = shown.get(key, 0) + 1
                         print("   DIFF opt=%d default=%s %s\n      ours:   %s\n      orjson: %s" % (
                             opt, bool(d), ascii(obj)[:90], ascii(a[1])[:150], ascii(b[1])[:150]))
+    bad += check_layout_depth()
+    bad += check_float_text()
     # positional form and bad options
     assert jp.dumps([1], None, orjson.OPT_INDENT_2) == orjson.dumps([1], None, orjson.OPT_INDENT_2)
     for badopt in (-1, 4096, 1.5, "1", True):
@@ -256,7 +325,10 @@ def main():
             sweep()
         gc.collect()
         grow.append(sys.getallocatedblocks() - b0)
-    leak = grow[2] > 80 and grow[2] > 3 * max(grow[0], 1) and grow[1] > 2 * max(grow[0], 1)
+    # A leak of k blocks per sweep leaves about 5k, 20k, 80k: it must keep growing
+    # from 20 to 80 sweeps. Comparing only with the 5-sweep value flagged noise
+    # whenever that value happened to be 0 (Windows CI: [0, 173, 137]).
+    leak = grow[2] > 80 and grow[2] > 2 * grow[1] and grow[1] > grow[0]
     bad += leak
     print("memory: blocks left after 5 / 20 / 80 sweeps: %s%s" % (grow, "  LEAK" if leak else ""))
     print("RESULT", "FAIL" if bad else "OK")

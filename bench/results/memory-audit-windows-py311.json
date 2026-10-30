@@ -1,0 +1,6069 @@
+{
+  "python": "3.11.4 (tags/v3.11.4:d2340ef, Jun  7 2023, 05:45:37) [MSC v.1934 64 bit (AMD64)]",
+  "executable": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+  "command": [
+    "bench/memory_audit.py",
+    "--output",
+    "bench/results/memory-audit-windows-py311.json"
+  ],
+  "processor": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "metric": "private_commit_bytes",
+  "portable_requested": false,
+  "gc_enabled_in_workers": true,
+  "samples": [
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/engine/atlas.json",
+      "operation": "loads",
+      "workload": "document",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 12255232,
+        "peak_bytes": 12255232,
+        "python_blocks": 43043
+      },
+      "held": {
+        "current_bytes": 12255232,
+        "peak_bytes": 12255232,
+        "python_blocks": 43656
+      },
+      "released": {
+        "current_bytes": 12255232,
+        "peak_bytes": 12255232,
+        "python_blocks": 43267
+      },
+      "warm": {
+        "current_bytes": 12255232,
+        "peak_bytes": 12255232,
+        "python_blocks": 43573
+      },
+      "held_many": {
+        "current_bytes": 12255232,
+        "peak_bytes": 12255232,
+        "python_blocks": 44590
+      },
+      "released_many": {
+        "current_bytes": 12255232,
+        "peak_bytes": 12255232,
+        "python_blocks": 43473
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 12255232,
+          "peak_bytes": 12255232,
+          "python_blocks": 43678
+        },
+        {
+          "current_bytes": 12255232,
+          "peak_bytes": 12255232,
+          "python_blocks": 43781
+        },
+        {
+          "current_bytes": 12255232,
+          "peak_bytes": 12255232,
+          "python_blocks": 43884
+        },
+        {
+          "current_bytes": 12255232,
+          "peak_bytes": 12324864,
+          "python_blocks": 43984
+        },
+        {
+          "current_bytes": 12324864,
+          "peak_bytes": 12324864,
+          "python_blocks": 44085
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 0,
+      "post_warm_growth_bytes": 69632,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/engine/atlas.json",
+      "operation": "loads",
+      "workload": "document",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 12242944,
+        "peak_bytes": 12242944,
+        "python_blocks": 43043
+      },
+      "held": {
+        "current_bytes": 12242944,
+        "peak_bytes": 12242944,
+        "python_blocks": 43656
+      },
+      "released": {
+        "current_bytes": 12242944,
+        "peak_bytes": 12242944,
+        "python_blocks": 43267
+      },
+      "warm": {
+        "current_bytes": 12312576,
+        "peak_bytes": 12312576,
+        "python_blocks": 43573
+      },
+      "held_many": {
+        "current_bytes": 12242944,
+        "peak_bytes": 12242944,
+        "python_blocks": 44590
+      },
+      "released_many": {
+        "current_bytes": 12242944,
+        "peak_bytes": 12312576,
+        "python_blocks": 43473
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 12312576,
+          "peak_bytes": 12312576,
+          "python_blocks": 43678
+        },
+        {
+          "current_bytes": 12312576,
+          "peak_bytes": 12312576,
+          "python_blocks": 43781
+        },
+        {
+          "current_bytes": 12312576,
+          "peak_bytes": 12382208,
+          "python_blocks": 43884
+        },
+        {
+          "current_bytes": 12382208,
+          "peak_bytes": 12382208,
+          "python_blocks": 43984
+        },
+        {
+          "current_bytes": 12382208,
+          "peak_bytes": 12382208,
+          "python_blocks": 44085
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 0,
+      "post_warm_growth_bytes": 69632,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/engine/atlas.json",
+      "operation": "loads",
+      "workload": "document",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 12169216,
+        "peak_bytes": 12169216,
+        "python_blocks": 43048
+      },
+      "held": {
+        "current_bytes": 12169216,
+        "peak_bytes": 12169216,
+        "python_blocks": 43663
+      },
+      "released": {
+        "current_bytes": 12169216,
+        "peak_bytes": 12169216,
+        "python_blocks": 43274
+      },
+      "warm": {
+        "current_bytes": 12169216,
+        "peak_bytes": 12169216,
+        "python_blocks": 43579
+      },
+      "held_many": {
+        "current_bytes": 12169216,
+        "peak_bytes": 12169216,
+        "python_blocks": 44597
+      },
+      "released_many": {
+        "current_bytes": 12169216,
+        "peak_bytes": 12169216,
+        "python_blocks": 43478
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 12169216,
+          "peak_bytes": 12169216,
+          "python_blocks": 43682
+        },
+        {
+          "current_bytes": 12169216,
+          "peak_bytes": 12169216,
+          "python_blocks": 43785
+        },
+        {
+          "current_bytes": 12169216,
+          "peak_bytes": 12169216,
+          "python_blocks": 43888
+        },
+        {
+          "current_bytes": 12169216,
+          "peak_bytes": 12238848,
+          "python_blocks": 43990
+        },
+        {
+          "current_bytes": 12238848,
+          "peak_bytes": 12238848,
+          "python_blocks": 44091
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 0,
+      "post_warm_growth_bytes": 69632,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/engine/atlas.json",
+      "operation": "dumps",
+      "workload": "document",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 12251136,
+        "peak_bytes": 12251136,
+        "python_blocks": 43473
+      },
+      "held": {
+        "current_bytes": 12288000,
+        "peak_bytes": 12288000,
+        "python_blocks": 43668
+      },
+      "released": {
+        "current_bytes": 12288000,
+        "peak_bytes": 12288000,
+        "python_blocks": 43677
+      },
+      "warm": {
+        "current_bytes": 12468224,
+        "peak_bytes": 12468224,
+        "python_blocks": 43982
+      },
+      "held_many": {
+        "current_bytes": 12328960,
+        "peak_bytes": 12468224,
+        "python_blocks": 43878
+      },
+      "released_many": {
+        "current_bytes": 12468224,
+        "peak_bytes": 12468224,
+        "python_blocks": 43882
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 12468224,
+          "peak_bytes": 12468224,
+          "python_blocks": 44087
+        },
+        {
+          "current_bytes": 12468224,
+          "peak_bytes": 12468224,
+          "python_blocks": 44189
+        },
+        {
+          "current_bytes": 12468224,
+          "peak_bytes": 12468224,
+          "python_blocks": 44290
+        },
+        {
+          "current_bytes": 12468224,
+          "peak_bytes": 12468224,
+          "python_blocks": 44387
+        },
+        {
+          "current_bytes": 12468224,
+          "peak_bytes": 12468224,
+          "python_blocks": 44483
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 36864,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/engine/atlas.json",
+      "operation": "dumps",
+      "workload": "document",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 12353536,
+        "peak_bytes": 12353536,
+        "python_blocks": 43473
+      },
+      "held": {
+        "current_bytes": 12390400,
+        "peak_bytes": 12390400,
+        "python_blocks": 43668
+      },
+      "released": {
+        "current_bytes": 12390400,
+        "peak_bytes": 12390400,
+        "python_blocks": 43677
+      },
+      "warm": {
+        "current_bytes": 12431360,
+        "peak_bytes": 12431360,
+        "python_blocks": 43982
+      },
+      "held_many": {
+        "current_bytes": 12431360,
+        "peak_bytes": 12431360,
+        "python_blocks": 43878
+      },
+      "released_many": {
+        "current_bytes": 12431360,
+        "peak_bytes": 12431360,
+        "python_blocks": 43882
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 12431360,
+          "peak_bytes": 12431360,
+          "python_blocks": 44087
+        },
+        {
+          "current_bytes": 12431360,
+          "peak_bytes": 12431360,
+          "python_blocks": 44189
+        },
+        {
+          "current_bytes": 12431360,
+          "peak_bytes": 12500992,
+          "python_blocks": 44290
+        },
+        {
+          "current_bytes": 12500992,
+          "peak_bytes": 12570624,
+          "python_blocks": 44387
+        },
+        {
+          "current_bytes": 12570624,
+          "peak_bytes": 12570624,
+          "python_blocks": 44483
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 36864,
+      "post_warm_growth_bytes": 139264,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/engine/atlas.json",
+      "operation": "dumps",
+      "workload": "document",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 12390400,
+        "peak_bytes": 12390400,
+        "python_blocks": 43473
+      },
+      "held": {
+        "current_bytes": 12427264,
+        "peak_bytes": 12427264,
+        "python_blocks": 43668
+      },
+      "released": {
+        "current_bytes": 12427264,
+        "peak_bytes": 12427264,
+        "python_blocks": 43677
+      },
+      "warm": {
+        "current_bytes": 12447744,
+        "peak_bytes": 12447744,
+        "python_blocks": 43982
+      },
+      "held_many": {
+        "current_bytes": 12447744,
+        "peak_bytes": 12447744,
+        "python_blocks": 43878
+      },
+      "released_many": {
+        "current_bytes": 12447744,
+        "peak_bytes": 12447744,
+        "python_blocks": 43881
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 12447744,
+          "peak_bytes": 12447744,
+          "python_blocks": 44087
+        },
+        {
+          "current_bytes": 12447744,
+          "peak_bytes": 12447744,
+          "python_blocks": 44189
+        },
+        {
+          "current_bytes": 12447744,
+          "peak_bytes": 12517376,
+          "python_blocks": 44290
+        },
+        {
+          "current_bytes": 12517376,
+          "peak_bytes": 12587008,
+          "python_blocks": 44387
+        },
+        {
+          "current_bytes": 12587008,
+          "peak_bytes": 12587008,
+          "python_blocks": 44484
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 36864,
+      "post_warm_growth_bytes": 139264,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/engine/atlas.json",
+      "operation": "loads_error",
+      "workload": "fixed malformed JSON",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 12357632,
+        "peak_bytes": 12357632,
+        "python_blocks": 43048
+      },
+      "held": {
+        "current_bytes": 12357632,
+        "peak_bytes": 12357632,
+        "python_blocks": 43242
+      },
+      "released": {
+        "current_bytes": 12357632,
+        "peak_bytes": 12357632,
+        "python_blocks": 43248
+      },
+      "warm": {
+        "current_bytes": 12496896,
+        "peak_bytes": 12496896,
+        "python_blocks": 43554
+      },
+      "held_many": {
+        "current_bytes": 12357632,
+        "peak_bytes": 12496896,
+        "python_blocks": 43446
+      },
+      "released_many": {
+        "current_bytes": 12496896,
+        "peak_bytes": 12496896,
+        "python_blocks": 43451
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 12496896,
+          "peak_bytes": 12496896,
+          "python_blocks": 43659
+        },
+        {
+          "current_bytes": 12496896,
+          "peak_bytes": 12496896,
+          "python_blocks": 43762
+        },
+        {
+          "current_bytes": 12496896,
+          "peak_bytes": 12496896,
+          "python_blocks": 43864
+        },
+        {
+          "current_bytes": 12496896,
+          "peak_bytes": 12496896,
+          "python_blocks": 43965
+        },
+        {
+          "current_bytes": 12496896,
+          "peak_bytes": 12496896,
+          "python_blocks": 44064
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 0,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/engine/atlas.json",
+      "operation": "loads_error",
+      "workload": "fixed malformed JSON",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 12324864,
+        "peak_bytes": 12324864,
+        "python_blocks": 43043
+      },
+      "held": {
+        "current_bytes": 12324864,
+        "peak_bytes": 12324864,
+        "python_blocks": 43237
+      },
+      "released": {
+        "current_bytes": 12324864,
+        "peak_bytes": 12324864,
+        "python_blocks": 43246
+      },
+      "warm": {
+        "current_bytes": 12394496,
+        "peak_bytes": 12394496,
+        "python_blocks": 43553
+      },
+      "held_many": {
+        "current_bytes": 12324864,
+        "peak_bytes": 12394496,
+        "python_blocks": 43444
+      },
+      "released_many": {
+        "current_bytes": 12394496,
+        "peak_bytes": 12394496,
+        "python_blocks": 43450
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 12394496,
+          "peak_bytes": 12394496,
+          "python_blocks": 43657
+        },
+        {
+          "current_bytes": 12394496,
+          "peak_bytes": 12394496,
+          "python_blocks": 43760
+        },
+        {
+          "current_bytes": 12394496,
+          "peak_bytes": 12464128,
+          "python_blocks": 43862
+        },
+        {
+          "current_bytes": 12464128,
+          "peak_bytes": 12464128,
+          "python_blocks": 43963
+        },
+        {
+          "current_bytes": 12464128,
+          "peak_bytes": 12464128,
+          "python_blocks": 44065
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 0,
+      "post_warm_growth_bytes": 69632,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/engine/atlas.json",
+      "operation": "loads_error",
+      "workload": "fixed malformed JSON",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 12378112,
+        "peak_bytes": 12378112,
+        "python_blocks": 43048
+      },
+      "held": {
+        "current_bytes": 12378112,
+        "peak_bytes": 12378112,
+        "python_blocks": 43242
+      },
+      "released": {
+        "current_bytes": 12378112,
+        "peak_bytes": 12378112,
+        "python_blocks": 43248
+      },
+      "warm": {
+        "current_bytes": 12378112,
+        "peak_bytes": 12378112,
+        "python_blocks": 43554
+      },
+      "held_many": {
+        "current_bytes": 12378112,
+        "peak_bytes": 12378112,
+        "python_blocks": 43446
+      },
+      "released_many": {
+        "current_bytes": 12378112,
+        "peak_bytes": 12378112,
+        "python_blocks": 43451
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 12378112,
+          "peak_bytes": 12378112,
+          "python_blocks": 43659
+        },
+        {
+          "current_bytes": 12378112,
+          "peak_bytes": 12378112,
+          "python_blocks": 43762
+        },
+        {
+          "current_bytes": 12378112,
+          "peak_bytes": 12447744,
+          "python_blocks": 43864
+        },
+        {
+          "current_bytes": 12447744,
+          "peak_bytes": 12517376,
+          "python_blocks": 43965
+        },
+        {
+          "current_bytes": 12517376,
+          "peak_bytes": 12517376,
+          "python_blocks": 44064
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 0,
+      "post_warm_growth_bytes": 139264,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/engine/atlas.json",
+      "operation": "dumps_error",
+      "workload": "self-referential list",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 12345344,
+        "peak_bytes": 12345344,
+        "python_blocks": 43048
+      },
+      "held": {
+        "current_bytes": 12386304,
+        "peak_bytes": 12394496,
+        "python_blocks": 43244
+      },
+      "released": {
+        "current_bytes": 12386304,
+        "peak_bytes": 12394496,
+        "python_blocks": 43252
+      },
+      "warm": {
+        "current_bytes": 12386304,
+        "peak_bytes": 12394496,
+        "python_blocks": 43556
+      },
+      "held_many": {
+        "current_bytes": 12386304,
+        "peak_bytes": 12394496,
+        "python_blocks": 43450
+      },
+      "released_many": {
+        "current_bytes": 12386304,
+        "peak_bytes": 12394496,
+        "python_blocks": 43456
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 12386304,
+          "peak_bytes": 12394496,
+          "python_blocks": 43659
+        },
+        {
+          "current_bytes": 12386304,
+          "peak_bytes": 12394496,
+          "python_blocks": 43762
+        },
+        {
+          "current_bytes": 12386304,
+          "peak_bytes": 12455936,
+          "python_blocks": 43864
+        },
+        {
+          "current_bytes": 12455936,
+          "peak_bytes": 12525568,
+          "python_blocks": 43965
+        },
+        {
+          "current_bytes": 12525568,
+          "peak_bytes": 12525568,
+          "python_blocks": 44065
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 49152,
+      "post_warm_growth_bytes": 139264,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/engine/atlas.json",
+      "operation": "dumps_error",
+      "workload": "self-referential list",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 12242944,
+        "peak_bytes": 12312576,
+        "python_blocks": 43043
+      },
+      "held": {
+        "current_bytes": 12349440,
+        "peak_bytes": 12357632,
+        "python_blocks": 43238
+      },
+      "released": {
+        "current_bytes": 12349440,
+        "peak_bytes": 12357632,
+        "python_blocks": 43248
+      },
+      "warm": {
+        "current_bytes": 12419072,
+        "peak_bytes": 12419072,
+        "python_blocks": 43555
+      },
+      "held_many": {
+        "current_bytes": 12349440,
+        "peak_bytes": 12419072,
+        "python_blocks": 43446
+      },
+      "released_many": {
+        "current_bytes": 12419072,
+        "peak_bytes": 12419072,
+        "python_blocks": 43454
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 12419072,
+          "peak_bytes": 12419072,
+          "python_blocks": 43659
+        },
+        {
+          "current_bytes": 12419072,
+          "peak_bytes": 12419072,
+          "python_blocks": 43762
+        },
+        {
+          "current_bytes": 12419072,
+          "peak_bytes": 12419072,
+          "python_blocks": 43864
+        },
+        {
+          "current_bytes": 12419072,
+          "peak_bytes": 12419072,
+          "python_blocks": 43964
+        },
+        {
+          "current_bytes": 12419072,
+          "peak_bytes": 12419072,
+          "python_blocks": 44065
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 45056,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/engine/atlas.json",
+      "operation": "dumps_error",
+      "workload": "self-referential list",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 12075008,
+        "peak_bytes": 12075008,
+        "python_blocks": 43048
+      },
+      "held": {
+        "current_bytes": 12115968,
+        "peak_bytes": 12124160,
+        "python_blocks": 43244
+      },
+      "released": {
+        "current_bytes": 12115968,
+        "peak_bytes": 12124160,
+        "python_blocks": 43252
+      },
+      "warm": {
+        "current_bytes": 12185600,
+        "peak_bytes": 12185600,
+        "python_blocks": 43556
+      },
+      "held_many": {
+        "current_bytes": 12115968,
+        "peak_bytes": 12185600,
+        "python_blocks": 43450
+      },
+      "released_many": {
+        "current_bytes": 12185600,
+        "peak_bytes": 12185600,
+        "python_blocks": 43456
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 12185600,
+          "peak_bytes": 12185600,
+          "python_blocks": 43659
+        },
+        {
+          "current_bytes": 12185600,
+          "peak_bytes": 12185600,
+          "python_blocks": 43762
+        },
+        {
+          "current_bytes": 12185600,
+          "peak_bytes": 12185600,
+          "python_blocks": 43864
+        },
+        {
+          "current_bytes": 12185600,
+          "peak_bytes": 12185600,
+          "python_blocks": 43965
+        },
+        {
+          "current_bytes": 12185600,
+          "peak_bytes": 12185600,
+          "python_blocks": 44065
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 49152,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/diverse/canada.json",
+      "operation": "loads",
+      "workload": "document",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 14299136,
+        "peak_bytes": 14299136,
+        "python_blocks": 43048
+      },
+      "held": {
+        "current_bytes": 22179840,
+        "peak_bytes": 22179840,
+        "python_blocks": 266384
+      },
+      "released": {
+        "current_bytes": 16928768,
+        "peak_bytes": 22179840,
+        "python_blocks": 43260
+      },
+      "warm": {
+        "current_bytes": 20824064,
+        "peak_bytes": 39718912,
+        "python_blocks": 43565
+      },
+      "held_many": {
+        "current_bytes": 39718912,
+        "peak_bytes": 39718912,
+        "python_blocks": 713031
+      },
+      "released_many": {
+        "current_bytes": 20193280,
+        "peak_bytes": 39718912,
+        "python_blocks": 43465
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 20824064,
+          "peak_bytes": 39718912,
+          "python_blocks": 43668
+        },
+        {
+          "current_bytes": 20824064,
+          "peak_bytes": 39718912,
+          "python_blocks": 43771
+        },
+        {
+          "current_bytes": 20742144,
+          "peak_bytes": 39718912,
+          "python_blocks": 43873
+        },
+        {
+          "current_bytes": 20824064,
+          "peak_bytes": 39718912,
+          "python_blocks": 43975
+        },
+        {
+          "current_bytes": 20287488,
+          "peak_bytes": 39718912,
+          "python_blocks": 44076
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 7880704,
+      "post_warm_growth_bytes": -536576,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/diverse/canada.json",
+      "operation": "loads",
+      "workload": "document",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 14532608,
+        "peak_bytes": 14532608,
+        "python_blocks": 43048
+      },
+      "held": {
+        "current_bytes": 22331392,
+        "peak_bytes": 22331392,
+        "python_blocks": 266384
+      },
+      "released": {
+        "current_bytes": 17084416,
+        "peak_bytes": 22331392,
+        "python_blocks": 43260
+      },
+      "warm": {
+        "current_bytes": 20496384,
+        "peak_bytes": 39870464,
+        "python_blocks": 43565
+      },
+      "held_many": {
+        "current_bytes": 39870464,
+        "peak_bytes": 39870464,
+        "python_blocks": 713031
+      },
+      "released_many": {
+        "current_bytes": 19804160,
+        "peak_bytes": 39870464,
+        "python_blocks": 43465
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 20500480,
+          "peak_bytes": 39870464,
+          "python_blocks": 43668
+        },
+        {
+          "current_bytes": 20496384,
+          "peak_bytes": 39870464,
+          "python_blocks": 43771
+        },
+        {
+          "current_bytes": 20500480,
+          "peak_bytes": 39870464,
+          "python_blocks": 43873
+        },
+        {
+          "current_bytes": 20406272,
+          "peak_bytes": 39870464,
+          "python_blocks": 43975
+        },
+        {
+          "current_bytes": 20410368,
+          "peak_bytes": 39870464,
+          "python_blocks": 44076
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 7798784,
+      "post_warm_growth_bytes": -86016,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/diverse/canada.json",
+      "operation": "loads",
+      "workload": "document",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 14417920,
+        "peak_bytes": 14487552,
+        "python_blocks": 43048
+      },
+      "held": {
+        "current_bytes": 22274048,
+        "peak_bytes": 22274048,
+        "python_blocks": 266384
+      },
+      "released": {
+        "current_bytes": 17010688,
+        "peak_bytes": 22274048,
+        "python_blocks": 43260
+      },
+      "warm": {
+        "current_bytes": 20905984,
+        "peak_bytes": 39833600,
+        "python_blocks": 43565
+      },
+      "held_many": {
+        "current_bytes": 39833600,
+        "peak_bytes": 39833600,
+        "python_blocks": 713031
+      },
+      "released_many": {
+        "current_bytes": 19795968,
+        "peak_bytes": 39833600,
+        "python_blocks": 43465
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 20905984,
+          "peak_bytes": 39833600,
+          "python_blocks": 43668
+        },
+        {
+          "current_bytes": 20905984,
+          "peak_bytes": 39833600,
+          "python_blocks": 43771
+        },
+        {
+          "current_bytes": 20779008,
+          "peak_bytes": 39833600,
+          "python_blocks": 43873
+        },
+        {
+          "current_bytes": 20779008,
+          "peak_bytes": 39833600,
+          "python_blocks": 43975
+        },
+        {
+          "current_bytes": 20779008,
+          "peak_bytes": 39833600,
+          "python_blocks": 44076
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 7786496,
+      "post_warm_growth_bytes": -126976,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "workload": "document",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 23494656,
+        "peak_bytes": 25481216,
+        "python_blocks": 266277
+      },
+      "held": {
+        "current_bytes": 25714688,
+        "peak_bytes": 26816512,
+        "python_blocks": 266473
+      },
+      "released": {
+        "current_bytes": 23601152,
+        "peak_bytes": 26816512,
+        "python_blocks": 266482
+      },
+      "warm": {
+        "current_bytes": 24543232,
+        "peak_bytes": 31629312,
+        "python_blocks": 266789
+      },
+      "held_many": {
+        "current_bytes": 30687232,
+        "peak_bytes": 31629312,
+        "python_blocks": 266683
+      },
+      "released_many": {
+        "current_bytes": 24543232,
+        "peak_bytes": 31629312,
+        "python_blocks": 266688
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 24543232,
+          "peak_bytes": 31629312,
+          "python_blocks": 266894
+        },
+        {
+          "current_bytes": 24543232,
+          "peak_bytes": 31629312,
+          "python_blocks": 266997
+        },
+        {
+          "current_bytes": 24543232,
+          "peak_bytes": 31629312,
+          "python_blocks": 267100
+        },
+        {
+          "current_bytes": 24543232,
+          "peak_bytes": 31629312,
+          "python_blocks": 267202
+        },
+        {
+          "current_bytes": 24543232,
+          "peak_bytes": 31629312,
+          "python_blocks": 267303
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 1335296,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "workload": "document",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 23535616,
+        "peak_bytes": 25436160,
+        "python_blocks": 266277
+      },
+      "held": {
+        "current_bytes": 26705920,
+        "peak_bytes": 27774976,
+        "python_blocks": 266473
+      },
+      "released": {
+        "current_bytes": 24596480,
+        "peak_bytes": 27774976,
+        "python_blocks": 266482
+      },
+      "warm": {
+        "current_bytes": 24596480,
+        "peak_bytes": 31703040,
+        "python_blocks": 266789
+      },
+      "held_many": {
+        "current_bytes": 31682560,
+        "peak_bytes": 31703040,
+        "python_blocks": 266683
+      },
+      "released_many": {
+        "current_bytes": 24596480,
+        "peak_bytes": 31703040,
+        "python_blocks": 266688
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 24596480,
+          "peak_bytes": 31703040,
+          "python_blocks": 266894
+        },
+        {
+          "current_bytes": 24596480,
+          "peak_bytes": 31703040,
+          "python_blocks": 266997
+        },
+        {
+          "current_bytes": 24596480,
+          "peak_bytes": 31703040,
+          "python_blocks": 267100
+        },
+        {
+          "current_bytes": 24596480,
+          "peak_bytes": 31703040,
+          "python_blocks": 267202
+        },
+        {
+          "current_bytes": 24596480,
+          "peak_bytes": 31703040,
+          "python_blocks": 267304
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 2338816,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "workload": "document",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 23871488,
+        "peak_bytes": 25841664,
+        "python_blocks": 266277
+      },
+      "held": {
+        "current_bytes": 27017216,
+        "peak_bytes": 28135424,
+        "python_blocks": 266473
+      },
+      "released": {
+        "current_bytes": 24911872,
+        "peak_bytes": 28135424,
+        "python_blocks": 266482
+      },
+      "warm": {
+        "current_bytes": 24911872,
+        "peak_bytes": 32051200,
+        "python_blocks": 266789
+      },
+      "held_many": {
+        "current_bytes": 31993856,
+        "peak_bytes": 32051200,
+        "python_blocks": 266683
+      },
+      "released_many": {
+        "current_bytes": 24911872,
+        "peak_bytes": 32051200,
+        "python_blocks": 266688
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 24911872,
+          "peak_bytes": 32051200,
+          "python_blocks": 266894
+        },
+        {
+          "current_bytes": 24911872,
+          "peak_bytes": 32051200,
+          "python_blocks": 266997
+        },
+        {
+          "current_bytes": 24911872,
+          "peak_bytes": 32051200,
+          "python_blocks": 267100
+        },
+        {
+          "current_bytes": 24911872,
+          "peak_bytes": 32051200,
+          "python_blocks": 267202
+        },
+        {
+          "current_bytes": 24911872,
+          "peak_bytes": 32051200,
+          "python_blocks": 267304
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 2293760,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/diverse/canada.json",
+      "operation": "loads_error",
+      "workload": "fixed malformed JSON",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 14499840,
+        "peak_bytes": 14499840,
+        "python_blocks": 43043
+      },
+      "held": {
+        "current_bytes": 14499840,
+        "peak_bytes": 14499840,
+        "python_blocks": 43237
+      },
+      "released": {
+        "current_bytes": 14499840,
+        "peak_bytes": 14499840,
+        "python_blocks": 43246
+      },
+      "warm": {
+        "current_bytes": 14569472,
+        "peak_bytes": 14569472,
+        "python_blocks": 43553
+      },
+      "held_many": {
+        "current_bytes": 14499840,
+        "peak_bytes": 14569472,
+        "python_blocks": 43444
+      },
+      "released_many": {
+        "current_bytes": 14569472,
+        "peak_bytes": 14569472,
+        "python_blocks": 43450
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 14569472,
+          "peak_bytes": 14569472,
+          "python_blocks": 43657
+        },
+        {
+          "current_bytes": 14569472,
+          "peak_bytes": 14569472,
+          "python_blocks": 43760
+        },
+        {
+          "current_bytes": 14569472,
+          "peak_bytes": 14639104,
+          "python_blocks": 43862
+        },
+        {
+          "current_bytes": 14639104,
+          "peak_bytes": 14639104,
+          "python_blocks": 43963
+        },
+        {
+          "current_bytes": 14639104,
+          "peak_bytes": 14639104,
+          "python_blocks": 44065
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 0,
+      "post_warm_growth_bytes": 69632,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/diverse/canada.json",
+      "operation": "loads_error",
+      "workload": "fixed malformed JSON",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 14647296,
+        "peak_bytes": 14647296,
+        "python_blocks": 43048
+      },
+      "held": {
+        "current_bytes": 14647296,
+        "peak_bytes": 14647296,
+        "python_blocks": 43242
+      },
+      "released": {
+        "current_bytes": 14647296,
+        "peak_bytes": 14647296,
+        "python_blocks": 43248
+      },
+      "warm": {
+        "current_bytes": 14716928,
+        "peak_bytes": 14716928,
+        "python_blocks": 43554
+      },
+      "held_many": {
+        "current_bytes": 14647296,
+        "peak_bytes": 14716928,
+        "python_blocks": 43446
+      },
+      "released_many": {
+        "current_bytes": 14716928,
+        "peak_bytes": 14716928,
+        "python_blocks": 43451
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 14716928,
+          "peak_bytes": 14716928,
+          "python_blocks": 43659
+        },
+        {
+          "current_bytes": 14716928,
+          "peak_bytes": 14716928,
+          "python_blocks": 43762
+        },
+        {
+          "current_bytes": 14716928,
+          "peak_bytes": 14716928,
+          "python_blocks": 43864
+        },
+        {
+          "current_bytes": 14716928,
+          "peak_bytes": 14716928,
+          "python_blocks": 43965
+        },
+        {
+          "current_bytes": 14716928,
+          "peak_bytes": 14716928,
+          "python_blocks": 44064
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 0,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/diverse/canada.json",
+      "operation": "loads_error",
+      "workload": "fixed malformed JSON",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 14548992,
+        "peak_bytes": 14548992,
+        "python_blocks": 43048
+      },
+      "held": {
+        "current_bytes": 14548992,
+        "peak_bytes": 14548992,
+        "python_blocks": 43242
+      },
+      "released": {
+        "current_bytes": 14548992,
+        "peak_bytes": 14548992,
+        "python_blocks": 43248
+      },
+      "warm": {
+        "current_bytes": 14548992,
+        "peak_bytes": 14548992,
+        "python_blocks": 43554
+      },
+      "held_many": {
+        "current_bytes": 14548992,
+        "peak_bytes": 14548992,
+        "python_blocks": 43446
+      },
+      "released_many": {
+        "current_bytes": 14548992,
+        "peak_bytes": 14548992,
+        "python_blocks": 43451
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 14548992,
+          "peak_bytes": 14548992,
+          "python_blocks": 43659
+        },
+        {
+          "current_bytes": 14548992,
+          "peak_bytes": 14548992,
+          "python_blocks": 43762
+        },
+        {
+          "current_bytes": 14548992,
+          "peak_bytes": 14618624,
+          "python_blocks": 43864
+        },
+        {
+          "current_bytes": 14618624,
+          "peak_bytes": 14688256,
+          "python_blocks": 43965
+        },
+        {
+          "current_bytes": 14688256,
+          "peak_bytes": 14688256,
+          "python_blocks": 44064
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 0,
+      "post_warm_growth_bytes": 139264,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps_error",
+      "workload": "self-referential list",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 14487552,
+        "peak_bytes": 14487552,
+        "python_blocks": 43048
+      },
+      "held": {
+        "current_bytes": 14532608,
+        "peak_bytes": 14532608,
+        "python_blocks": 43244
+      },
+      "released": {
+        "current_bytes": 14532608,
+        "peak_bytes": 14532608,
+        "python_blocks": 43252
+      },
+      "warm": {
+        "current_bytes": 14532608,
+        "peak_bytes": 14532608,
+        "python_blocks": 43556
+      },
+      "held_many": {
+        "current_bytes": 14532608,
+        "peak_bytes": 14532608,
+        "python_blocks": 43450
+      },
+      "released_many": {
+        "current_bytes": 14532608,
+        "peak_bytes": 14532608,
+        "python_blocks": 43456
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 14532608,
+          "peak_bytes": 14532608,
+          "python_blocks": 43659
+        },
+        {
+          "current_bytes": 14532608,
+          "peak_bytes": 14532608,
+          "python_blocks": 43762
+        },
+        {
+          "current_bytes": 14532608,
+          "peak_bytes": 14532608,
+          "python_blocks": 43864
+        },
+        {
+          "current_bytes": 14532608,
+          "peak_bytes": 14602240,
+          "python_blocks": 43965
+        },
+        {
+          "current_bytes": 14602240,
+          "peak_bytes": 14602240,
+          "python_blocks": 44065
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 45056,
+      "post_warm_growth_bytes": 69632,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps_error",
+      "workload": "self-referential list",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 14389248,
+        "peak_bytes": 14389248,
+        "python_blocks": 43043
+      },
+      "held": {
+        "current_bytes": 14430208,
+        "peak_bytes": 14438400,
+        "python_blocks": 43238
+      },
+      "released": {
+        "current_bytes": 14430208,
+        "peak_bytes": 14438400,
+        "python_blocks": 43248
+      },
+      "warm": {
+        "current_bytes": 14499840,
+        "peak_bytes": 14499840,
+        "python_blocks": 43555
+      },
+      "held_many": {
+        "current_bytes": 14430208,
+        "peak_bytes": 14499840,
+        "python_blocks": 43446
+      },
+      "released_many": {
+        "current_bytes": 14499840,
+        "peak_bytes": 14499840,
+        "python_blocks": 43454
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 14499840,
+          "peak_bytes": 14499840,
+          "python_blocks": 43659
+        },
+        {
+          "current_bytes": 14499840,
+          "peak_bytes": 14499840,
+          "python_blocks": 43762
+        },
+        {
+          "current_bytes": 14499840,
+          "peak_bytes": 14499840,
+          "python_blocks": 43864
+        },
+        {
+          "current_bytes": 14499840,
+          "peak_bytes": 14499840,
+          "python_blocks": 43964
+        },
+        {
+          "current_bytes": 14499840,
+          "peak_bytes": 14499840,
+          "python_blocks": 44065
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 49152,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps_error",
+      "workload": "self-referential list",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 14327808,
+        "peak_bytes": 14327808,
+        "python_blocks": 43048
+      },
+      "held": {
+        "current_bytes": 14368768,
+        "peak_bytes": 14376960,
+        "python_blocks": 43244
+      },
+      "released": {
+        "current_bytes": 14368768,
+        "peak_bytes": 14376960,
+        "python_blocks": 43252
+      },
+      "warm": {
+        "current_bytes": 14438400,
+        "peak_bytes": 14438400,
+        "python_blocks": 43556
+      },
+      "held_many": {
+        "current_bytes": 14368768,
+        "peak_bytes": 14438400,
+        "python_blocks": 43450
+      },
+      "released_many": {
+        "current_bytes": 14438400,
+        "peak_bytes": 14438400,
+        "python_blocks": 43456
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 14438400,
+          "peak_bytes": 14438400,
+          "python_blocks": 43659
+        },
+        {
+          "current_bytes": 14438400,
+          "peak_bytes": 14438400,
+          "python_blocks": 43762
+        },
+        {
+          "current_bytes": 14438400,
+          "peak_bytes": 14438400,
+          "python_blocks": 43864
+        },
+        {
+          "current_bytes": 14438400,
+          "peak_bytes": 14438400,
+          "python_blocks": 43965
+        },
+        {
+          "current_bytes": 14438400,
+          "peak_bytes": 14438400,
+          "python_blocks": 44065
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 49152,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads",
+      "workload": "document",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 17256448,
+        "peak_bytes": 17256448,
+        "python_blocks": 43048
+      },
+      "held": {
+        "current_bytes": 51261440,
+        "peak_bytes": 52322304,
+        "python_blocks": 542643
+      },
+      "released": {
+        "current_bytes": 19341312,
+        "peak_bytes": 52322304,
+        "python_blocks": 43257
+      },
+      "warm": {
+        "current_bytes": 20426752,
+        "peak_bytes": 120369152,
+        "python_blocks": 43561
+      },
+      "held_many": {
+        "current_bytes": 119312384,
+        "peak_bytes": 120369152,
+        "python_blocks": 1541826
+      },
+      "released_many": {
+        "current_bytes": 20418560,
+        "peak_bytes": 120369152,
+        "python_blocks": 43461
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 20426752,
+          "peak_bytes": 120369152,
+          "python_blocks": 43666
+        },
+        {
+          "current_bytes": 20426752,
+          "peak_bytes": 120369152,
+          "python_blocks": 43768
+        },
+        {
+          "current_bytes": 20426752,
+          "peak_bytes": 120369152,
+          "python_blocks": 43871
+        },
+        {
+          "current_bytes": 20492288,
+          "peak_bytes": 120369152,
+          "python_blocks": 43971
+        },
+        {
+          "current_bytes": 20557824,
+          "peak_bytes": 120369152,
+          "python_blocks": 44073
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 35065856,
+      "post_warm_growth_bytes": 131072,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads",
+      "workload": "document",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 17186816,
+        "peak_bytes": 17186816,
+        "python_blocks": 43048
+      },
+      "held": {
+        "current_bytes": 52252672,
+        "peak_bytes": 52252672,
+        "python_blocks": 542643
+      },
+      "released": {
+        "current_bytes": 19542016,
+        "peak_bytes": 52252672,
+        "python_blocks": 43257
+      },
+      "warm": {
+        "current_bytes": 20602880,
+        "peak_bytes": 120299520,
+        "python_blocks": 43561
+      },
+      "held_many": {
+        "current_bytes": 120299520,
+        "peak_bytes": 120299520,
+        "python_blocks": 1541826
+      },
+      "released_many": {
+        "current_bytes": 20340736,
+        "peak_bytes": 120299520,
+        "python_blocks": 43461
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 20602880,
+          "peak_bytes": 120299520,
+          "python_blocks": 43666
+        },
+        {
+          "current_bytes": 20602880,
+          "peak_bytes": 120299520,
+          "python_blocks": 43768
+        },
+        {
+          "current_bytes": 20602880,
+          "peak_bytes": 120299520,
+          "python_blocks": 43871
+        },
+        {
+          "current_bytes": 20475904,
+          "peak_bytes": 120299520,
+          "python_blocks": 43971
+        },
+        {
+          "current_bytes": 20475904,
+          "peak_bytes": 120299520,
+          "python_blocks": 44073
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 35065856,
+      "post_warm_growth_bytes": -126976,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads",
+      "workload": "document",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 17281024,
+        "peak_bytes": 17281024,
+        "python_blocks": 43048
+      },
+      "held": {
+        "current_bytes": 52346880,
+        "peak_bytes": 52346880,
+        "python_blocks": 542643
+      },
+      "released": {
+        "current_bytes": 19636224,
+        "peak_bytes": 52346880,
+        "python_blocks": 43257
+      },
+      "warm": {
+        "current_bytes": 20455424,
+        "peak_bytes": 120127488,
+        "python_blocks": 43561
+      },
+      "held_many": {
+        "current_bytes": 119345152,
+        "peak_bytes": 120127488,
+        "python_blocks": 1541826
+      },
+      "released_many": {
+        "current_bytes": 20451328,
+        "peak_bytes": 120127488,
+        "python_blocks": 43461
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 20455424,
+          "peak_bytes": 120127488,
+          "python_blocks": 43666
+        },
+        {
+          "current_bytes": 20455424,
+          "peak_bytes": 120127488,
+          "python_blocks": 43768
+        },
+        {
+          "current_bytes": 20455424,
+          "peak_bytes": 120127488,
+          "python_blocks": 43871
+        },
+        {
+          "current_bytes": 20520960,
+          "peak_bytes": 120127488,
+          "python_blocks": 43971
+        },
+        {
+          "current_bytes": 22433792,
+          "peak_bytes": 120127488,
+          "python_blocks": 44073
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 35065856,
+      "post_warm_growth_bytes": 1978368,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "dumps",
+      "workload": "document",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 51994624,
+        "peak_bytes": 56774656,
+        "python_blocks": 542543
+      },
+      "held": {
+        "current_bytes": 56934400,
+        "peak_bytes": 64675840,
+        "python_blocks": 542739
+      },
+      "released": {
+        "current_bytes": 51994624,
+        "peak_bytes": 64675840,
+        "python_blocks": 542748
+      },
+      "warm": {
+        "current_bytes": 51994624,
+        "peak_bytes": 68632576,
+        "python_blocks": 543054
+      },
+      "held_many": {
+        "current_bytes": 68628480,
+        "peak_bytes": 68632576,
+        "python_blocks": 542949
+      },
+      "released_many": {
+        "current_bytes": 51994624,
+        "peak_bytes": 68632576,
+        "python_blocks": 542953
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 51994624,
+          "peak_bytes": 68632576,
+          "python_blocks": 543157
+        },
+        {
+          "current_bytes": 51994624,
+          "peak_bytes": 68632576,
+          "python_blocks": 543260
+        },
+        {
+          "current_bytes": 51994624,
+          "peak_bytes": 68632576,
+          "python_blocks": 543362
+        },
+        {
+          "current_bytes": 51994624,
+          "peak_bytes": 68632576,
+          "python_blocks": 543461
+        },
+        {
+          "current_bytes": 51994624,
+          "peak_bytes": 68632576,
+          "python_blocks": 543563
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 7901184,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "dumps",
+      "workload": "document",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 51847168,
+        "peak_bytes": 56627200,
+        "python_blocks": 542543
+      },
+      "held": {
+        "current_bytes": 57315328,
+        "peak_bytes": 65052672,
+        "python_blocks": 542739
+      },
+      "released": {
+        "current_bytes": 52375552,
+        "peak_bytes": 65052672,
+        "python_blocks": 542748
+      },
+      "warm": {
+        "current_bytes": 52375552,
+        "peak_bytes": 69025792,
+        "python_blocks": 543054
+      },
+      "held_many": {
+        "current_bytes": 69009408,
+        "peak_bytes": 69025792,
+        "python_blocks": 542949
+      },
+      "released_many": {
+        "current_bytes": 52375552,
+        "peak_bytes": 69025792,
+        "python_blocks": 542953
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 52375552,
+          "peak_bytes": 69025792,
+          "python_blocks": 543157
+        },
+        {
+          "current_bytes": 52375552,
+          "peak_bytes": 69025792,
+          "python_blocks": 543260
+        },
+        {
+          "current_bytes": 52375552,
+          "peak_bytes": 69025792,
+          "python_blocks": 543362
+        },
+        {
+          "current_bytes": 52375552,
+          "peak_bytes": 69025792,
+          "python_blocks": 543461
+        },
+        {
+          "current_bytes": 52375552,
+          "peak_bytes": 69025792,
+          "python_blocks": 543563
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 8425472,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "dumps",
+      "workload": "document",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 51511296,
+        "peak_bytes": 56287232,
+        "python_blocks": 542543
+      },
+      "held": {
+        "current_bytes": 56336384,
+        "peak_bytes": 64036864,
+        "python_blocks": 542739
+      },
+      "released": {
+        "current_bytes": 51396608,
+        "peak_bytes": 64036864,
+        "python_blocks": 542748
+      },
+      "warm": {
+        "current_bytes": 51466240,
+        "peak_bytes": 68100096,
+        "python_blocks": 543054
+      },
+      "held_many": {
+        "current_bytes": 68030464,
+        "peak_bytes": 68100096,
+        "python_blocks": 542949
+      },
+      "released_many": {
+        "current_bytes": 51466240,
+        "peak_bytes": 68100096,
+        "python_blocks": 542953
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 51466240,
+          "peak_bytes": 68100096,
+          "python_blocks": 543157
+        },
+        {
+          "current_bytes": 51466240,
+          "peak_bytes": 68100096,
+          "python_blocks": 543260
+        },
+        {
+          "current_bytes": 51466240,
+          "peak_bytes": 68100096,
+          "python_blocks": 543362
+        },
+        {
+          "current_bytes": 51535872,
+          "peak_bytes": 68100096,
+          "python_blocks": 543461
+        },
+        {
+          "current_bytes": 51535872,
+          "peak_bytes": 68100096,
+          "python_blocks": 543563
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 7749632,
+      "post_warm_growth_bytes": 69632,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads_error",
+      "workload": "fixed malformed JSON",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 17256448,
+        "peak_bytes": 17256448,
+        "python_blocks": 43048
+      },
+      "held": {
+        "current_bytes": 17256448,
+        "peak_bytes": 17256448,
+        "python_blocks": 43242
+      },
+      "released": {
+        "current_bytes": 17256448,
+        "peak_bytes": 17256448,
+        "python_blocks": 43248
+      },
+      "warm": {
+        "current_bytes": 17256448,
+        "peak_bytes": 17256448,
+        "python_blocks": 43554
+      },
+      "held_many": {
+        "current_bytes": 17256448,
+        "peak_bytes": 17256448,
+        "python_blocks": 43446
+      },
+      "released_many": {
+        "current_bytes": 17256448,
+        "peak_bytes": 17256448,
+        "python_blocks": 43451
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 17256448,
+          "peak_bytes": 17256448,
+          "python_blocks": 43659
+        },
+        {
+          "current_bytes": 17256448,
+          "peak_bytes": 17256448,
+          "python_blocks": 43762
+        },
+        {
+          "current_bytes": 17256448,
+          "peak_bytes": 17326080,
+          "python_blocks": 43864
+        },
+        {
+          "current_bytes": 17326080,
+          "peak_bytes": 17395712,
+          "python_blocks": 43965
+        },
+        {
+          "current_bytes": 17395712,
+          "peak_bytes": 17395712,
+          "python_blocks": 44064
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 0,
+      "post_warm_growth_bytes": 139264,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads_error",
+      "workload": "fixed malformed JSON",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 17149952,
+        "peak_bytes": 17149952,
+        "python_blocks": 43048
+      },
+      "held": {
+        "current_bytes": 17149952,
+        "peak_bytes": 17149952,
+        "python_blocks": 43242
+      },
+      "released": {
+        "current_bytes": 17149952,
+        "peak_bytes": 17149952,
+        "python_blocks": 43248
+      },
+      "warm": {
+        "current_bytes": 17219584,
+        "peak_bytes": 17219584,
+        "python_blocks": 43554
+      },
+      "held_many": {
+        "current_bytes": 17149952,
+        "peak_bytes": 17219584,
+        "python_blocks": 43446
+      },
+      "released_many": {
+        "current_bytes": 17219584,
+        "peak_bytes": 17219584,
+        "python_blocks": 43451
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 17219584,
+          "peak_bytes": 17219584,
+          "python_blocks": 43659
+        },
+        {
+          "current_bytes": 17219584,
+          "peak_bytes": 17219584,
+          "python_blocks": 43762
+        },
+        {
+          "current_bytes": 17219584,
+          "peak_bytes": 17289216,
+          "python_blocks": 43864
+        },
+        {
+          "current_bytes": 17289216,
+          "peak_bytes": 17289216,
+          "python_blocks": 43965
+        },
+        {
+          "current_bytes": 17289216,
+          "peak_bytes": 17289216,
+          "python_blocks": 44064
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 0,
+      "post_warm_growth_bytes": 69632,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads_error",
+      "workload": "fixed malformed JSON",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 17313792,
+        "peak_bytes": 17313792,
+        "python_blocks": 43043
+      },
+      "held": {
+        "current_bytes": 17313792,
+        "peak_bytes": 17313792,
+        "python_blocks": 43237
+      },
+      "released": {
+        "current_bytes": 17313792,
+        "peak_bytes": 17313792,
+        "python_blocks": 43246
+      },
+      "warm": {
+        "current_bytes": 17383424,
+        "peak_bytes": 17383424,
+        "python_blocks": 43553
+      },
+      "held_many": {
+        "current_bytes": 17313792,
+        "peak_bytes": 17383424,
+        "python_blocks": 43444
+      },
+      "released_many": {
+        "current_bytes": 17383424,
+        "peak_bytes": 17383424,
+        "python_blocks": 43450
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 17383424,
+          "peak_bytes": 17383424,
+          "python_blocks": 43657
+        },
+        {
+          "current_bytes": 17383424,
+          "peak_bytes": 17383424,
+          "python_blocks": 43760
+        },
+        {
+          "current_bytes": 17383424,
+          "peak_bytes": 17383424,
+          "python_blocks": 43862
+        },
+        {
+          "current_bytes": 17383424,
+          "peak_bytes": 17383424,
+          "python_blocks": 43963
+        },
+        {
+          "current_bytes": 17383424,
+          "peak_bytes": 17383424,
+          "python_blocks": 44065
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 0,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "dumps_error",
+      "workload": "self-referential list",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 17154048,
+        "peak_bytes": 17154048,
+        "python_blocks": 43043
+      },
+      "held": {
+        "current_bytes": 17195008,
+        "peak_bytes": 17203200,
+        "python_blocks": 43238
+      },
+      "released": {
+        "current_bytes": 17195008,
+        "peak_bytes": 17203200,
+        "python_blocks": 43248
+      },
+      "warm": {
+        "current_bytes": 17195008,
+        "peak_bytes": 17203200,
+        "python_blocks": 43555
+      },
+      "held_many": {
+        "current_bytes": 17195008,
+        "peak_bytes": 17203200,
+        "python_blocks": 43446
+      },
+      "released_many": {
+        "current_bytes": 17195008,
+        "peak_bytes": 17203200,
+        "python_blocks": 43454
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 17195008,
+          "peak_bytes": 17203200,
+          "python_blocks": 43659
+        },
+        {
+          "current_bytes": 17195008,
+          "peak_bytes": 17203200,
+          "python_blocks": 43762
+        },
+        {
+          "current_bytes": 17195008,
+          "peak_bytes": 17264640,
+          "python_blocks": 43864
+        },
+        {
+          "current_bytes": 17264640,
+          "peak_bytes": 17334272,
+          "python_blocks": 43964
+        },
+        {
+          "current_bytes": 17334272,
+          "peak_bytes": 17334272,
+          "python_blocks": 44065
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 49152,
+      "post_warm_growth_bytes": 139264,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "dumps_error",
+      "workload": "self-referential list",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 17313792,
+        "peak_bytes": 17313792,
+        "python_blocks": 43043
+      },
+      "held": {
+        "current_bytes": 17424384,
+        "peak_bytes": 17432576,
+        "python_blocks": 43238
+      },
+      "released": {
+        "current_bytes": 17424384,
+        "peak_bytes": 17432576,
+        "python_blocks": 43248
+      },
+      "warm": {
+        "current_bytes": 17424384,
+        "peak_bytes": 17432576,
+        "python_blocks": 43555
+      },
+      "held_many": {
+        "current_bytes": 17424384,
+        "peak_bytes": 17432576,
+        "python_blocks": 43446
+      },
+      "released_many": {
+        "current_bytes": 17424384,
+        "peak_bytes": 17432576,
+        "python_blocks": 43454
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 17424384,
+          "peak_bytes": 17432576,
+          "python_blocks": 43659
+        },
+        {
+          "current_bytes": 17424384,
+          "peak_bytes": 17432576,
+          "python_blocks": 43762
+        },
+        {
+          "current_bytes": 17424384,
+          "peak_bytes": 17432576,
+          "python_blocks": 43864
+        },
+        {
+          "current_bytes": 17424384,
+          "peak_bytes": 17494016,
+          "python_blocks": 43964
+        },
+        {
+          "current_bytes": 17494016,
+          "peak_bytes": 17494016,
+          "python_blocks": 44065
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 118784,
+      "post_warm_growth_bytes": 69632,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "dumps_error",
+      "workload": "self-referential list",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "5ca5fcf76baab9da1a5b2672f702e1af315638694971d7cb881d15eed198d0e7"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp313-win_amd64.pyd",
+          "sha256": "229ffb87bb9b12d583079ccb1a7535edd0e0742600b289a52b48ad9cb82321a9"
+        },
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.pyd",
+          "sha256": "f2a22e27f68ba7e27eca7ee06d146cf1282b428666dcbb8ef141d7eac11975b5"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 17240064,
+        "peak_bytes": 17240064,
+        "python_blocks": 43048
+      },
+      "held": {
+        "current_bytes": 17281024,
+        "peak_bytes": 17289216,
+        "python_blocks": 43244
+      },
+      "released": {
+        "current_bytes": 17281024,
+        "peak_bytes": 17289216,
+        "python_blocks": 43252
+      },
+      "warm": {
+        "current_bytes": 17281024,
+        "peak_bytes": 17289216,
+        "python_blocks": 43556
+      },
+      "held_many": {
+        "current_bytes": 17281024,
+        "peak_bytes": 17289216,
+        "python_blocks": 43450
+      },
+      "released_many": {
+        "current_bytes": 17281024,
+        "peak_bytes": 17289216,
+        "python_blocks": 43456
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 17281024,
+          "peak_bytes": 17289216,
+          "python_blocks": 43659
+        },
+        {
+          "current_bytes": 17281024,
+          "peak_bytes": 17289216,
+          "python_blocks": 43762
+        },
+        {
+          "current_bytes": 17281024,
+          "peak_bytes": 17350656,
+          "python_blocks": 43864
+        },
+        {
+          "current_bytes": 17350656,
+          "peak_bytes": 17420288,
+          "python_blocks": 43965
+        },
+        {
+          "current_bytes": 17420288,
+          "peak_bytes": 17420288,
+          "python_blocks": 44065
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 49152,
+      "post_warm_growth_bytes": 139264,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/engine/atlas.json",
+      "operation": "loads",
+      "workload": "document",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 13983744,
+        "peak_bytes": 13983744,
+        "python_blocks": 54356
+      },
+      "held": {
+        "current_bytes": 22392832,
+        "peak_bytes": 22396928,
+        "python_blocks": 54972
+      },
+      "released": {
+        "current_bytes": 22392832,
+        "peak_bytes": 22396928,
+        "python_blocks": 54582
+      },
+      "warm": {
+        "current_bytes": 22392832,
+        "peak_bytes": 22396928,
+        "python_blocks": 54889
+      },
+      "held_many": {
+        "current_bytes": 22392832,
+        "peak_bytes": 22396928,
+        "python_blocks": 55904
+      },
+      "released_many": {
+        "current_bytes": 22392832,
+        "peak_bytes": 22396928,
+        "python_blocks": 54786
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 22392832,
+          "peak_bytes": 22528000,
+          "python_blocks": 54992
+        },
+        {
+          "current_bytes": 22528000,
+          "peak_bytes": 22528000,
+          "python_blocks": 55096
+        },
+        {
+          "current_bytes": 22528000,
+          "peak_bytes": 22528000,
+          "python_blocks": 55198
+        },
+        {
+          "current_bytes": 22528000,
+          "peak_bytes": 22528000,
+          "python_blocks": 55299
+        },
+        {
+          "current_bytes": 22528000,
+          "peak_bytes": 22528000,
+          "python_blocks": 55402
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 8413184,
+      "post_warm_growth_bytes": 135168,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/engine/atlas.json",
+      "operation": "loads",
+      "workload": "document",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 13946880,
+        "peak_bytes": 14016512,
+        "python_blocks": 54360
+      },
+      "held": {
+        "current_bytes": 22425600,
+        "peak_bytes": 22487040,
+        "python_blocks": 54976
+      },
+      "released": {
+        "current_bytes": 22425600,
+        "peak_bytes": 22487040,
+        "python_blocks": 54585
+      },
+      "warm": {
+        "current_bytes": 22425600,
+        "peak_bytes": 22487040,
+        "python_blocks": 54891
+      },
+      "held_many": {
+        "current_bytes": 22425600,
+        "peak_bytes": 22487040,
+        "python_blocks": 55908
+      },
+      "released_many": {
+        "current_bytes": 22425600,
+        "peak_bytes": 22487040,
+        "python_blocks": 54789
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 22425600,
+          "peak_bytes": 22487040,
+          "python_blocks": 54993
+        },
+        {
+          "current_bytes": 22425600,
+          "peak_bytes": 22487040,
+          "python_blocks": 55097
+        },
+        {
+          "current_bytes": 22425600,
+          "peak_bytes": 22487040,
+          "python_blocks": 55199
+        },
+        {
+          "current_bytes": 22425600,
+          "peak_bytes": 22487040,
+          "python_blocks": 55301
+        },
+        {
+          "current_bytes": 22425600,
+          "peak_bytes": 22487040,
+          "python_blocks": 55404
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 8470528,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/engine/atlas.json",
+      "operation": "loads",
+      "workload": "document",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 14098432,
+        "peak_bytes": 14168064,
+        "python_blocks": 54360
+      },
+      "held": {
+        "current_bytes": 22577152,
+        "peak_bytes": 22618112,
+        "python_blocks": 54976
+      },
+      "released": {
+        "current_bytes": 22577152,
+        "peak_bytes": 22618112,
+        "python_blocks": 54585
+      },
+      "warm": {
+        "current_bytes": 22577152,
+        "peak_bytes": 22618112,
+        "python_blocks": 54891
+      },
+      "held_many": {
+        "current_bytes": 22577152,
+        "peak_bytes": 22618112,
+        "python_blocks": 55908
+      },
+      "released_many": {
+        "current_bytes": 22577152,
+        "peak_bytes": 22618112,
+        "python_blocks": 54789
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 22577152,
+          "peak_bytes": 22618112,
+          "python_blocks": 54993
+        },
+        {
+          "current_bytes": 22577152,
+          "peak_bytes": 22618112,
+          "python_blocks": 55097
+        },
+        {
+          "current_bytes": 22577152,
+          "peak_bytes": 22618112,
+          "python_blocks": 55199
+        },
+        {
+          "current_bytes": 22577152,
+          "peak_bytes": 22618112,
+          "python_blocks": 55301
+        },
+        {
+          "current_bytes": 22577152,
+          "peak_bytes": 22618112,
+          "python_blocks": 55404
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 8450048,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/engine/atlas.json",
+      "operation": "dumps",
+      "workload": "document",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 13770752,
+        "peak_bytes": 13770752,
+        "python_blocks": 54783
+      },
+      "held": {
+        "current_bytes": 13807616,
+        "peak_bytes": 13946880,
+        "python_blocks": 54979
+      },
+      "released": {
+        "current_bytes": 13946880,
+        "peak_bytes": 13946880,
+        "python_blocks": 54986
+      },
+      "warm": {
+        "current_bytes": 14020608,
+        "peak_bytes": 14020608,
+        "python_blocks": 55291
+      },
+      "held_many": {
+        "current_bytes": 14020608,
+        "peak_bytes": 14020608,
+        "python_blocks": 55186
+      },
+      "released_many": {
+        "current_bytes": 14020608,
+        "peak_bytes": 14020608,
+        "python_blocks": 55189
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 14020608,
+          "peak_bytes": 14020608,
+          "python_blocks": 55394
+        },
+        {
+          "current_bytes": 14020608,
+          "peak_bytes": 14020608,
+          "python_blocks": 55497
+        },
+        {
+          "current_bytes": 14020608,
+          "peak_bytes": 14020608,
+          "python_blocks": 55598
+        },
+        {
+          "current_bytes": 14020608,
+          "peak_bytes": 14020608,
+          "python_blocks": 55698
+        },
+        {
+          "current_bytes": 14020608,
+          "peak_bytes": 14020608,
+          "python_blocks": 55799
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 176128,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/engine/atlas.json",
+      "operation": "dumps",
+      "workload": "document",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 14057472,
+        "peak_bytes": 14057472,
+        "python_blocks": 54783
+      },
+      "held": {
+        "current_bytes": 14057472,
+        "peak_bytes": 14057472,
+        "python_blocks": 54979
+      },
+      "released": {
+        "current_bytes": 14057472,
+        "peak_bytes": 14057472,
+        "python_blocks": 54986
+      },
+      "warm": {
+        "current_bytes": 14131200,
+        "peak_bytes": 14131200,
+        "python_blocks": 55291
+      },
+      "held_many": {
+        "current_bytes": 14131200,
+        "peak_bytes": 14131200,
+        "python_blocks": 55186
+      },
+      "released_many": {
+        "current_bytes": 14131200,
+        "peak_bytes": 14131200,
+        "python_blocks": 55189
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 14131200,
+          "peak_bytes": 14266368,
+          "python_blocks": 55394
+        },
+        {
+          "current_bytes": 14266368,
+          "peak_bytes": 14266368,
+          "python_blocks": 55497
+        },
+        {
+          "current_bytes": 14266368,
+          "peak_bytes": 14266368,
+          "python_blocks": 55598
+        },
+        {
+          "current_bytes": 14266368,
+          "peak_bytes": 14266368,
+          "python_blocks": 55698
+        },
+        {
+          "current_bytes": 14266368,
+          "peak_bytes": 14266368,
+          "python_blocks": 55799
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 0,
+      "post_warm_growth_bytes": 135168,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/engine/atlas.json",
+      "operation": "dumps",
+      "workload": "document",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 14016512,
+        "peak_bytes": 14086144,
+        "python_blocks": 54783
+      },
+      "held": {
+        "current_bytes": 14123008,
+        "peak_bytes": 14123008,
+        "python_blocks": 54979
+      },
+      "released": {
+        "current_bytes": 14123008,
+        "peak_bytes": 14123008,
+        "python_blocks": 54986
+      },
+      "warm": {
+        "current_bytes": 14159872,
+        "peak_bytes": 14159872,
+        "python_blocks": 55291
+      },
+      "held_many": {
+        "current_bytes": 14159872,
+        "peak_bytes": 14159872,
+        "python_blocks": 55186
+      },
+      "released_many": {
+        "current_bytes": 14159872,
+        "peak_bytes": 14159872,
+        "python_blocks": 55189
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 14159872,
+          "peak_bytes": 14159872,
+          "python_blocks": 55394
+        },
+        {
+          "current_bytes": 14159872,
+          "peak_bytes": 14159872,
+          "python_blocks": 55497
+        },
+        {
+          "current_bytes": 14159872,
+          "peak_bytes": 14159872,
+          "python_blocks": 55598
+        },
+        {
+          "current_bytes": 14159872,
+          "peak_bytes": 14159872,
+          "python_blocks": 55698
+        },
+        {
+          "current_bytes": 14159872,
+          "peak_bytes": 14159872,
+          "python_blocks": 55799
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 36864,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/engine/atlas.json",
+      "operation": "loads_error",
+      "workload": "fixed malformed JSON",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 14045184,
+        "peak_bytes": 14114816,
+        "python_blocks": 54360
+      },
+      "held": {
+        "current_bytes": 22523904,
+        "peak_bytes": 22564864,
+        "python_blocks": 54556
+      },
+      "released": {
+        "current_bytes": 22523904,
+        "peak_bytes": 22564864,
+        "python_blocks": 54565
+      },
+      "warm": {
+        "current_bytes": 22523904,
+        "peak_bytes": 22564864,
+        "python_blocks": 54869
+      },
+      "held_many": {
+        "current_bytes": 22523904,
+        "peak_bytes": 22564864,
+        "python_blocks": 54761
+      },
+      "released_many": {
+        "current_bytes": 22523904,
+        "peak_bytes": 22564864,
+        "python_blocks": 54767
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 22523904,
+          "peak_bytes": 22564864,
+          "python_blocks": 54972
+        },
+        {
+          "current_bytes": 22523904,
+          "peak_bytes": 22564864,
+          "python_blocks": 55075
+        },
+        {
+          "current_bytes": 22523904,
+          "peak_bytes": 22564864,
+          "python_blocks": 55177
+        },
+        {
+          "current_bytes": 22523904,
+          "peak_bytes": 22564864,
+          "python_blocks": 55280
+        },
+        {
+          "current_bytes": 22523904,
+          "peak_bytes": 22564864,
+          "python_blocks": 55381
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 8450048,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/engine/atlas.json",
+      "operation": "loads_error",
+      "workload": "fixed malformed JSON",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 13873152,
+        "peak_bytes": 13942784,
+        "python_blocks": 54360
+      },
+      "held": {
+        "current_bytes": 22351872,
+        "peak_bytes": 22417408,
+        "python_blocks": 54556
+      },
+      "released": {
+        "current_bytes": 22351872,
+        "peak_bytes": 22417408,
+        "python_blocks": 54565
+      },
+      "warm": {
+        "current_bytes": 22351872,
+        "peak_bytes": 22417408,
+        "python_blocks": 54869
+      },
+      "held_many": {
+        "current_bytes": 22351872,
+        "peak_bytes": 22417408,
+        "python_blocks": 54761
+      },
+      "released_many": {
+        "current_bytes": 22351872,
+        "peak_bytes": 22417408,
+        "python_blocks": 54767
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 22351872,
+          "peak_bytes": 22417408,
+          "python_blocks": 54972
+        },
+        {
+          "current_bytes": 22351872,
+          "peak_bytes": 22417408,
+          "python_blocks": 55075
+        },
+        {
+          "current_bytes": 22351872,
+          "peak_bytes": 22417408,
+          "python_blocks": 55177
+        },
+        {
+          "current_bytes": 22351872,
+          "peak_bytes": 22417408,
+          "python_blocks": 55280
+        },
+        {
+          "current_bytes": 22351872,
+          "peak_bytes": 22417408,
+          "python_blocks": 55381
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 8474624,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/engine/atlas.json",
+      "operation": "loads_error",
+      "workload": "fixed malformed JSON",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 14131200,
+        "peak_bytes": 14131200,
+        "python_blocks": 54356
+      },
+      "held": {
+        "current_bytes": 22540288,
+        "peak_bytes": 22560768,
+        "python_blocks": 54551
+      },
+      "released": {
+        "current_bytes": 22540288,
+        "peak_bytes": 22560768,
+        "python_blocks": 54558
+      },
+      "warm": {
+        "current_bytes": 22540288,
+        "peak_bytes": 22560768,
+        "python_blocks": 54863
+      },
+      "held_many": {
+        "current_bytes": 22540288,
+        "peak_bytes": 22560768,
+        "python_blocks": 54755
+      },
+      "released_many": {
+        "current_bytes": 22540288,
+        "peak_bytes": 22560768,
+        "python_blocks": 54761
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 22540288,
+          "peak_bytes": 22560768,
+          "python_blocks": 54968
+        },
+        {
+          "current_bytes": 22540288,
+          "peak_bytes": 22560768,
+          "python_blocks": 55071
+        },
+        {
+          "current_bytes": 22540288,
+          "peak_bytes": 22560768,
+          "python_blocks": 55173
+        },
+        {
+          "current_bytes": 22540288,
+          "peak_bytes": 22560768,
+          "python_blocks": 55271
+        },
+        {
+          "current_bytes": 22540288,
+          "peak_bytes": 22560768,
+          "python_blocks": 55368
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 8429568,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/engine/atlas.json",
+      "operation": "dumps_error",
+      "workload": "self-referential list",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 13918208,
+        "peak_bytes": 13918208,
+        "python_blocks": 54360
+      },
+      "held": {
+        "current_bytes": 13967360,
+        "peak_bytes": 14102528,
+        "python_blocks": 54555
+      },
+      "released": {
+        "current_bytes": 14102528,
+        "peak_bytes": 14102528,
+        "python_blocks": 54563
+      },
+      "warm": {
+        "current_bytes": 14102528,
+        "peak_bytes": 14102528,
+        "python_blocks": 54869
+      },
+      "held_many": {
+        "current_bytes": 14102528,
+        "peak_bytes": 14102528,
+        "python_blocks": 54761
+      },
+      "released_many": {
+        "current_bytes": 14102528,
+        "peak_bytes": 14102528,
+        "python_blocks": 54767
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 14102528,
+          "peak_bytes": 14102528,
+          "python_blocks": 54973
+        },
+        {
+          "current_bytes": 14102528,
+          "peak_bytes": 14102528,
+          "python_blocks": 55077
+        },
+        {
+          "current_bytes": 14102528,
+          "peak_bytes": 14102528,
+          "python_blocks": 55179
+        },
+        {
+          "current_bytes": 14102528,
+          "peak_bytes": 14102528,
+          "python_blocks": 55280
+        },
+        {
+          "current_bytes": 14102528,
+          "peak_bytes": 14102528,
+          "python_blocks": 55382
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 184320,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/engine/atlas.json",
+      "operation": "dumps_error",
+      "workload": "self-referential list",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 13471744,
+        "peak_bytes": 13545472,
+        "python_blocks": 54356
+      },
+      "held": {
+        "current_bytes": 13594624,
+        "peak_bytes": 13729792,
+        "python_blocks": 54551
+      },
+      "released": {
+        "current_bytes": 13729792,
+        "peak_bytes": 13729792,
+        "python_blocks": 54560
+      },
+      "warm": {
+        "current_bytes": 13729792,
+        "peak_bytes": 13729792,
+        "python_blocks": 54868
+      },
+      "held_many": {
+        "current_bytes": 13729792,
+        "peak_bytes": 13729792,
+        "python_blocks": 54758
+      },
+      "released_many": {
+        "current_bytes": 13729792,
+        "peak_bytes": 13729792,
+        "python_blocks": 54765
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 13729792,
+          "peak_bytes": 13729792,
+          "python_blocks": 54971
+        },
+        {
+          "current_bytes": 13729792,
+          "peak_bytes": 13729792,
+          "python_blocks": 55075
+        },
+        {
+          "current_bytes": 13729792,
+          "peak_bytes": 13729792,
+          "python_blocks": 55177
+        },
+        {
+          "current_bytes": 13729792,
+          "peak_bytes": 13729792,
+          "python_blocks": 55276
+        },
+        {
+          "current_bytes": 13729792,
+          "peak_bytes": 13729792,
+          "python_blocks": 55379
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 184320,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/engine/atlas.json",
+      "operation": "dumps_error",
+      "workload": "self-referential list",
+      "input_sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 14016512,
+        "peak_bytes": 14016512,
+        "python_blocks": 54360
+      },
+      "held": {
+        "current_bytes": 14065664,
+        "peak_bytes": 14200832,
+        "python_blocks": 54555
+      },
+      "released": {
+        "current_bytes": 14200832,
+        "peak_bytes": 14200832,
+        "python_blocks": 54563
+      },
+      "warm": {
+        "current_bytes": 14200832,
+        "peak_bytes": 14200832,
+        "python_blocks": 54869
+      },
+      "held_many": {
+        "current_bytes": 14200832,
+        "peak_bytes": 14200832,
+        "python_blocks": 54761
+      },
+      "released_many": {
+        "current_bytes": 14200832,
+        "peak_bytes": 14200832,
+        "python_blocks": 54767
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 14200832,
+          "peak_bytes": 14200832,
+          "python_blocks": 54973
+        },
+        {
+          "current_bytes": 14200832,
+          "peak_bytes": 14200832,
+          "python_blocks": 55077
+        },
+        {
+          "current_bytes": 14200832,
+          "peak_bytes": 14200832,
+          "python_blocks": 55179
+        },
+        {
+          "current_bytes": 14200832,
+          "peak_bytes": 14200832,
+          "python_blocks": 55280
+        },
+        {
+          "current_bytes": 14200832,
+          "peak_bytes": 14200832,
+          "python_blocks": 55382
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 184320,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/diverse/canada.json",
+      "operation": "loads",
+      "workload": "document",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 15773696,
+        "peak_bytes": 15773696,
+        "python_blocks": 54356
+      },
+      "held": {
+        "current_bytes": 23465984,
+        "peak_bytes": 31739904,
+        "python_blocks": 277691
+      },
+      "released": {
+        "current_bytes": 18202624,
+        "peak_bytes": 31739904,
+        "python_blocks": 54566
+      },
+      "warm": {
+        "current_bytes": 21229568,
+        "peak_bytes": 49422336,
+        "python_blocks": 54874
+      },
+      "held_many": {
+        "current_bytes": 41148416,
+        "peak_bytes": 49422336,
+        "python_blocks": 724337
+      },
+      "released_many": {
+        "current_bytes": 21204992,
+        "peak_bytes": 49422336,
+        "python_blocks": 54771
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 21225472,
+          "peak_bytes": 49422336,
+          "python_blocks": 54977
+        },
+        {
+          "current_bytes": 21225472,
+          "peak_bytes": 49422336,
+          "python_blocks": 55081
+        },
+        {
+          "current_bytes": 21229568,
+          "peak_bytes": 49422336,
+          "python_blocks": 55183
+        },
+        {
+          "current_bytes": 21225472,
+          "peak_bytes": 49422336,
+          "python_blocks": 55283
+        },
+        {
+          "current_bytes": 21676032,
+          "peak_bytes": 49422336,
+          "python_blocks": 55385
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 15966208,
+      "post_warm_growth_bytes": 446464,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/diverse/canada.json",
+      "operation": "loads",
+      "workload": "document",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 16261120,
+        "peak_bytes": 16330752,
+        "python_blocks": 54356
+      },
+      "held": {
+        "current_bytes": 24031232,
+        "peak_bytes": 32301056,
+        "python_blocks": 277691
+      },
+      "released": {
+        "current_bytes": 18415616,
+        "peak_bytes": 32301056,
+        "python_blocks": 54566
+      },
+      "warm": {
+        "current_bytes": 21671936,
+        "peak_bytes": 49844224,
+        "python_blocks": 54874
+      },
+      "held_many": {
+        "current_bytes": 41578496,
+        "peak_bytes": 49844224,
+        "python_blocks": 724337
+      },
+      "released_many": {
+        "current_bytes": 21618688,
+        "peak_bytes": 49844224,
+        "python_blocks": 54771
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 21684224,
+          "peak_bytes": 49844224,
+          "python_blocks": 54977
+        },
+        {
+          "current_bytes": 22126592,
+          "peak_bytes": 49844224,
+          "python_blocks": 55081
+        },
+        {
+          "current_bytes": 22130688,
+          "peak_bytes": 49844224,
+          "python_blocks": 55183
+        },
+        {
+          "current_bytes": 21680128,
+          "peak_bytes": 49844224,
+          "python_blocks": 55283
+        },
+        {
+          "current_bytes": 22126592,
+          "peak_bytes": 49844224,
+          "python_blocks": 55385
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 15970304,
+      "post_warm_growth_bytes": 454656,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/diverse/canada.json",
+      "operation": "loads",
+      "workload": "document",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 15966208,
+        "peak_bytes": 16035840,
+        "python_blocks": 54356
+      },
+      "held": {
+        "current_bytes": 23773184,
+        "peak_bytes": 32043008,
+        "python_blocks": 277691
+      },
+      "released": {
+        "current_bytes": 18522112,
+        "peak_bytes": 32043008,
+        "python_blocks": 54566
+      },
+      "warm": {
+        "current_bytes": 21925888,
+        "peak_bytes": 49713152,
+        "python_blocks": 54874
+      },
+      "held_many": {
+        "current_bytes": 41447424,
+        "peak_bytes": 49713152,
+        "python_blocks": 724337
+      },
+      "released_many": {
+        "current_bytes": 21848064,
+        "peak_bytes": 49713152,
+        "python_blocks": 54771
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 21991424,
+          "peak_bytes": 49713152,
+          "python_blocks": 54977
+        },
+        {
+          "current_bytes": 21540864,
+          "peak_bytes": 49713152,
+          "python_blocks": 55081
+        },
+        {
+          "current_bytes": 21553152,
+          "peak_bytes": 49713152,
+          "python_blocks": 55183
+        },
+        {
+          "current_bytes": 21553152,
+          "peak_bytes": 49713152,
+          "python_blocks": 55283
+        },
+        {
+          "current_bytes": 21508096,
+          "peak_bytes": 49713152,
+          "python_blocks": 55385
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 16007168,
+      "post_warm_growth_bytes": -417792,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "workload": "document",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 25251840,
+        "peak_bytes": 27181056,
+        "python_blocks": 277589
+      },
+      "held": {
+        "current_bytes": 27418624,
+        "peak_bytes": 28504064,
+        "python_blocks": 277785
+      },
+      "released": {
+        "current_bytes": 25452544,
+        "peak_bytes": 28504064,
+        "python_blocks": 277792
+      },
+      "warm": {
+        "current_bytes": 25464832,
+        "peak_bytes": 32858112,
+        "python_blocks": 278097
+      },
+      "held_many": {
+        "current_bytes": 31764480,
+        "peak_bytes": 32858112,
+        "python_blocks": 277991
+      },
+      "released_many": {
+        "current_bytes": 25448448,
+        "peak_bytes": 32858112,
+        "python_blocks": 277995
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 25464832,
+          "peak_bytes": 32858112,
+          "python_blocks": 278201
+        },
+        {
+          "current_bytes": 25464832,
+          "peak_bytes": 32858112,
+          "python_blocks": 278305
+        },
+        {
+          "current_bytes": 25464832,
+          "peak_bytes": 32858112,
+          "python_blocks": 278407
+        },
+        {
+          "current_bytes": 25464832,
+          "peak_bytes": 32858112,
+          "python_blocks": 278509
+        },
+        {
+          "current_bytes": 25464832,
+          "peak_bytes": 32858112,
+          "python_blocks": 278611
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 1323008,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "workload": "document",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 24584192,
+        "peak_bytes": 26591232,
+        "python_blocks": 277589
+      },
+      "held": {
+        "current_bytes": 26730496,
+        "peak_bytes": 27807744,
+        "python_blocks": 277785
+      },
+      "released": {
+        "current_bytes": 24760320,
+        "peak_bytes": 27807744,
+        "python_blocks": 277792
+      },
+      "warm": {
+        "current_bytes": 24756224,
+        "peak_bytes": 32182272,
+        "python_blocks": 278097
+      },
+      "held_many": {
+        "current_bytes": 31072256,
+        "peak_bytes": 32182272,
+        "python_blocks": 277991
+      },
+      "released_many": {
+        "current_bytes": 24756224,
+        "peak_bytes": 32182272,
+        "python_blocks": 277995
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 24756224,
+          "peak_bytes": 32182272,
+          "python_blocks": 278201
+        },
+        {
+          "current_bytes": 24756224,
+          "peak_bytes": 32182272,
+          "python_blocks": 278305
+        },
+        {
+          "current_bytes": 24756224,
+          "peak_bytes": 32182272,
+          "python_blocks": 278407
+        },
+        {
+          "current_bytes": 24756224,
+          "peak_bytes": 32182272,
+          "python_blocks": 278509
+        },
+        {
+          "current_bytes": 24756224,
+          "peak_bytes": 32182272,
+          "python_blocks": 278611
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 1216512,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "workload": "document",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 25038848,
+        "peak_bytes": 26968064,
+        "python_blocks": 277589
+      },
+      "held": {
+        "current_bytes": 28180480,
+        "peak_bytes": 29241344,
+        "python_blocks": 277783
+      },
+      "released": {
+        "current_bytes": 26075136,
+        "peak_bytes": 29241344,
+        "python_blocks": 277788
+      },
+      "warm": {
+        "current_bytes": 26075136,
+        "peak_bytes": 33488896,
+        "python_blocks": 278084
+      },
+      "held_many": {
+        "current_bytes": 32391168,
+        "peak_bytes": 33488896,
+        "python_blocks": 277985
+      },
+      "released_many": {
+        "current_bytes": 26075136,
+        "peak_bytes": 33488896,
+        "python_blocks": 277985
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 26075136,
+          "peak_bytes": 33488896,
+          "python_blocks": 278183
+        },
+        {
+          "current_bytes": 26075136,
+          "peak_bytes": 33488896,
+          "python_blocks": 278283
+        },
+        {
+          "current_bytes": 26075136,
+          "peak_bytes": 33488896,
+          "python_blocks": 278381
+        },
+        {
+          "current_bytes": 26075136,
+          "peak_bytes": 33488896,
+          "python_blocks": 278479
+        },
+        {
+          "current_bytes": 26075136,
+          "peak_bytes": 33488896,
+          "python_blocks": 278578
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 2273280,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/diverse/canada.json",
+      "operation": "loads_error",
+      "workload": "fixed malformed JSON",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 16203776,
+        "peak_bytes": 16203776,
+        "python_blocks": 54360
+      },
+      "held": {
+        "current_bytes": 24612864,
+        "peak_bytes": 24645632,
+        "python_blocks": 54556
+      },
+      "released": {
+        "current_bytes": 24612864,
+        "peak_bytes": 24645632,
+        "python_blocks": 54565
+      },
+      "warm": {
+        "current_bytes": 24612864,
+        "peak_bytes": 24645632,
+        "python_blocks": 54869
+      },
+      "held_many": {
+        "current_bytes": 24612864,
+        "peak_bytes": 24645632,
+        "python_blocks": 54761
+      },
+      "released_many": {
+        "current_bytes": 24612864,
+        "peak_bytes": 24645632,
+        "python_blocks": 54767
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 24612864,
+          "peak_bytes": 24645632,
+          "python_blocks": 54972
+        },
+        {
+          "current_bytes": 24612864,
+          "peak_bytes": 24645632,
+          "python_blocks": 55075
+        },
+        {
+          "current_bytes": 24612864,
+          "peak_bytes": 24645632,
+          "python_blocks": 55177
+        },
+        {
+          "current_bytes": 24612864,
+          "peak_bytes": 24645632,
+          "python_blocks": 55280
+        },
+        {
+          "current_bytes": 24612864,
+          "peak_bytes": 24645632,
+          "python_blocks": 55381
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 8441856,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/diverse/canada.json",
+      "operation": "loads_error",
+      "workload": "fixed malformed JSON",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 16166912,
+        "peak_bytes": 16236544,
+        "python_blocks": 54360
+      },
+      "held": {
+        "current_bytes": 24645632,
+        "peak_bytes": 24780800,
+        "python_blocks": 54556
+      },
+      "released": {
+        "current_bytes": 24780800,
+        "peak_bytes": 24780800,
+        "python_blocks": 54565
+      },
+      "warm": {
+        "current_bytes": 24780800,
+        "peak_bytes": 24780800,
+        "python_blocks": 54869
+      },
+      "held_many": {
+        "current_bytes": 24780800,
+        "peak_bytes": 24780800,
+        "python_blocks": 54761
+      },
+      "released_many": {
+        "current_bytes": 24780800,
+        "peak_bytes": 24780800,
+        "python_blocks": 54767
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 24780800,
+          "peak_bytes": 24780800,
+          "python_blocks": 54972
+        },
+        {
+          "current_bytes": 24780800,
+          "peak_bytes": 24780800,
+          "python_blocks": 55075
+        },
+        {
+          "current_bytes": 24780800,
+          "peak_bytes": 24780800,
+          "python_blocks": 55177
+        },
+        {
+          "current_bytes": 24780800,
+          "peak_bytes": 24780800,
+          "python_blocks": 55280
+        },
+        {
+          "current_bytes": 24780800,
+          "peak_bytes": 24780800,
+          "python_blocks": 55381
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 8544256,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/diverse/canada.json",
+      "operation": "loads_error",
+      "workload": "fixed malformed JSON",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 16355328,
+        "peak_bytes": 16355328,
+        "python_blocks": 54360
+      },
+      "held": {
+        "current_bytes": 24764416,
+        "peak_bytes": 24776704,
+        "python_blocks": 54556
+      },
+      "released": {
+        "current_bytes": 24764416,
+        "peak_bytes": 24776704,
+        "python_blocks": 54565
+      },
+      "warm": {
+        "current_bytes": 24764416,
+        "peak_bytes": 24776704,
+        "python_blocks": 54869
+      },
+      "held_many": {
+        "current_bytes": 24764416,
+        "peak_bytes": 24776704,
+        "python_blocks": 54761
+      },
+      "released_many": {
+        "current_bytes": 24764416,
+        "peak_bytes": 24776704,
+        "python_blocks": 54767
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 24764416,
+          "peak_bytes": 24776704,
+          "python_blocks": 54972
+        },
+        {
+          "current_bytes": 24764416,
+          "peak_bytes": 24776704,
+          "python_blocks": 55075
+        },
+        {
+          "current_bytes": 24764416,
+          "peak_bytes": 24776704,
+          "python_blocks": 55177
+        },
+        {
+          "current_bytes": 24764416,
+          "peak_bytes": 24776704,
+          "python_blocks": 55280
+        },
+        {
+          "current_bytes": 24764416,
+          "peak_bytes": 24776704,
+          "python_blocks": 55381
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 8421376,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps_error",
+      "workload": "self-referential list",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 16166912,
+        "peak_bytes": 16236544,
+        "python_blocks": 54360
+      },
+      "held": {
+        "current_bytes": 16285696,
+        "peak_bytes": 16293888,
+        "python_blocks": 54555
+      },
+      "released": {
+        "current_bytes": 16285696,
+        "peak_bytes": 16293888,
+        "python_blocks": 54563
+      },
+      "warm": {
+        "current_bytes": 16285696,
+        "peak_bytes": 16293888,
+        "python_blocks": 54869
+      },
+      "held_many": {
+        "current_bytes": 16285696,
+        "peak_bytes": 16293888,
+        "python_blocks": 54761
+      },
+      "released_many": {
+        "current_bytes": 16285696,
+        "peak_bytes": 16293888,
+        "python_blocks": 54767
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 16285696,
+          "peak_bytes": 16293888,
+          "python_blocks": 54973
+        },
+        {
+          "current_bytes": 16285696,
+          "peak_bytes": 16293888,
+          "python_blocks": 55077
+        },
+        {
+          "current_bytes": 16285696,
+          "peak_bytes": 16293888,
+          "python_blocks": 55179
+        },
+        {
+          "current_bytes": 16285696,
+          "peak_bytes": 16293888,
+          "python_blocks": 55280
+        },
+        {
+          "current_bytes": 16285696,
+          "peak_bytes": 16293888,
+          "python_blocks": 55382
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 57344,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps_error",
+      "workload": "self-referential list",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 16068608,
+        "peak_bytes": 16138240,
+        "python_blocks": 54356
+      },
+      "held": {
+        "current_bytes": 16187392,
+        "peak_bytes": 16322560,
+        "python_blocks": 54551
+      },
+      "released": {
+        "current_bytes": 16322560,
+        "peak_bytes": 16322560,
+        "python_blocks": 54560
+      },
+      "warm": {
+        "current_bytes": 16322560,
+        "peak_bytes": 16322560,
+        "python_blocks": 54868
+      },
+      "held_many": {
+        "current_bytes": 16322560,
+        "peak_bytes": 16322560,
+        "python_blocks": 54758
+      },
+      "released_many": {
+        "current_bytes": 16322560,
+        "peak_bytes": 16322560,
+        "python_blocks": 54765
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 16322560,
+          "peak_bytes": 16322560,
+          "python_blocks": 54971
+        },
+        {
+          "current_bytes": 16322560,
+          "peak_bytes": 16322560,
+          "python_blocks": 55075
+        },
+        {
+          "current_bytes": 16322560,
+          "peak_bytes": 16322560,
+          "python_blocks": 55177
+        },
+        {
+          "current_bytes": 16322560,
+          "peak_bytes": 16322560,
+          "python_blocks": 55276
+        },
+        {
+          "current_bytes": 16322560,
+          "peak_bytes": 16322560,
+          "python_blocks": 55379
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 184320,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps_error",
+      "workload": "self-referential list",
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 16056320,
+        "peak_bytes": 16125952,
+        "python_blocks": 54356
+      },
+      "held": {
+        "current_bytes": 16175104,
+        "peak_bytes": 16310272,
+        "python_blocks": 54551
+      },
+      "released": {
+        "current_bytes": 16310272,
+        "peak_bytes": 16310272,
+        "python_blocks": 54560
+      },
+      "warm": {
+        "current_bytes": 16310272,
+        "peak_bytes": 16310272,
+        "python_blocks": 54868
+      },
+      "held_many": {
+        "current_bytes": 16310272,
+        "peak_bytes": 16310272,
+        "python_blocks": 54758
+      },
+      "released_many": {
+        "current_bytes": 16310272,
+        "peak_bytes": 16310272,
+        "python_blocks": 54765
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 16310272,
+          "peak_bytes": 16310272,
+          "python_blocks": 54971
+        },
+        {
+          "current_bytes": 16310272,
+          "peak_bytes": 16310272,
+          "python_blocks": 55075
+        },
+        {
+          "current_bytes": 16310272,
+          "peak_bytes": 16310272,
+          "python_blocks": 55177
+        },
+        {
+          "current_bytes": 16310272,
+          "peak_bytes": 16310272,
+          "python_blocks": 55276
+        },
+        {
+          "current_bytes": 16310272,
+          "peak_bytes": 16310272,
+          "python_blocks": 55379
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 184320,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads",
+      "workload": "document",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 18718720,
+        "peak_bytes": 18788352,
+        "python_blocks": 54360
+      },
+      "held": {
+        "current_bytes": 62271488,
+        "peak_bytes": 86900736,
+        "python_blocks": 703956
+      },
+      "released": {
+        "current_bytes": 20865024,
+        "peak_bytes": 86900736,
+        "python_blocks": 54569
+      },
+      "warm": {
+        "current_bytes": 22458368,
+        "peak_bytes": 175312896,
+        "python_blocks": 54875
+      },
+      "held_many": {
+        "current_bytes": 150683648,
+        "peak_bytes": 175312896,
+        "python_blocks": 2003138
+      },
+      "released_many": {
+        "current_bytes": 22056960,
+        "peak_bytes": 175312896,
+        "python_blocks": 54773
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 22458368,
+          "peak_bytes": 175312896,
+          "python_blocks": 54979
+        },
+        {
+          "current_bytes": 22458368,
+          "peak_bytes": 175312896,
+          "python_blocks": 55083
+        },
+        {
+          "current_bytes": 22454272,
+          "peak_bytes": 175312896,
+          "python_blocks": 55184
+        },
+        {
+          "current_bytes": 22458368,
+          "peak_bytes": 175312896,
+          "python_blocks": 55285
+        },
+        {
+          "current_bytes": 22458368,
+          "peak_bytes": 175312896,
+          "python_blocks": 55387
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 68112384,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads",
+      "workload": "document",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 19009536,
+        "peak_bytes": 19009536,
+        "python_blocks": 54360
+      },
+      "held": {
+        "current_bytes": 62492672,
+        "peak_bytes": 87126016,
+        "python_blocks": 703956
+      },
+      "released": {
+        "current_bytes": 21057536,
+        "peak_bytes": 87126016,
+        "python_blocks": 54569
+      },
+      "warm": {
+        "current_bytes": 22138880,
+        "peak_bytes": 175120384,
+        "python_blocks": 54875
+      },
+      "held_many": {
+        "current_bytes": 150487040,
+        "peak_bytes": 175120384,
+        "python_blocks": 2003138
+      },
+      "released_many": {
+        "current_bytes": 22126592,
+        "peak_bytes": 175120384,
+        "python_blocks": 54773
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 22134784,
+          "peak_bytes": 175120384,
+          "python_blocks": 54979
+        },
+        {
+          "current_bytes": 22138880,
+          "peak_bytes": 175120384,
+          "python_blocks": 55083
+        },
+        {
+          "current_bytes": 22138880,
+          "peak_bytes": 175120384,
+          "python_blocks": 55184
+        },
+        {
+          "current_bytes": 22138880,
+          "peak_bytes": 175120384,
+          "python_blocks": 55285
+        },
+        {
+          "current_bytes": 22142976,
+          "peak_bytes": 175120384,
+          "python_blocks": 55387
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 68116480,
+      "post_warm_growth_bytes": 4096,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads",
+      "workload": "document",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 18972672,
+        "peak_bytes": 18972672,
+        "python_blocks": 54356
+      },
+      "held": {
+        "current_bytes": 62459904,
+        "peak_bytes": 87089152,
+        "python_blocks": 703953
+      },
+      "released": {
+        "current_bytes": 21032960,
+        "peak_bytes": 87089152,
+        "python_blocks": 54567
+      },
+      "warm": {
+        "current_bytes": 22114304,
+        "peak_bytes": 175067136,
+        "python_blocks": 54873
+      },
+      "held_many": {
+        "current_bytes": 150437888,
+        "peak_bytes": 175067136,
+        "python_blocks": 2003135
+      },
+      "released_many": {
+        "current_bytes": 22106112,
+        "peak_bytes": 175067136,
+        "python_blocks": 54771
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 22110208,
+          "peak_bytes": 175067136,
+          "python_blocks": 54976
+        },
+        {
+          "current_bytes": 22110208,
+          "peak_bytes": 175067136,
+          "python_blocks": 55079
+        },
+        {
+          "current_bytes": 22110208,
+          "peak_bytes": 175067136,
+          "python_blocks": 55181
+        },
+        {
+          "current_bytes": 22110208,
+          "peak_bytes": 175067136,
+          "python_blocks": 55282
+        },
+        {
+          "current_bytes": 22110208,
+          "peak_bytes": 175067136,
+          "python_blocks": 55385
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 68116480,
+      "post_warm_growth_bytes": -4096,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "dumps",
+      "workload": "document",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 53182464,
+        "peak_bytes": 57958400,
+        "python_blocks": 553849
+      },
+      "held": {
+        "current_bytes": 62394368,
+        "peak_bytes": 66654208,
+        "python_blocks": 554041
+      },
+      "released": {
+        "current_bytes": 53981184,
+        "peak_bytes": 66654208,
+        "python_blocks": 554048
+      },
+      "warm": {
+        "current_bytes": 53981184,
+        "peak_bytes": 83472384,
+        "python_blocks": 554352
+      },
+      "held_many": {
+        "current_bytes": 79212544,
+        "peak_bytes": 83472384,
+        "python_blocks": 554247
+      },
+      "released_many": {
+        "current_bytes": 53981184,
+        "peak_bytes": 83472384,
+        "python_blocks": 554250
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 53981184,
+          "peak_bytes": 83472384,
+          "python_blocks": 554457
+        },
+        {
+          "current_bytes": 53981184,
+          "peak_bytes": 83472384,
+          "python_blocks": 554561
+        },
+        {
+          "current_bytes": 53981184,
+          "peak_bytes": 83472384,
+          "python_blocks": 554663
+        },
+        {
+          "current_bytes": 53981184,
+          "peak_bytes": 83472384,
+          "python_blocks": 554764
+        },
+        {
+          "current_bytes": 53981184,
+          "peak_bytes": 83472384,
+          "python_blocks": 554866
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 8695808,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "dumps",
+      "workload": "document",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 53161984,
+        "peak_bytes": 57937920,
+        "python_blocks": 553849
+      },
+      "held": {
+        "current_bytes": 61378560,
+        "peak_bytes": 65646592,
+        "python_blocks": 554041
+      },
+      "released": {
+        "current_bytes": 53927936,
+        "peak_bytes": 65646592,
+        "python_blocks": 554048
+      },
+      "warm": {
+        "current_bytes": 53956608,
+        "peak_bytes": 83423232,
+        "python_blocks": 554352
+      },
+      "held_many": {
+        "current_bytes": 79187968,
+        "peak_bytes": 83423232,
+        "python_blocks": 554247
+      },
+      "released_many": {
+        "current_bytes": 53956608,
+        "peak_bytes": 83423232,
+        "python_blocks": 554250
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 53956608,
+          "peak_bytes": 83423232,
+          "python_blocks": 554457
+        },
+        {
+          "current_bytes": 53956608,
+          "peak_bytes": 83423232,
+          "python_blocks": 554561
+        },
+        {
+          "current_bytes": 53956608,
+          "peak_bytes": 83423232,
+          "python_blocks": 554663
+        },
+        {
+          "current_bytes": 53956608,
+          "peak_bytes": 83423232,
+          "python_blocks": 554764
+        },
+        {
+          "current_bytes": 53956608,
+          "peak_bytes": 83423232,
+          "python_blocks": 554866
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 7708672,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "dumps",
+      "workload": "document",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 53342208,
+        "peak_bytes": 57987072,
+        "python_blocks": 553849
+      },
+      "held": {
+        "current_bytes": 61657088,
+        "peak_bytes": 65875968,
+        "python_blocks": 554041
+      },
+      "released": {
+        "current_bytes": 53243904,
+        "peak_bytes": 65875968,
+        "python_blocks": 554048
+      },
+      "warm": {
+        "current_bytes": 54341632,
+        "peak_bytes": 83824640,
+        "python_blocks": 554352
+      },
+      "held_many": {
+        "current_bytes": 79572992,
+        "peak_bytes": 83824640,
+        "python_blocks": 554247
+      },
+      "released_many": {
+        "current_bytes": 54341632,
+        "peak_bytes": 83824640,
+        "python_blocks": 554250
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 54341632,
+          "peak_bytes": 83824640,
+          "python_blocks": 554457
+        },
+        {
+          "current_bytes": 54341632,
+          "peak_bytes": 83824640,
+          "python_blocks": 554561
+        },
+        {
+          "current_bytes": 54341632,
+          "peak_bytes": 83824640,
+          "python_blocks": 554663
+        },
+        {
+          "current_bytes": 54341632,
+          "peak_bytes": 83824640,
+          "python_blocks": 554764
+        },
+        {
+          "current_bytes": 54341632,
+          "peak_bytes": 83824640,
+          "python_blocks": 554866
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 7888896,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads_error",
+      "workload": "fixed malformed JSON",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 18763776,
+        "peak_bytes": 18763776,
+        "python_blocks": 54360
+      },
+      "held": {
+        "current_bytes": 27172864,
+        "peak_bytes": 27308032,
+        "python_blocks": 54556
+      },
+      "released": {
+        "current_bytes": 27308032,
+        "peak_bytes": 27308032,
+        "python_blocks": 54565
+      },
+      "warm": {
+        "current_bytes": 27308032,
+        "peak_bytes": 27308032,
+        "python_blocks": 54869
+      },
+      "held_many": {
+        "current_bytes": 27308032,
+        "peak_bytes": 27308032,
+        "python_blocks": 54761
+      },
+      "released_many": {
+        "current_bytes": 27308032,
+        "peak_bytes": 27308032,
+        "python_blocks": 54767
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 27308032,
+          "peak_bytes": 27308032,
+          "python_blocks": 54972
+        },
+        {
+          "current_bytes": 27308032,
+          "peak_bytes": 27308032,
+          "python_blocks": 55075
+        },
+        {
+          "current_bytes": 27308032,
+          "peak_bytes": 27308032,
+          "python_blocks": 55177
+        },
+        {
+          "current_bytes": 27308032,
+          "peak_bytes": 27308032,
+          "python_blocks": 55280
+        },
+        {
+          "current_bytes": 27308032,
+          "peak_bytes": 27308032,
+          "python_blocks": 55381
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 8544256,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads_error",
+      "workload": "fixed malformed JSON",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 18837504,
+        "peak_bytes": 18837504,
+        "python_blocks": 54360
+      },
+      "held": {
+        "current_bytes": 27246592,
+        "peak_bytes": 27262976,
+        "python_blocks": 54556
+      },
+      "released": {
+        "current_bytes": 27246592,
+        "peak_bytes": 27262976,
+        "python_blocks": 54565
+      },
+      "warm": {
+        "current_bytes": 27246592,
+        "peak_bytes": 27262976,
+        "python_blocks": 54869
+      },
+      "held_many": {
+        "current_bytes": 27246592,
+        "peak_bytes": 27262976,
+        "python_blocks": 54761
+      },
+      "released_many": {
+        "current_bytes": 27246592,
+        "peak_bytes": 27262976,
+        "python_blocks": 54767
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 27246592,
+          "peak_bytes": 27385856,
+          "python_blocks": 54972
+        },
+        {
+          "current_bytes": 27385856,
+          "peak_bytes": 27385856,
+          "python_blocks": 55075
+        },
+        {
+          "current_bytes": 27385856,
+          "peak_bytes": 27385856,
+          "python_blocks": 55177
+        },
+        {
+          "current_bytes": 27385856,
+          "peak_bytes": 27385856,
+          "python_blocks": 55280
+        },
+        {
+          "current_bytes": 27385856,
+          "peak_bytes": 27385856,
+          "python_blocks": 55381
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 8425472,
+      "post_warm_growth_bytes": 139264,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads_error",
+      "workload": "fixed malformed JSON",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 18657280,
+        "peak_bytes": 18726912,
+        "python_blocks": 54360
+      },
+      "held": {
+        "current_bytes": 27136000,
+        "peak_bytes": 27271168,
+        "python_blocks": 54556
+      },
+      "released": {
+        "current_bytes": 27271168,
+        "peak_bytes": 27271168,
+        "python_blocks": 54565
+      },
+      "warm": {
+        "current_bytes": 27271168,
+        "peak_bytes": 27271168,
+        "python_blocks": 54869
+      },
+      "held_many": {
+        "current_bytes": 27271168,
+        "peak_bytes": 27271168,
+        "python_blocks": 54761
+      },
+      "released_many": {
+        "current_bytes": 27271168,
+        "peak_bytes": 27271168,
+        "python_blocks": 54767
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 27271168,
+          "peak_bytes": 27271168,
+          "python_blocks": 54972
+        },
+        {
+          "current_bytes": 27271168,
+          "peak_bytes": 27271168,
+          "python_blocks": 55075
+        },
+        {
+          "current_bytes": 27271168,
+          "peak_bytes": 27271168,
+          "python_blocks": 55177
+        },
+        {
+          "current_bytes": 27271168,
+          "peak_bytes": 27271168,
+          "python_blocks": 55280
+        },
+        {
+          "current_bytes": 27271168,
+          "peak_bytes": 27271168,
+          "python_blocks": 55381
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 8544256,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "dumps_error",
+      "workload": "self-referential list",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 18812928,
+        "peak_bytes": 18882560,
+        "python_blocks": 54360
+      },
+      "held": {
+        "current_bytes": 18931712,
+        "peak_bytes": 19070976,
+        "python_blocks": 54555
+      },
+      "released": {
+        "current_bytes": 19070976,
+        "peak_bytes": 19070976,
+        "python_blocks": 54563
+      },
+      "warm": {
+        "current_bytes": 19070976,
+        "peak_bytes": 19070976,
+        "python_blocks": 54869
+      },
+      "held_many": {
+        "current_bytes": 19070976,
+        "peak_bytes": 19070976,
+        "python_blocks": 54761
+      },
+      "released_many": {
+        "current_bytes": 19070976,
+        "peak_bytes": 19070976,
+        "python_blocks": 54767
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 19070976,
+          "peak_bytes": 19070976,
+          "python_blocks": 54973
+        },
+        {
+          "current_bytes": 19070976,
+          "peak_bytes": 19070976,
+          "python_blocks": 55077
+        },
+        {
+          "current_bytes": 19070976,
+          "peak_bytes": 19070976,
+          "python_blocks": 55179
+        },
+        {
+          "current_bytes": 19070976,
+          "peak_bytes": 19070976,
+          "python_blocks": 55280
+        },
+        {
+          "current_bytes": 19070976,
+          "peak_bytes": 19070976,
+          "python_blocks": 55382
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 188416,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "dumps_error",
+      "workload": "self-referential list",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 18735104,
+        "peak_bytes": 18735104,
+        "python_blocks": 54356
+      },
+      "held": {
+        "current_bytes": 18784256,
+        "peak_bytes": 18792448,
+        "python_blocks": 54551
+      },
+      "released": {
+        "current_bytes": 18784256,
+        "peak_bytes": 18792448,
+        "python_blocks": 54560
+      },
+      "warm": {
+        "current_bytes": 18784256,
+        "peak_bytes": 18792448,
+        "python_blocks": 54868
+      },
+      "held_many": {
+        "current_bytes": 18784256,
+        "peak_bytes": 18792448,
+        "python_blocks": 54758
+      },
+      "released_many": {
+        "current_bytes": 18784256,
+        "peak_bytes": 18792448,
+        "python_blocks": 54765
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 18784256,
+          "peak_bytes": 18919424,
+          "python_blocks": 54971
+        },
+        {
+          "current_bytes": 18919424,
+          "peak_bytes": 18919424,
+          "python_blocks": 55075
+        },
+        {
+          "current_bytes": 18919424,
+          "peak_bytes": 18919424,
+          "python_blocks": 55177
+        },
+        {
+          "current_bytes": 18919424,
+          "peak_bytes": 18919424,
+          "python_blocks": 55276
+        },
+        {
+          "current_bytes": 18919424,
+          "peak_bytes": 18919424,
+          "python_blocks": 55379
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 57344,
+      "post_warm_growth_bytes": 135168,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "orjson",
+      "version": "3.10.12",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "dumps_error",
+      "workload": "self-referential list",
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "C:\\Users\\leonz\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "b7e0df68c71421fdc659cfa94a055196723b13dcf0914f13481829b1498eca74"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 18903040,
+        "peak_bytes": 18972672,
+        "python_blocks": 54356
+      },
+      "held": {
+        "current_bytes": 19021824,
+        "peak_bytes": 19030016,
+        "python_blocks": 54551
+      },
+      "released": {
+        "current_bytes": 19021824,
+        "peak_bytes": 19030016,
+        "python_blocks": 54560
+      },
+      "warm": {
+        "current_bytes": 19021824,
+        "peak_bytes": 19030016,
+        "python_blocks": 54868
+      },
+      "held_many": {
+        "current_bytes": 19021824,
+        "peak_bytes": 19030016,
+        "python_blocks": 54758
+      },
+      "released_many": {
+        "current_bytes": 19021824,
+        "peak_bytes": 19030016,
+        "python_blocks": 54765
+      },
+      "retain_count": 3,
+      "rounds": [
+        {
+          "current_bytes": 19021824,
+          "peak_bytes": 19030016,
+          "python_blocks": 54971
+        },
+        {
+          "current_bytes": 19021824,
+          "peak_bytes": 19030016,
+          "python_blocks": 55075
+        },
+        {
+          "current_bytes": 19021824,
+          "peak_bytes": 19030016,
+          "python_blocks": 55177
+        },
+        {
+          "current_bytes": 19021824,
+          "peak_bytes": 19030016,
+          "python_blocks": 55276
+        },
+        {
+          "current_bytes": 19021824,
+          "peak_bytes": 19030016,
+          "python_blocks": 55379
+        }
+      ],
+      "calls_per_round": 20,
+      "first_call_peak_delta_bytes": 57344,
+      "post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 2
+    }
+  ],
+  "summaries": [
+    {
+      "library": "oxjson",
+      "document": "testdata/engine/atlas.json",
+      "operation": "loads",
+      "peak_delta_min": 0,
+      "peak_delta_median": 0,
+      "peak_delta_max": 0,
+      "peak_delta_inconclusive": true
+    },
+    {
+      "library": "oxjson",
+      "document": "testdata/engine/atlas.json",
+      "operation": "dumps",
+      "peak_delta_min": 36864,
+      "peak_delta_median": 36864,
+      "peak_delta_max": 36864,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "oxjson",
+      "document": "testdata/engine/atlas.json",
+      "operation": "loads_error",
+      "peak_delta_min": 0,
+      "peak_delta_median": 0,
+      "peak_delta_max": 0,
+      "peak_delta_inconclusive": true
+    },
+    {
+      "library": "oxjson",
+      "document": "testdata/engine/atlas.json",
+      "operation": "dumps_error",
+      "peak_delta_min": 45056,
+      "peak_delta_median": 49152,
+      "peak_delta_max": 49152,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "oxjson",
+      "document": "testdata/diverse/canada.json",
+      "operation": "loads",
+      "peak_delta_min": 7786496,
+      "peak_delta_median": 7798784,
+      "peak_delta_max": 7880704,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "oxjson",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "peak_delta_min": 1335296,
+      "peak_delta_median": 2293760,
+      "peak_delta_max": 2338816,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "oxjson",
+      "document": "testdata/diverse/canada.json",
+      "operation": "loads_error",
+      "peak_delta_min": 0,
+      "peak_delta_median": 0,
+      "peak_delta_max": 0,
+      "peak_delta_inconclusive": true
+    },
+    {
+      "library": "oxjson",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps_error",
+      "peak_delta_min": 45056,
+      "peak_delta_median": 49152,
+      "peak_delta_max": 49152,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "oxjson",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads",
+      "peak_delta_min": 35065856,
+      "peak_delta_median": 35065856,
+      "peak_delta_max": 35065856,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "oxjson",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "dumps",
+      "peak_delta_min": 7749632,
+      "peak_delta_median": 7901184,
+      "peak_delta_max": 8425472,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "oxjson",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads_error",
+      "peak_delta_min": 0,
+      "peak_delta_median": 0,
+      "peak_delta_max": 0,
+      "peak_delta_inconclusive": true
+    },
+    {
+      "library": "oxjson",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "dumps_error",
+      "peak_delta_min": 49152,
+      "peak_delta_median": 49152,
+      "peak_delta_max": 118784,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "orjson",
+      "document": "testdata/engine/atlas.json",
+      "operation": "loads",
+      "peak_delta_min": 8413184,
+      "peak_delta_median": 8450048,
+      "peak_delta_max": 8470528,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "orjson",
+      "document": "testdata/engine/atlas.json",
+      "operation": "dumps",
+      "peak_delta_min": 0,
+      "peak_delta_median": 36864,
+      "peak_delta_max": 176128,
+      "peak_delta_inconclusive": true
+    },
+    {
+      "library": "orjson",
+      "document": "testdata/engine/atlas.json",
+      "operation": "loads_error",
+      "peak_delta_min": 8429568,
+      "peak_delta_median": 8450048,
+      "peak_delta_max": 8474624,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "orjson",
+      "document": "testdata/engine/atlas.json",
+      "operation": "dumps_error",
+      "peak_delta_min": 184320,
+      "peak_delta_median": 184320,
+      "peak_delta_max": 184320,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "orjson",
+      "document": "testdata/diverse/canada.json",
+      "operation": "loads",
+      "peak_delta_min": 15966208,
+      "peak_delta_median": 15970304,
+      "peak_delta_max": 16007168,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "orjson",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "peak_delta_min": 1216512,
+      "peak_delta_median": 1323008,
+      "peak_delta_max": 2273280,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "orjson",
+      "document": "testdata/diverse/canada.json",
+      "operation": "loads_error",
+      "peak_delta_min": 8421376,
+      "peak_delta_median": 8441856,
+      "peak_delta_max": 8544256,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "orjson",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps_error",
+      "peak_delta_min": 57344,
+      "peak_delta_median": 184320,
+      "peak_delta_max": 184320,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "orjson",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads",
+      "peak_delta_min": 68112384,
+      "peak_delta_median": 68116480,
+      "peak_delta_max": 68116480,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "orjson",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "dumps",
+      "peak_delta_min": 7708672,
+      "peak_delta_median": 7888896,
+      "peak_delta_max": 8695808,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "orjson",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads_error",
+      "peak_delta_min": 8425472,
+      "peak_delta_median": 8544256,
+      "peak_delta_max": 8544256,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "orjson",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "dumps_error",
+      "peak_delta_min": 57344,
+      "peak_delta_median": 57344,
+      "peak_delta_max": 188416,
+      "peak_delta_inconclusive": false
+    }
+  ],
+  "errors": [],
+  "interpretation": "Process-level measurements include runtime and results. Zero HWM delta is inconclusive. Growth flags require investigation; absence of a flag does not prove no leaks. Threshold: 8 MiB after warmup.",
+  "status": "NO_GROWTH_FLAG"
+}

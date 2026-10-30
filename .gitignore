@@ -45,3 +45,6 @@ report-*.txt
 
 _ci_reports/
 
+# findings of tests/fuzz.py
+fuzz-out/
+

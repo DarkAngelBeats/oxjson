@@ -1,0 +1,63 @@
+{
+  "host": "farmgpu",
+  "platform": "Linux-6.8.0-146-generic-x86_64-with-glibc2.39",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "parser_version": "0.4.0",
+  "orjson_version": "3.13.0",
+  "root": "/tmp/json_parser_30m_20261014_180843_12228/source",
+  "duration_requested_s": 1800,
+  "segment_target_s": 5.0,
+  "extension": [
+    {
+      "path": "/tmp/json_parser_30m_20261014_180843_12228/source/json_parser/json_parser.cpython-312-x86_64-linux-gnu.so",
+      "bytes": 215760,
+      "sha256": "5c48542484658cb80838771fcb999e943c096503309ba702f4f5bccf97261192"
+    }
+  ],
+  "documents": {
+    "testdata/engine/atlas.json": {
+      "bytes": 33674,
+      "sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec"
+    },
+    "testdata/diverse/numbers.json": {
+      "bytes": 150127,
+      "sha256": "590fd235b85bde101b5eb91f722618c1033985b1ea2bbc6a324b4f8a58bbefd0"
+    },
+    "testdata/diverse/twitter.json": {
+      "bytes": 646997,
+      "sha256": "49d38a0b3db9557ae7fa1cf094dabc1205b65fb0a61cc1f8e7fb50864d0104a9"
+    },
+    "testdata/diverse/canada.json": {
+      "bytes": 2251060,
+      "sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4"
+    },
+    "testdata/diverse/marine_ik.json": {
+      "bytes": 3031319,
+      "sha256": "2475086eefe9df76cb387843cc4b13a617258164ffbc450c3280dae7236789bd"
+    },
+    "testdata/bench/large_50k.json": {
+      "bytes": 4916671,
+      "sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d"
+    }
+  },
+  "cpu_count": 8,
+  "loadavg_start": [
+    3.25341796875,
+    3.08203125,
+    2.380859375
+  ],
+  "memtotal_kib": 65661852,
+  "gc_enabled": true,
+  "started_utc": "2026-10-14T18:09:38Z",
+  "finished_utc": "2026-10-14T18:39:38Z",
+  "elapsed_s": 1800.085283778004,
+  "records": 354,
+  "failures": 0,
+  "loadavg_end": [
+    4.1904296875,
+    4.1005859375,
+    3.9052734375
+  ],
+  "rss_final_bytes": 154996736,
+  "peak_final_bytes": 203165696
+}

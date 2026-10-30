@@ -1,0 +1,6 @@
+oxjson  large_50k.json  out 4.69 MiB  held-base 8.918  after malloc_trim 4.918
+orjson  large_50k.json  out 4.69 MiB  held-base 4.824  after malloc_trim 4.816
+oxjson  numbers.json    out 0.14 MiB  held-base 0.379  after malloc_trim 0.379
+orjson  numbers.json    out 0.14 MiB  held-base 0.273  after malloc_trim 0.273
+oxjson  canada.json     out 1.99 MiB  held-base 2.238  after malloc_trim 2.238
+orjson  canada.json     out 1.99 MiB  held-base 2.133  after malloc_trim 2.133

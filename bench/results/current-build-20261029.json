@@ -1,0 +1,28 @@
+{
+  "head": "b7d0aa15cf02c597f30831d788ef42549791fc17",
+  "build_command": "build/current-audit-env/Scripts/python.exe make_ext.py",
+  "cflags": "-O2",
+  "sources": {
+    "include\\jl_ctx.h": "3b058011968a3e6692b48d305f111045e5516f05076adb23a3d7fd29ecc2feb9",
+    "include\\jl_ctx.inc": "16fe398f0f03ccbb28c7e2c263376987366fdba64097252e355fcf5a229a74ed",
+    "include\\jl_pow5.h": "0b052ea6e14a6057356c8577f89595d45c20f71e5861d38073f33d9f213f3623",
+    "include\\jl_pow5.inc": "acf01801476f7edda13de002c7381f7de62838e135877614b09680c7402d3b08",
+    "include\\json_build.h": "fd64e5865cf8418a20d90089ecc2357b37d82118df91b4d79d7570bae5fb9b2c",
+    "include\\json_dumps_walk.h": "d781eaf90f45d4649651ba422b2efec29711ce3624c51ae4a887bce0d6fc91c2",
+    "include\\json_f64_fmt.h": "619dbea46e818460766a69c2795e8bd579220ddc5cd6179959c104dc22065dda",
+    "include\\json_f64_pow10.h": "1c2fb0f092e967eabf49bbc5a9f75166273c4f16990493f1b52ccfb958fc7a23",
+    "include\\json_vec16.h": "bb08e36deb541717ee7d5ab9508de2e67538b4a2e7ae2172a29a0a907b337de9",
+    "make_ext.py": "902f5ecfdb7306b7c05f5549278ec6a283d5506bc39aee3a12f9515620e657ea",
+    "pyproject.toml": "80b8c0b3c0488993190728fd62cd791571828ce0f4ad40900bcd330f96f7d9de",
+    "src\\jl_kernel.asm": "0c506cb066c4bc26e26f41a046bd0f8b3c40c7a8e0538061bba6486c288f05dd",
+    "src\\jl_loads.c": "1e4e0219478333acb7e01f13ffa742d9aea67de7b0bc7cf32add6d5865e94c97",
+    "src\\jl_portable.c": "b8e97e7ce234caf60fc49e545377848f27cf611f34b5fc0aa1e9a55edaa6dd2c",
+    "src\\json_crt.c": "f3d6b60c3fc31e73935a2ae85b987a12c416ccd0fff890978404acc9f070b600",
+    "src\\json_dumps_ext.inc": "006e4d7f222abe4da49c8d6581690b556a02b424ad6ce233205281dd0f50a132",
+    "src\\json_dumps_portable.c": "a62dff9b3757dde2e24408375c4cc5ba40de6498665829b1a8cf956b7dee378e",
+    "src\\json_dumps_walk.c": "b78ed8fcc1e7afecf293c4e32843dd1e85a6970064f1471af78b551b1548e272",
+    "src\\json_module.c": "56a83099428452a630e6eeb17f16742703c45e5088d78dc6b7d14d1716d02b21"
+  },
+  "compiler": "gcc (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 15.1.0",
+  "assembler": "NASM version 2.16.03 compiled on Jun  9 2025"
+}

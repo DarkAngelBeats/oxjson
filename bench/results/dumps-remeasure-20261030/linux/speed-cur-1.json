@@ -1,0 +1,1048 @@
+{
+  "started_utc": "2026-10-30T14:29:59.656589+00:00",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "executable": "/tmp/oxj/venv/bin/python",
+  "command": [
+    "bench/current_compare.py",
+    "--repeats",
+    "7",
+    "--output",
+    "/tmp/oxj/out/speed-cur-1.json"
+  ],
+  "metric": "microseconds_per_call",
+  "gc_enabled": true,
+  "method": "Each sample is a fresh process; worker warms once, averages 3 rounds of 10 timed calls. Library order alternates between repeats. Summaries are medians of process samples.",
+  "versions": {
+    "oxjson": "0.4.1",
+    "orjson": "3.13.0"
+  },
+  "binaries": {
+    "oxjson": {
+      "path": "/tmp/oxj/cur/oxjson/oxjson.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "b475117510051ff166656440fece2af18bdf71d6fd6621a8612af858935e419d"
+    },
+    "orjson": {
+      "path": "/tmp/oxj/venv/lib/python3.12/site-packages/orjson/orjson.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "6a09a45a5fec25fd32518e91f98dcfadf029731adce224762b1d1c4e6822ba86"
+    }
+  },
+  "documents": {
+    "testdata/engine/atlas.json": {
+      "sha256": "338374c356d3b6947bd677bbed54c49da2d0f99d8b73071deed44224fc4ed2ec",
+      "bytes": 33674
+    },
+    "testdata/diverse/numbers.json": {
+      "sha256": "590fd235b85bde101b5eb91f722618c1033985b1ea2bbc6a324b4f8a58bbefd0",
+      "bytes": 150127
+    },
+    "testdata/diverse/twitter.json": {
+      "sha256": "49d38a0b3db9557ae7fa1cf094dabc1205b65fb0a61cc1f8e7fb50864d0104a9",
+      "bytes": 646997
+    },
+    "testdata/diverse/citm_catalog.json": {
+      "sha256": "cab62e56bcf8540f65df42bffdf3cce279d68e2d5dfbeb46120dea982032fb12",
+      "bytes": 1777672
+    },
+    "testdata/diverse/canada.json": {
+      "sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "bytes": 2251060
+    },
+    "testdata/diverse/marine_ik.json": {
+      "sha256": "2475086eefe9df76cb387843cc4b13a617258164ffbc450c3280dae7236789bd",
+      "bytes": 3031319
+    },
+    "testdata/bench/large_50k.json": {
+      "sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "bytes": 4916671
+    }
+  },
+  "samples": [
+    {
+      "version": "0.4.1",
+      "loads_us": 41.85490251984447,
+      "dumps_us": 10.443431286451718,
+      "library": "oxjson",
+      "document": "testdata/engine/atlas.json",
+      "repeat": 0
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 48.122164056015514,
+      "dumps_us": 14.002970419824123,
+      "library": "orjson",
+      "document": "testdata/engine/atlas.json",
+      "repeat": 0
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 47.61959620130559,
+      "dumps_us": 13.852103923757872,
+      "library": "orjson",
+      "document": "testdata/engine/atlas.json",
+      "repeat": 1
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 42.31449759875735,
+      "dumps_us": 11.387499398551881,
+      "library": "oxjson",
+      "document": "testdata/engine/atlas.json",
+      "repeat": 1
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 43.447132338769734,
+      "dumps_us": 10.58153478273501,
+      "library": "oxjson",
+      "document": "testdata/engine/atlas.json",
+      "repeat": 2
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 46.35373673712214,
+      "dumps_us": 14.235932030715048,
+      "library": "orjson",
+      "document": "testdata/engine/atlas.json",
+      "repeat": 2
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 45.2383334049955,
+      "dumps_us": 14.301330278006693,
+      "library": "orjson",
+      "document": "testdata/engine/atlas.json",
+      "repeat": 3
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 45.76436767820269,
+      "dumps_us": 10.8297662033389,
+      "library": "oxjson",
+      "document": "testdata/engine/atlas.json",
+      "repeat": 3
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 42.26116676970074,
+      "dumps_us": 10.415365492614606,
+      "library": "oxjson",
+      "document": "testdata/engine/atlas.json",
+      "repeat": 4
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 47.159933213454984,
+      "dumps_us": 14.020537491887808,
+      "library": "orjson",
+      "document": "testdata/engine/atlas.json",
+      "repeat": 4
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 45.83493670603881,
+      "dumps_us": 14.143700051742295,
+      "library": "orjson",
+      "document": "testdata/engine/atlas.json",
+      "repeat": 5
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 43.73299792253723,
+      "dumps_us": 13.391697818102935,
+      "library": "oxjson",
+      "document": "testdata/engine/atlas.json",
+      "repeat": 5
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 41.97137022856623,
+      "dumps_us": 10.583400338267287,
+      "library": "oxjson",
+      "document": "testdata/engine/atlas.json",
+      "repeat": 6
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 48.99676714558154,
+      "dumps_us": 14.684366760775447,
+      "library": "orjson",
+      "document": "testdata/engine/atlas.json",
+      "repeat": 6
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 114.36626664362848,
+      "dumps_us": 137.95209815725684,
+      "library": "oxjson",
+      "document": "testdata/diverse/numbers.json",
+      "repeat": 0
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 132.5384306255728,
+      "dumps_us": 147.3124352438996,
+      "library": "orjson",
+      "document": "testdata/diverse/numbers.json",
+      "repeat": 0
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 136.47250598296523,
+      "dumps_us": 145.08296735584736,
+      "library": "orjson",
+      "document": "testdata/diverse/numbers.json",
+      "repeat": 1
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 111.11973435617983,
+      "dumps_us": 137.1038641082123,
+      "library": "oxjson",
+      "document": "testdata/diverse/numbers.json",
+      "repeat": 1
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 111.99620397140582,
+      "dumps_us": 138.40006528577456,
+      "library": "oxjson",
+      "document": "testdata/diverse/numbers.json",
+      "repeat": 2
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 131.57029558594027,
+      "dumps_us": 145.42223167760918,
+      "library": "orjson",
+      "document": "testdata/diverse/numbers.json",
+      "repeat": 2
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 131.06893262981126,
+      "dumps_us": 144.41890234593302,
+      "library": "orjson",
+      "document": "testdata/diverse/numbers.json",
+      "repeat": 3
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 111.776099462683,
+      "dumps_us": 137.8535710197563,
+      "library": "oxjson",
+      "document": "testdata/diverse/numbers.json",
+      "repeat": 3
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 112.80543403699994,
+      "dumps_us": 137.92316894978285,
+      "library": "oxjson",
+      "document": "testdata/diverse/numbers.json",
+      "repeat": 4
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 130.60903293080628,
+      "dumps_us": 144.46403365582228,
+      "library": "orjson",
+      "document": "testdata/diverse/numbers.json",
+      "repeat": 4
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 132.02923291828483,
+      "dumps_us": 145.0103329261765,
+      "library": "orjson",
+      "document": "testdata/diverse/numbers.json",
+      "repeat": 5
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 111.93670119003703,
+      "dumps_us": 136.48803190638623,
+      "library": "oxjson",
+      "document": "testdata/diverse/numbers.json",
+      "repeat": 5
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 110.49186578020453,
+      "dumps_us": 137.71863305009902,
+      "library": "oxjson",
+      "document": "testdata/diverse/numbers.json",
+      "repeat": 6
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 131.63186182888845,
+      "dumps_us": 144.12189872624973,
+      "library": "orjson",
+      "document": "testdata/diverse/numbers.json",
+      "repeat": 6
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 669.7515685421725,
+      "dumps_us": 104.42423517815769,
+      "library": "oxjson",
+      "document": "testdata/diverse/twitter.json",
+      "repeat": 0
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 817.9257371618102,
+      "dumps_us": 171.6730990059053,
+      "library": "orjson",
+      "document": "testdata/diverse/twitter.json",
+      "repeat": 0
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 819.6872387391826,
+      "dumps_us": 172.45766939595342,
+      "library": "orjson",
+      "document": "testdata/diverse/twitter.json",
+      "repeat": 1
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 673.038600749957,
+      "dumps_us": 103.52859875032057,
+      "library": "oxjson",
+      "document": "testdata/diverse/twitter.json",
+      "repeat": 1
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 671.164965024218,
+      "dumps_us": 106.40133696142584,
+      "library": "oxjson",
+      "document": "testdata/diverse/twitter.json",
+      "repeat": 2
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 814.667001638251,
+      "dumps_us": 171.52866930700839,
+      "library": "orjson",
+      "document": "testdata/diverse/twitter.json",
+      "repeat": 2
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 813.1159993354231,
+      "dumps_us": 172.63526582003882,
+      "library": "orjson",
+      "document": "testdata/diverse/twitter.json",
+      "repeat": 3
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 666.2326661171392,
+      "dumps_us": 102.459333720617,
+      "library": "oxjson",
+      "document": "testdata/diverse/twitter.json",
+      "repeat": 3
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 845.8756647693614,
+      "dumps_us": 111.42713483422995,
+      "library": "oxjson",
+      "document": "testdata/diverse/twitter.json",
+      "repeat": 4
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 819.429064479967,
+      "dumps_us": 171.82639858219773,
+      "library": "orjson",
+      "document": "testdata/diverse/twitter.json",
+      "repeat": 4
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 809.9764275054137,
+      "dumps_us": 172.35813138540834,
+      "library": "orjson",
+      "document": "testdata/diverse/twitter.json",
+      "repeat": 5
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 669.4928995178392,
+      "dumps_us": 110.3892350026096,
+      "library": "oxjson",
+      "document": "testdata/diverse/twitter.json",
+      "repeat": 5
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 668.7472021440044,
+      "dumps_us": 106.90700146369636,
+      "library": "oxjson",
+      "document": "testdata/diverse/twitter.json",
+      "repeat": 6
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 837.4664311607679,
+      "dumps_us": 172.1576991258189,
+      "library": "orjson",
+      "document": "testdata/diverse/twitter.json",
+      "repeat": 6
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 1569.2926293316607,
+      "dumps_us": 264.1655970364809,
+      "library": "oxjson",
+      "document": "testdata/diverse/citm_catalog.json",
+      "repeat": 0
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 2160.47163218415,
+      "dumps_us": 324.1665312089026,
+      "library": "orjson",
+      "document": "testdata/diverse/citm_catalog.json",
+      "repeat": 0
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 2159.996570359605,
+      "dumps_us": 323.476599684606,
+      "library": "orjson",
+      "document": "testdata/diverse/citm_catalog.json",
+      "repeat": 1
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 1564.555835405675,
+      "dumps_us": 269.96069742987555,
+      "library": "oxjson",
+      "document": "testdata/diverse/citm_catalog.json",
+      "repeat": 1
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 1567.1459317672998,
+      "dumps_us": 267.4667038566743,
+      "library": "oxjson",
+      "document": "testdata/diverse/citm_catalog.json",
+      "repeat": 2
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 2166.5608326050765,
+      "dumps_us": 324.2886353594561,
+      "library": "orjson",
+      "document": "testdata/diverse/citm_catalog.json",
+      "repeat": 2
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 2164.0007995301858,
+      "dumps_us": 323.89476740111905,
+      "library": "orjson",
+      "document": "testdata/diverse/citm_catalog.json",
+      "repeat": 3
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 1561.395134194754,
+      "dumps_us": 269.0960003140693,
+      "library": "oxjson",
+      "document": "testdata/diverse/citm_catalog.json",
+      "repeat": 3
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 1560.639465848605,
+      "dumps_us": 266.55983335028094,
+      "library": "oxjson",
+      "document": "testdata/diverse/citm_catalog.json",
+      "repeat": 4
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 2165.232702585248,
+      "dumps_us": 324.23083515216905,
+      "library": "orjson",
+      "document": "testdata/diverse/citm_catalog.json",
+      "repeat": 4
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 2180.865230426813,
+      "dumps_us": 323.50193165863556,
+      "library": "orjson",
+      "document": "testdata/diverse/citm_catalog.json",
+      "repeat": 5
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 1558.7606350891292,
+      "dumps_us": 269.2744000038753,
+      "library": "oxjson",
+      "document": "testdata/diverse/citm_catalog.json",
+      "repeat": 5
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 1563.1008349979918,
+      "dumps_us": 270.0948651181534,
+      "library": "oxjson",
+      "document": "testdata/diverse/citm_catalog.json",
+      "repeat": 6
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 2160.7098635286093,
+      "dumps_us": 322.9862709607308,
+      "library": "orjson",
+      "document": "testdata/diverse/citm_catalog.json",
+      "repeat": 6
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 4326.169000705704,
+      "dumps_us": 1651.1792675980057,
+      "library": "oxjson",
+      "document": "testdata/diverse/canada.json",
+      "repeat": 0
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 5270.528733187045,
+      "dumps_us": 1745.653635589406,
+      "library": "orjson",
+      "document": "testdata/diverse/canada.json",
+      "repeat": 0
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 5267.922797550757,
+      "dumps_us": 1746.0627675366898,
+      "library": "orjson",
+      "document": "testdata/diverse/canada.json",
+      "repeat": 1
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 4328.058269068909,
+      "dumps_us": 1644.7836678707972,
+      "library": "oxjson",
+      "document": "testdata/diverse/canada.json",
+      "repeat": 1
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 4301.5119338330505,
+      "dumps_us": 1645.8805999718606,
+      "library": "oxjson",
+      "document": "testdata/diverse/canada.json",
+      "repeat": 2
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 5256.695935774284,
+      "dumps_us": 1744.7193977811064,
+      "library": "orjson",
+      "document": "testdata/diverse/canada.json",
+      "repeat": 2
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 5270.72523351914,
+      "dumps_us": 1751.752100729694,
+      "library": "orjson",
+      "document": "testdata/diverse/canada.json",
+      "repeat": 3
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 4300.036667458092,
+      "dumps_us": 1638.0300658056512,
+      "library": "oxjson",
+      "document": "testdata/diverse/canada.json",
+      "repeat": 3
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 4309.436465458323,
+      "dumps_us": 1646.0638008235644,
+      "library": "oxjson",
+      "document": "testdata/diverse/canada.json",
+      "repeat": 4
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 5249.709967756644,
+      "dumps_us": 1724.4702651320647,
+      "library": "orjson",
+      "document": "testdata/diverse/canada.json",
+      "repeat": 4
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 5266.3080336060375,
+      "dumps_us": 1744.0330683408927,
+      "library": "orjson",
+      "document": "testdata/diverse/canada.json",
+      "repeat": 5
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 4299.506093957461,
+      "dumps_us": 1712.9003991916154,
+      "library": "oxjson",
+      "document": "testdata/diverse/canada.json",
+      "repeat": 5
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 4312.949097948149,
+      "dumps_us": 1640.0773650578533,
+      "library": "oxjson",
+      "document": "testdata/diverse/canada.json",
+      "repeat": 6
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 5267.133764573373,
+      "dumps_us": 1756.9906999900315,
+      "library": "orjson",
+      "document": "testdata/diverse/canada.json",
+      "repeat": 6
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 5579.540569063586,
+      "dumps_us": 2292.028231507478,
+      "library": "oxjson",
+      "document": "testdata/diverse/marine_ik.json",
+      "repeat": 0
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 8988.751900809197,
+      "dumps_us": 2625.5374318376803,
+      "library": "orjson",
+      "document": "testdata/diverse/marine_ik.json",
+      "repeat": 0
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 8942.810732211607,
+      "dumps_us": 2621.279532710711,
+      "library": "orjson",
+      "document": "testdata/diverse/marine_ik.json",
+      "repeat": 1
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 5647.289999372636,
+      "dumps_us": 2278.4137981943786,
+      "library": "oxjson",
+      "document": "testdata/diverse/marine_ik.json",
+      "repeat": 1
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 5617.092897106583,
+      "dumps_us": 2290.5134033256522,
+      "library": "oxjson",
+      "document": "testdata/diverse/marine_ik.json",
+      "repeat": 2
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 8936.860432731919,
+      "dumps_us": 2614.0683301491663,
+      "library": "orjson",
+      "document": "testdata/diverse/marine_ik.json",
+      "repeat": 2
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 9109.61423748328,
+      "dumps_us": 2630.6073986537135,
+      "library": "orjson",
+      "document": "testdata/diverse/marine_ik.json",
+      "repeat": 3
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 5598.99916794772,
+      "dumps_us": 2283.2000366179273,
+      "library": "oxjson",
+      "document": "testdata/diverse/marine_ik.json",
+      "repeat": 3
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 5572.147496665518,
+      "dumps_us": 2293.5492956700423,
+      "library": "oxjson",
+      "document": "testdata/diverse/marine_ik.json",
+      "repeat": 4
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 8980.1226335112,
+      "dumps_us": 2624.9746665901816,
+      "library": "orjson",
+      "document": "testdata/diverse/marine_ik.json",
+      "repeat": 4
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 9130.35037034812,
+      "dumps_us": 2629.7909003915265,
+      "library": "orjson",
+      "document": "testdata/diverse/marine_ik.json",
+      "repeat": 5
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 5660.612031351775,
+      "dumps_us": 2286.4831650319197,
+      "library": "oxjson",
+      "document": "testdata/diverse/marine_ik.json",
+      "repeat": 5
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 5507.336297887377,
+      "dumps_us": 2287.380500153328,
+      "library": "oxjson",
+      "document": "testdata/diverse/marine_ik.json",
+      "repeat": 6
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 8963.111232151277,
+      "dumps_us": 2624.120998855991,
+      "library": "orjson",
+      "document": "testdata/diverse/marine_ik.json",
+      "repeat": 6
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 22290.96837011942,
+      "dumps_us": 3526.7121323461956,
+      "library": "oxjson",
+      "document": "testdata/bench/large_50k.json",
+      "repeat": 0
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 30897.632300426874,
+      "dumps_us": 3844.359800374756,
+      "library": "orjson",
+      "document": "testdata/bench/large_50k.json",
+      "repeat": 0
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 30966.54663386289,
+      "dumps_us": 3869.765702984296,
+      "library": "orjson",
+      "document": "testdata/bench/large_50k.json",
+      "repeat": 1
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 22271.083137214493,
+      "dumps_us": 3533.994903167089,
+      "library": "oxjson",
+      "document": "testdata/bench/large_50k.json",
+      "repeat": 1
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 22063.16786274935,
+      "dumps_us": 3512.811166001484,
+      "library": "oxjson",
+      "document": "testdata/bench/large_50k.json",
+      "repeat": 2
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 30899.362101141985,
+      "dumps_us": 3852.3590007874495,
+      "library": "orjson",
+      "document": "testdata/bench/large_50k.json",
+      "repeat": 2
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 30954.184098906506,
+      "dumps_us": 3875.647301902063,
+      "library": "orjson",
+      "document": "testdata/bench/large_50k.json",
+      "repeat": 3
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 22242.598164787825,
+      "dumps_us": 3524.7361316578463,
+      "library": "oxjson",
+      "document": "testdata/bench/large_50k.json",
+      "repeat": 3
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 22082.5072057778,
+      "dumps_us": 3528.9764656530074,
+      "library": "oxjson",
+      "document": "testdata/bench/large_50k.json",
+      "repeat": 4
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 30889.050832289893,
+      "dumps_us": 3822.8524334651106,
+      "library": "orjson",
+      "document": "testdata/bench/large_50k.json",
+      "repeat": 4
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 30924.957534686353,
+      "dumps_us": 3861.4584365859628,
+      "library": "orjson",
+      "document": "testdata/bench/large_50k.json",
+      "repeat": 5
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 22203.80123180803,
+      "dumps_us": 3526.395834827175,
+      "library": "oxjson",
+      "document": "testdata/bench/large_50k.json",
+      "repeat": 5
+    },
+    {
+      "version": "0.4.1",
+      "loads_us": 22242.330395965837,
+      "dumps_us": 3520.354168722406,
+      "library": "oxjson",
+      "document": "testdata/bench/large_50k.json",
+      "repeat": 6
+    },
+    {
+      "version": "3.13.0",
+      "loads_us": 31059.582264667068,
+      "dumps_us": 3866.5150990709662,
+      "library": "orjson",
+      "document": "testdata/bench/large_50k.json",
+      "repeat": 6
+    }
+  ],
+  "summaries": [
+    {
+      "document": "testdata/engine/atlas.json",
+      "operation": "loads",
+      "oxjson": {
+        "min_us": 41.85490251984447,
+        "median_us": 42.31449759875735,
+        "max_us": 45.76436767820269
+      },
+      "orjson": {
+        "min_us": 45.2383334049955,
+        "median_us": 47.159933213454984,
+        "max_us": 48.99676714558154
+      }
+    },
+    {
+      "document": "testdata/engine/atlas.json",
+      "operation": "dumps",
+      "oxjson": {
+        "min_us": 10.415365492614606,
+        "median_us": 10.583400338267287,
+        "max_us": 13.391697818102935
+      },
+      "orjson": {
+        "min_us": 13.852103923757872,
+        "median_us": 14.143700051742295,
+        "max_us": 14.684366760775447
+      }
+    },
+    {
+      "document": "testdata/diverse/numbers.json",
+      "operation": "loads",
+      "oxjson": {
+        "min_us": 110.49186578020453,
+        "median_us": 111.93670119003703,
+        "max_us": 114.36626664362848
+      },
+      "orjson": {
+        "min_us": 130.60903293080628,
+        "median_us": 131.63186182888845,
+        "max_us": 136.47250598296523
+      }
+    },
+    {
+      "document": "testdata/diverse/numbers.json",
+      "operation": "dumps",
+      "oxjson": {
+        "min_us": 136.48803190638623,
+        "median_us": 137.8535710197563,
+        "max_us": 138.40006528577456
+      },
+      "orjson": {
+        "min_us": 144.12189872624973,
+        "median_us": 145.0103329261765,
+        "max_us": 147.3124352438996
+      }
+    },
+    {
+      "document": "testdata/diverse/twitter.json",
+      "operation": "loads",
+      "oxjson": {
+        "min_us": 666.2326661171392,
+        "median_us": 669.7515685421725,
+        "max_us": 845.8756647693614
+      },
+      "orjson": {
+        "min_us": 809.9764275054137,
+        "median_us": 817.9257371618102,
+        "max_us": 837.4664311607679
+      }
+    },
+    {
+      "document": "testdata/diverse/twitter.json",
+      "operation": "dumps",
+      "oxjson": {
+        "min_us": 102.459333720617,
+        "median_us": 106.40133696142584,
+        "max_us": 111.42713483422995
+      },
+      "orjson": {
+        "min_us": 171.52866930700839,
+        "median_us": 172.1576991258189,
+        "max_us": 172.63526582003882
+      }
+    },
+    {
+      "document": "testdata/diverse/citm_catalog.json",
+      "operation": "loads",
+      "oxjson": {
+        "min_us": 1558.7606350891292,
+        "median_us": 1563.1008349979918,
+        "max_us": 1569.2926293316607
+      },
+      "orjson": {
+        "min_us": 2159.996570359605,
+        "median_us": 2164.0007995301858,
+        "max_us": 2180.865230426813
+      }
+    },
+    {
+      "document": "testdata/diverse/citm_catalog.json",
+      "operation": "dumps",
+      "oxjson": {
+        "min_us": 264.1655970364809,
+        "median_us": 269.0960003140693,
+        "max_us": 270.0948651181534
+      },
+      "orjson": {
+        "min_us": 322.9862709607308,
+        "median_us": 323.89476740111905,
+        "max_us": 324.2886353594561
+      }
+    },
+    {
+      "document": "testdata/diverse/canada.json",
+      "operation": "loads",
+      "oxjson": {
+        "min_us": 4299.506093957461,
+        "median_us": 4309.436465458323,
+        "max_us": 4328.058269068909
+      },
+      "orjson": {
+        "min_us": 5249.709967756644,
+        "median_us": 5267.133764573373,
+        "max_us": 5270.72523351914
+      }
+    },
+    {
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "oxjson": {
+        "min_us": 1638.0300658056512,
+        "median_us": 1645.8805999718606,
+        "max_us": 1712.9003991916154
+      },
+      "orjson": {
+        "min_us": 1724.4702651320647,
+        "median_us": 1745.653635589406,
+        "max_us": 1756.9906999900315
+      }
+    },
+    {
+      "document": "testdata/diverse/marine_ik.json",
+      "operation": "loads",
+      "oxjson": {
+        "min_us": 5507.336297887377,
+        "median_us": 5598.99916794772,
+        "max_us": 5660.612031351775
+      },
+      "orjson": {
+        "min_us": 8936.860432731919,
+        "median_us": 8980.1226335112,
+        "max_us": 9130.35037034812
+      }
+    },
+    {
+      "document": "testdata/diverse/marine_ik.json",
+      "operation": "dumps",
+      "oxjson": {
+        "min_us": 2278.4137981943786,
+        "median_us": 2287.380500153328,
+        "max_us": 2293.5492956700423
+      },
+      "orjson": {
+        "min_us": 2614.0683301491663,
+        "median_us": 2624.9746665901816,
+        "max_us": 2630.6073986537135
+      }
+    },
+    {
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads",
+      "oxjson": {
+        "min_us": 22063.16786274935,
+        "median_us": 22242.330395965837,
+        "max_us": 22290.96837011942
+      },
+      "orjson": {
+        "min_us": 30889.050832289893,
+        "median_us": 30924.957534686353,
+        "max_us": 31059.582264667068
+      }
+    },
+    {
+      "document": "testdata/bench/large_50k.json",
+      "operation": "dumps",
+      "oxjson": {
+        "min_us": 3512.811166001484,
+        "median_us": 3526.395834827175,
+        "max_us": 3533.994903167089
+      },
+      "orjson": {
+        "min_us": 3822.8524334651106,
+        "median_us": 3861.4584365859628,
+        "max_us": 3875.647301902063
+      }
+    }
+  ],
+  "errors": [],
+  "finished_utc": "2026-10-30T14:30:29.310309+00:00",
+  "status": "OK"
+}

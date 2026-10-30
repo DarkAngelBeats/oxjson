@@ -70,14 +70,17 @@ if __name__ == "__main__":
     else:
         pkg = str(Path(sys.argv[1]).resolve()) if len(sys.argv) > 1 else str(ROOT)
         res = []
+        workers_ok = True
         for flag in (None, "1"):
             env = dict(os.environ)
             env.pop("OXJSON_NO_AVX2", None)
             if flag:
                 env["OXJSON_NO_AVX2"] = flag
             p = subprocess.run([sys.executable, __file__, "--worker", pkg], capture_output=True, text=True, env=env)
+            workers_ok = workers_ok and p.returncode == 0 and bool(p.stdout.strip())
             res.append(p.stdout.strip() or ("crash %s %s" % (p.returncode, p.stderr[-300:])))
         print("AVX2:    ", res[0])
         print("portable:", res[1])
-        print("RESULT", "OK" if res[0] == res[1] and "crash" not in res[0] else "FAIL")
-        sys.exit(0 if res[0] == res[1] else 1)
+        ok = workers_ok and res[0] == res[1]
+        print("RESULT", "OK" if ok else "FAIL")
+        sys.exit(0 if ok else 1)

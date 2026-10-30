@@ -132,3 +132,4 @@ for i in range(40000):
                 try: loads(bad_doc)
                 except Exception as e: print('   ours:', e)
 print('valid docs', nv, 'bad', bad)
+sys.exit(1 if bad else 0)

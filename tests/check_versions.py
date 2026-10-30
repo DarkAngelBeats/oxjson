@@ -137,7 +137,7 @@ class Odd:
 
 
 def private_bytes():
-    """Committed memory of this process in bytes (Windows and Linux), or None."""
+    """Private commit on Windows, RSS on macOS, data segment on Linux; or None."""
     try:
         if os.name == "nt":
             import ctypes
@@ -157,6 +157,9 @@ def private_bytes():
             if not psapi.GetProcessMemoryInfo(k32.GetCurrentProcess(), ctypes.byref(pmc), pmc.cb):
                 return None
             return pmc.PagefileUsage
+        if sys.platform == "darwin":
+            import subprocess
+            return int(subprocess.check_output(["ps", "-o", "rss=", "-p", str(os.getpid())]).strip()) * 1024
         with open("/proc/self/statm") as f:
             return int(f.read().split()[5]) * os.sysconf("SC_PAGE_SIZE")
     except Exception:
@@ -203,7 +206,6 @@ def part_memory():
             pass
 
     bad = 0
-    p0 = private_bytes()
     for name, fn, reps in (("loads", loads_ok, 300), ("loads errors", loads_err, 60), ("dumps", dumps_ok, 300), ("dumps errors", dumps_err, 3000)):
         for _ in range(20):
             fn()
@@ -219,7 +221,7 @@ def part_memory():
             grow.append(sys.getallocatedblocks() - b0)
         leak = min(grow) > 20
         bad += leak
-        print("   %-13s blocks after %d repeats, five rounds: %s%s" % (name, reps, grow, "  LEAK" if leak else ""))
+        print("   %-13s blocks after %d repeats, five rounds: %s%s" % (name, reps, grow, "  GROWTH FLAG" if leak else ""))
     # memory outside Python objects (malloc buffers): the whole run again must not add megabytes
     for fn, reps in ((loads_ok, 300), (loads_err, 60), (dumps_ok, 300), (dumps_err, 3000)):
         for _ in range(reps):
@@ -230,18 +232,21 @@ def part_memory():
             for _ in range(reps):
                 fn()
     p2 = private_bytes()
-    if p0 is not None:
+    if p1 is not None and p2 is not None:
         grown = (p2 - p1) / 1048576.0
         if grown > 8:
             bad += 1
-        print("   process memory: +%.1f MB over three more full rounds%s" % (grown, "  LEAK" if grown > 8 else ""))
+        print("   process memory: %+.1f MiB over three more full rounds%s" % (grown, "  GROWTH FLAG" if grown > 8 else ""))
+    else:
+        print("   process memory: UNAVAILABLE (native-memory check not performed)")
+        bad += 1
     rc = sys.getrefcount(text)
     for _ in range(1000):
         oxjson.loads(text)
     if sys.getrefcount(text) != rc:
         bad += 1
         print("   input refcount changed")
-    print("memory: %d of 4 groups grow" % bad)
+    print("memory: %d failed checks (4 block groups, process growth, input refcount)" % bad)
     return bad
 
 

@@ -5,11 +5,23 @@ Produced by `bench/bench.py` and `bench/report.py`. Every number comes from a se
 - **Speed**: one call at a time, garbage collector on, mean of 10 calls, mean of three such rounds.
   `loads` takes `bytes` and returns `dict` / `list`. `dumps` writes the object that `json.loads` built.
 - **Memory**: growth of the process peak memory across the first `loads` call in a fresh process,
-  best of three processes. It includes the returned Python objects.
+  minimum of three processes. These are historical high-water-mark deltas, not allocation totals.
+  Windows measures peak private commit; Linux/macOS measure peak RSS. Includes returned objects.
+  Earlier import/input peaks can hide allocations. Zero deltas are inconclusive and shown as `-`.
+  Legacy result files have no raw repeat samples; precise ratios require new measurements.
+  See [memory methodology](memory-testing.md) and `bench/memory_audit.py` for retained/released memory and repeated calls.
 - **Disk**: size of the installed package files.
-- The best value in a row is bold. `-` means the library has no such function or no wheel for that Python.
+- Best measured speed values are bold; historical memory deltas are not ranked. `-` means unavailable, failed, unsupported, or an inconclusive zero memory delta.
 
 Each section names its machine; numbers from different machines are not comparable.
+
+## Current local build
+
+See the [current oxjson 0.4.1 comparison](current-comparison.md) for the new speed repeats, expanded memory matrix, exact versions and raw evidence. The multi-platform tables below retain their recorded historical versions.
+
+## Sustained Linux run
+
+Two 30-minute runs on 14 October 2026 used json_parser 0.4.0 and orjson 3.13.0 on Python 3.12.3, Linux x86-64 (Intel Core i3-13100). The report, metadata and raw samples of both runs are in [`bench/results/linux-30m-20261014`](../bench/results/linux-30m-20261014/report.md). They are separate from both the current local Windows comparison and the historical short-process tables below; no current 0.4.1 Linux memory result is claimed here.
 
 ## Library versions
 
@@ -22,7 +34,7 @@ Each section names its machine; numbers from different machines are not comparab
 | Python 3.13.5, Windows AMD64 | 0.4.0 | 3.13.0 | 0.22.0 | 0.0.24 | 4.0.6 | 7.0.2 | 6.0.0 | 1.25 | stdlib |
 | Python 3.14.0rc1, Windows AMD64 | 0.4.0 | 3.13.0 | 0.22.0 | 0.0.24 | - | - | 6.0.0 | 1.25 | stdlib |
 
-## Installed size, KB
+## Installed size, KiB
 
 | run | oxjson | orjson | msgspec | ssrjson | yyjson | pysimdjson | ujson | rapidjson |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -61,29 +73,29 @@ CPU: AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD
 | 3D mesh, 3.0 MB | 3.68 ms | 5.07 ms | 6.90 ms | **3.42 ms** | 7.71 ms | - | 12.13 ms | 34.05 ms | 40.23 ms |
 | uniform records, 4.9 MB | 6.61 ms | 6.63 ms | 9.15 ms | **6.60 ms** | 20.91 ms | - | 26.47 ms | 31.23 ms | 63.04 ms |
 
-### Peak memory growth in loads, MB
+### Historical process peak delta in loads, MiB
 
 | document | oxjson | orjson | msgspec | ssrjson | yyjson | pysimdjson | ujson | rapidjson | json |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| small config, 34 KB | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** |
-| float array, 150 KB | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** |
-| API reply with text, 647 KB | **0.0** | 4.8 | **0.0** | 0.7 | **0.0** | 8.5 | 0.9 | 1.3 | 2.5 |
-| catalog, 1.8 MB | **1.5** | 21.8 | 1.9 | 10.3 | 6.3 | 28.0 | 10.1 | 8.3 | 4.1 |
-| coordinates, 2.2 MB | **6.4** | 31.9 | 8.2 | 17.2 | 14.2 | 37.9 | 15.7 | 12.1 | 9.6 |
-| 3D mesh, 3.0 MB | 11.8 | 44.8 | **10.8** | 25.9 | 22.3 | 55.9 | 25.0 | 18.3 | 13.5 |
-| uniform records, 4.9 MB | **37.0** | 102.1 | 46.3 | 69.8 | 90.5 | 120.2 | 71.9 | 46.5 | 41.0 |
+| small config, 34 KB | - | - | - | - | - | - | - | - | - |
+| float array, 150 KB | - | - | - | - | - | - | - | - | - |
+| API reply with text, 647 KB | - | 4.8 | - | 0.7 | - | 8.5 | 0.9 | 1.3 | 2.5 |
+| catalog, 1.8 MB | 1.5 | 21.8 | 1.9 | 10.3 | 6.3 | 28.0 | 10.1 | 8.3 | 4.1 |
+| coordinates, 2.2 MB | 6.4 | 31.9 | 8.2 | 17.2 | 14.2 | 37.9 | 15.7 | 12.1 | 9.6 |
+| 3D mesh, 3.0 MB | 11.8 | 44.8 | 10.8 | 25.9 | 22.3 | 55.9 | 25.0 | 18.3 | 13.5 |
+| uniform records, 4.9 MB | 37.0 | 102.1 | 46.3 | 69.8 | 90.5 | 120.2 | 71.9 | 46.5 | 41.0 |
 
-### Peak memory growth in dumps, MB
+### Historical process peak delta in dumps, MiB
 
 | document | oxjson | orjson | msgspec | ssrjson | yyjson | pysimdjson | ujson | rapidjson | json |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| small config, 34 KB | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | - | **0.0** | **0.0** | **0.0** |
-| float array, 150 KB | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | - | **0.0** | **0.0** | **0.0** |
-| API reply with text, 647 KB | **0.0** | **0.0** | **0.0** | **0.0** | 2.4 | - | **0.0** | **0.0** | 1.4 |
-| catalog, 1.8 MB | **0.0** | **0.0** | **0.0** | **0.0** | 1.3 | - | **0.0** | **0.0** | **0.0** |
-| coordinates, 2.2 MB | **0.2** | 5.0 | 3.3 | 1.0 | 9.4 | - | 1.7 | 2.4 | 4.4 |
-| 3D mesh, 3.0 MB | **0.0** | 15.6 | 0.7 | **0.0** | 12.8 | - | **0.0** | 0.2 | 2.4 |
-| uniform records, 4.9 MB | 7.1 | **2.9** | 3.2 | 6.6 | 34.6 | - | 7.2 | 4.9 | 5.3 |
+| small config, 34 KB | - | - | - | - | - | - | - | - | - |
+| float array, 150 KB | - | - | - | - | - | - | - | - | - |
+| API reply with text, 647 KB | - | - | - | - | 2.4 | - | - | - | 1.4 |
+| catalog, 1.8 MB | - | - | - | - | 1.3 | - | - | - | - |
+| coordinates, 2.2 MB | 0.2 | 5.0 | 3.3 | 1.0 | 9.4 | - | 1.7 | 2.4 | 4.4 |
+| 3D mesh, 3.0 MB | - | 15.6 | 0.7 | - | 12.8 | - | - | 0.2 | 2.4 |
+| uniform records, 4.9 MB | 7.1 | 2.9 | 3.2 | 6.6 | 34.6 | - | 7.2 | 4.9 | 5.3 |
 
 ## Python 3.11.4, Windows AMD64
 
@@ -113,29 +125,29 @@ CPU: AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD
 | 3D mesh, 3.0 MB | 3.74 ms | 4.89 ms | 6.60 ms | **3.57 ms** | 7.86 ms | - | 12.49 ms | 33.38 ms | 40.21 ms |
 | uniform records, 4.9 MB | 6.65 ms | 6.02 ms | 8.92 ms | **5.97 ms** | 19.50 ms | - | 27.66 ms | 27.96 ms | 60.53 ms |
 
-### Peak memory growth in loads, MB
+### Historical process peak delta in loads, MiB
 
 | document | oxjson | orjson | msgspec | ssrjson | yyjson | pysimdjson | ujson | rapidjson | json |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| small config, 34 KB | **0.0** | 0.4 | **0.0** | **0.0** | 0.2 | 0.4 | 0.1 | **0.0** | 0.0 |
-| float array, 150 KB | 0.2 | 1.7 | **0.0** | 0.8 | 0.5 | 2.2 | 0.2 | 0.3 | 0.2 |
-| API reply with text, 647 KB | **0.4** | 7.6 | 1.3 | 4.4 | 2.5 | 10.3 | 3.7 | 5.0 | 4.3 |
-| catalog, 1.8 MB | **3.0** | 23.4 | **3.0** | 11.5 | 8.4 | 29.9 | 11.8 | 10.2 | 6.4 |
-| coordinates, 2.2 MB | **7.4** | 32.9 | 9.3 | 19.1 | 16.2 | 39.9 | 17.1 | 13.5 | 10.7 |
-| 3D mesh, 3.0 MB | 12.6 | 45.8 | **11.4** | 27.1 | 22.5 | 55.6 | 25.1 | 17.0 | 15.0 |
-| uniform records, 4.9 MB | **33.1** | 97.8 | 42.5 | 65.5 | 87.0 | 116.4 | 66.3 | 41.9 | 37.2 |
+| small config, 34 KB | - | 0.4 | - | - | 0.2 | 0.4 | 0.1 | - | <0.1 |
+| float array, 150 KB | 0.2 | 1.7 | - | 0.8 | 0.5 | 2.2 | 0.2 | 0.3 | 0.2 |
+| API reply with text, 647 KB | 0.4 | 7.6 | 1.3 | 4.4 | 2.5 | 10.3 | 3.7 | 5.0 | 4.3 |
+| catalog, 1.8 MB | 3.0 | 23.4 | 3.0 | 11.5 | 8.4 | 29.9 | 11.8 | 10.2 | 6.4 |
+| coordinates, 2.2 MB | 7.4 | 32.9 | 9.3 | 19.1 | 16.2 | 39.9 | 17.1 | 13.5 | 10.7 |
+| 3D mesh, 3.0 MB | 12.6 | 45.8 | 11.4 | 27.1 | 22.5 | 55.6 | 25.1 | 17.0 | 15.0 |
+| uniform records, 4.9 MB | 33.1 | 97.8 | 42.5 | 65.5 | 87.0 | 116.4 | 66.3 | 41.9 | 37.2 |
 
-### Peak memory growth in dumps, MB
+### Historical process peak delta in dumps, MiB
 
 | document | oxjson | orjson | msgspec | ssrjson | yyjson | pysimdjson | ujson | rapidjson | json |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| small config, 34 KB | 0.0 | **0.0** | **0.0** | **0.0** | 0.1 | - | 0.0 | **0.0** | 0.1 |
-| float array, 150 KB | 0.4 | 2.0 | 0.2 | 0.3 | 0.5 | - | 0.3 | **0.2** | 1.3 |
-| API reply with text, 647 KB | **0.0** | **0.0** | **0.0** | **0.0** | 3.0 | - | **0.0** | **0.0** | 1.5 |
-| catalog, 1.8 MB | **0.0** | **0.0** | **0.0** | **0.0** | 1.5 | - | **0.0** | **0.0** | 1.2 |
-| coordinates, 2.2 MB | 1.4 | 4.0 | 2.5 | **1.3** | 8.4 | - | 2.4 | 3.9 | 4.8 |
-| 3D mesh, 3.0 MB | **0.0** | 17.3 | 0.5 | **0.0** | 13.3 | - | 1.3 | 1.4 | 4.2 |
-| uniform records, 4.9 MB | 7.7 | 3.6 | **2.8** | 7.7 | 35.3 | - | 8.1 | 6.4 | 7.4 |
+| small config, 34 KB | <0.1 | - | - | - | 0.1 | - | <0.1 | - | 0.1 |
+| float array, 150 KB | 0.4 | 2.0 | 0.2 | 0.3 | 0.5 | - | 0.3 | 0.2 | 1.3 |
+| API reply with text, 647 KB | - | - | - | - | 3.0 | - | - | - | 1.5 |
+| catalog, 1.8 MB | - | - | - | - | 1.5 | - | - | - | 1.2 |
+| coordinates, 2.2 MB | 1.4 | 4.0 | 2.5 | 1.3 | 8.4 | - | 2.4 | 3.9 | 4.8 |
+| 3D mesh, 3.0 MB | - | 17.3 | 0.5 | - | 13.3 | - | 1.3 | 1.4 | 4.2 |
+| uniform records, 4.9 MB | 7.7 | 3.6 | 2.8 | 7.7 | 35.3 | - | 8.1 | 6.4 | 7.4 |
 
 ## Python 3.12.7, Darwin arm64
 
@@ -165,29 +177,29 @@ CPU: arm
 | 3D mesh, 3.0 MB | 1.96 ms | 3.02 ms | 4.13 ms | **1.56 ms** | 3.06 ms | - | 8.17 ms | 21.32 ms | 22.15 ms |
 | uniform records, 4.9 MB | 3.01 ms | 3.49 ms | 5.01 ms | **2.83 ms** | 7.16 ms | - | 14.46 ms | 14.45 ms | 25.49 ms |
 
-### Peak memory growth in loads, MB
+### Historical process peak delta in loads, MiB
 
 | document | oxjson | orjson | msgspec | ssrjson | yyjson | pysimdjson | ujson | rapidjson | json |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| small config, 34 KB | 0.0 | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** |
-| float array, 150 KB | 0.3 | 0.3 | 0.0 | 0.3 | 0.2 | 0.7 | **0.0** | 0.4 | 0.4 |
-| API reply with text, 647 KB | 1.2 | 1.9 | **0.9** | 1.6 | 2.5 | 3.2 | 1.5 | 4.9 | 3.2 |
-| catalog, 1.8 MB | 3.3 | 5.7 | **3.1** | 4.8 | 7.1 | 7.9 | 4.4 | 11.6 | 6.8 |
-| coordinates, 2.2 MB | **8.1** | 12.3 | 8.4 | 9.7 | 12.3 | 13.8 | 8.5 | 12.8 | 10.9 |
-| 3D mesh, 3.0 MB | 11.9 | 18.1 | **10.5** | 14.3 | 20.1 | 22.8 | 12.3 | 16.4 | 13.9 |
-| uniform records, 4.9 MB | **32.2** | 56.5 | 38.1 | 43.6 | 85.1 | 68.0 | 43.0 | 41.0 | 36.5 |
+| small config, 34 KB | <0.1 | - | - | - | - | - | - | - | - |
+| float array, 150 KB | 0.3 | 0.3 | <0.1 | 0.3 | 0.2 | 0.7 | <0.1 | 0.4 | 0.4 |
+| API reply with text, 647 KB | 1.2 | 1.9 | 0.9 | 1.6 | 2.5 | 3.2 | 1.5 | 4.9 | 3.2 |
+| catalog, 1.8 MB | 3.3 | 5.7 | 3.1 | 4.8 | 7.1 | 7.9 | 4.4 | 11.6 | 6.8 |
+| coordinates, 2.2 MB | 8.1 | 12.3 | 8.4 | 9.7 | 12.3 | 13.8 | 8.5 | 12.8 | 10.9 |
+| 3D mesh, 3.0 MB | 11.9 | 18.1 | 10.5 | 14.3 | 20.1 | 22.8 | 12.3 | 16.4 | 13.9 |
+| uniform records, 4.9 MB | 32.2 | 56.5 | 38.1 | 43.6 | 85.1 | 68.0 | 43.0 | 41.0 | 36.5 |
 
-### Peak memory growth in dumps, MB
+### Historical process peak delta in dumps, MiB
 
 | document | oxjson | orjson | msgspec | ssrjson | yyjson | pysimdjson | ujson | rapidjson | json |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| small config, 34 KB | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | - | **0.0** | **0.0** | **0.0** |
-| float array, 150 KB | **0.0** | **0.0** | **0.0** | **0.0** | 0.0 | - | **0.0** | 0.1 | 0.1 |
-| API reply with text, 647 KB | 0.5 | **0.3** | 0.3 | **0.3** | 2.5 | - | 0.8 | 0.9 | 1.6 |
-| catalog, 1.8 MB | 0.4 | **0.2** | 0.2 | 0.2 | 2.2 | - | 0.7 | 0.7 | 1.4 |
-| coordinates, 2.2 MB | 2.0 | **1.7** | 1.8 | 1.8 | 7.5 | - | 1.8 | 1.8 | 1.9 |
-| 3D mesh, 3.0 MB | 1.7 | 1.6 | 1.5 | 1.5 | 10.7 | - | 3.2 | **1.5** | 1.7 |
-| uniform records, 4.9 MB | 4.7 | 4.4 | 1.1 | **0.5** | 27.1 | - | 4.4 | 9.1 | 9.3 |
+| small config, 34 KB | - | - | - | - | - | - | - | - | - |
+| float array, 150 KB | - | - | - | - | <0.1 | - | - | 0.1 | 0.1 |
+| API reply with text, 647 KB | 0.5 | 0.3 | 0.3 | 0.3 | 2.5 | - | 0.8 | 0.9 | 1.6 |
+| catalog, 1.8 MB | 0.4 | 0.2 | 0.2 | 0.2 | 2.2 | - | 0.7 | 0.7 | 1.4 |
+| coordinates, 2.2 MB | 2.0 | 1.7 | 1.8 | 1.8 | 7.5 | - | 1.8 | 1.8 | 1.9 |
+| 3D mesh, 3.0 MB | 1.7 | 1.6 | 1.5 | 1.5 | 10.7 | - | 3.2 | 1.5 | 1.7 |
+| uniform records, 4.9 MB | 4.7 | 4.4 | 1.1 | 0.5 | 27.1 | - | 4.4 | 9.1 | 9.3 |
 
 ## Python 3.12.10, Windows AMD64
 
@@ -217,29 +229,29 @@ CPU: AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD
 | 3D mesh, 3.0 MB | **2.99 ms** | 5.54 ms | 8.20 ms | 3.77 ms | 9.34 ms | - | 13.00 ms | 40.12 ms | 40.38 ms |
 | uniform records, 4.9 MB | **6.19 ms** | 7.01 ms | 9.41 ms | 6.83 ms | 24.39 ms | - | 29.85 ms | 32.55 ms | 58.42 ms |
 
-### Peak memory growth in loads, MB
+### Historical process peak delta in loads, MiB
 
 | document | oxjson | orjson | msgspec | ssrjson | yyjson | pysimdjson | ujson | rapidjson | json |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| small config, 34 KB | **0.0** | 0.3 | **0.0** | **0.0** | 1.1 | 0.5 | 0.1 | **0.0** | 0.0 |
-| float array, 150 KB | 0.2 | 2.7 | **0.1** | 1.8 | 1.5 | 3.2 | 1.4 | 1.5 | 0.3 |
-| API reply with text, 647 KB | 0.4 | 8.4 | **0.3** | 4.5 | 3.5 | 11.3 | 4.7 | 5.0 | 3.7 |
-| catalog, 1.8 MB | **3.0** | 24.4 | **3.0** | 12.5 | 8.4 | 29.9 | 11.8 | 10.8 | 6.4 |
-| coordinates, 2.2 MB | **7.4** | 33.8 | 8.4 | 19.1 | 16.1 | 39.8 | 18.2 | 13.6 | 10.5 |
-| 3D mesh, 3.0 MB | 12.5 | 45.5 | **12.2** | 27.0 | 22.5 | 55.6 | 25.2 | 17.6 | 14.6 |
-| uniform records, 4.9 MB | **32.1** | 95.5 | 38.6 | 63.5 | 79.0 | 112.4 | 62.5 | 42.1 | 36.3 |
+| small config, 34 KB | - | 0.3 | - | - | 1.1 | 0.5 | 0.1 | - | <0.1 |
+| float array, 150 KB | 0.2 | 2.7 | 0.1 | 1.8 | 1.5 | 3.2 | 1.4 | 1.5 | 0.3 |
+| API reply with text, 647 KB | 0.4 | 8.4 | 0.3 | 4.5 | 3.5 | 11.3 | 4.7 | 5.0 | 3.7 |
+| catalog, 1.8 MB | 3.0 | 24.4 | 3.0 | 12.5 | 8.4 | 29.9 | 11.8 | 10.8 | 6.4 |
+| coordinates, 2.2 MB | 7.4 | 33.8 | 8.4 | 19.1 | 16.1 | 39.8 | 18.2 | 13.6 | 10.5 |
+| 3D mesh, 3.0 MB | 12.5 | 45.5 | 12.2 | 27.0 | 22.5 | 55.6 | 25.2 | 17.6 | 14.6 |
+| uniform records, 4.9 MB | 32.1 | 95.5 | 38.6 | 63.5 | 79.0 | 112.4 | 62.5 | 42.1 | 36.3 |
 
-### Peak memory growth in dumps, MB
+### Historical process peak delta in dumps, MiB
 
 | document | oxjson | orjson | msgspec | ssrjson | yyjson | pysimdjson | ujson | rapidjson | json |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| small config, 34 KB | **0.0** | **0.0** | **0.0** | **0.0** | 0.1 | - | 0.0 | **0.0** | **0.0** |
-| float array, 150 KB | 0.4 | 2.0 | **0.2** | 0.4 | 0.6 | - | 0.3 | 0.3 | 0.3 |
-| API reply with text, 647 KB | **0.0** | **0.0** | **0.0** | **0.0** | 2.2 | - | **0.0** | **0.0** | 0.8 |
-| catalog, 1.8 MB | **0.0** | **0.0** | **0.0** | **0.0** | 2.3 | - | **0.0** | **0.0** | 0.3 |
-| coordinates, 2.2 MB | **1.3** | 4.0 | 2.6 | 1.3 | 9.0 | - | 2.3 | 3.0 | 3.1 |
-| 3D mesh, 3.0 MB | 1.3 | 17.2 | 2.2 | 0.1 | 13.6 | - | **0.1** | 1.1 | 1.3 |
-| uniform records, 4.9 MB | 7.3 | **3.5** | 3.7 | 7.2 | 34.8 | - | 8.1 | 6.1 | 5.8 |
+| small config, 34 KB | - | - | - | - | 0.1 | - | <0.1 | - | - |
+| float array, 150 KB | 0.4 | 2.0 | 0.2 | 0.4 | 0.6 | - | 0.3 | 0.3 | 0.3 |
+| API reply with text, 647 KB | - | - | - | - | 2.2 | - | - | - | 0.8 |
+| catalog, 1.8 MB | - | - | - | - | 2.3 | - | - | - | 0.3 |
+| coordinates, 2.2 MB | 1.3 | 4.0 | 2.6 | 1.3 | 9.0 | - | 2.3 | 3.0 | 3.1 |
+| 3D mesh, 3.0 MB | 1.3 | 17.2 | 2.2 | 0.1 | 13.6 | - | 0.1 | 1.1 | 1.3 |
+| uniform records, 4.9 MB | 7.3 | 3.5 | 3.7 | 7.2 | 34.8 | - | 8.1 | 6.1 | 5.8 |
 
 ## Python 3.13.5, Windows AMD64
 
@@ -269,29 +281,29 @@ CPU: AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD
 | 3D mesh, 3.0 MB | **3.00 ms** | 4.95 ms | 6.99 ms | 3.21 ms | 7.83 ms | - | 12.06 ms | 36.29 ms | 37.27 ms |
 | uniform records, 4.9 MB | 5.99 ms | 6.11 ms | 9.36 ms | **5.68 ms** | 19.33 ms | - | 25.86 ms | 26.98 ms | 45.27 ms |
 
-### Peak memory growth in loads, MB
+### Historical process peak delta in loads, MiB
 
 | document | oxjson | orjson | msgspec | ssrjson | yyjson | pysimdjson | ujson | rapidjson | json |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| small config, 34 KB | **0.0** | **0.0** | **0.0** | **0.0** | 0.1 | 0.5 | 0.1 | **0.0** | 0.0 |
-| float array, 150 KB | 0.2 | 1.8 | 0.1 | 0.8 | 0.5 | 2.2 | **0.0** | 0.4 | 0.3 |
-| API reply with text, 647 KB | 1.4 | 8.4 | **1.3** | 4.4 | 2.4 | 10.4 | 3.7 | 4.9 | 3.8 |
-| catalog, 1.8 MB | 3.0 | 23.4 | **3.0** | 11.5 | 8.4 | 29.9 | 11.9 | 10.2 | 6.4 |
-| coordinates, 2.2 MB | **8.4** | 33.8 | 9.4 | 19.1 | 16.2 | 39.9 | 17.1 | 13.7 | 11.6 |
-| 3D mesh, 3.0 MB | 12.6 | 45.6 | **11.3** | 27.0 | 22.5 | 55.6 | 25.6 | 17.1 | 14.4 |
-| uniform records, 4.9 MB | **33.1** | 94.5 | 38.5 | 62.5 | 78.0 | 112.4 | 62.4 | 41.1 | 36.6 |
+| small config, 34 KB | - | - | - | - | 0.1 | 0.5 | 0.1 | - | <0.1 |
+| float array, 150 KB | 0.2 | 1.8 | 0.1 | 0.8 | 0.5 | 2.2 | - | 0.4 | 0.3 |
+| API reply with text, 647 KB | 1.4 | 8.4 | 1.3 | 4.4 | 2.4 | 10.4 | 3.7 | 4.9 | 3.8 |
+| catalog, 1.8 MB | 3.0 | 23.4 | 3.0 | 11.5 | 8.4 | 29.9 | 11.9 | 10.2 | 6.4 |
+| coordinates, 2.2 MB | 8.4 | 33.8 | 9.4 | 19.1 | 16.2 | 39.9 | 17.1 | 13.7 | 11.6 |
+| 3D mesh, 3.0 MB | 12.6 | 45.6 | 11.3 | 27.0 | 22.5 | 55.6 | 25.6 | 17.1 | 14.4 |
+| uniform records, 4.9 MB | 33.1 | 94.5 | 38.5 | 62.5 | 78.0 | 112.4 | 62.4 | 41.1 | 36.6 |
 
-### Peak memory growth in dumps, MB
+### Historical process peak delta in dumps, MiB
 
 | document | oxjson | orjson | msgspec | ssrjson | yyjson | pysimdjson | ujson | rapidjson | json |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| small config, 34 KB | 0.1 | **0.0** | **0.0** | **0.0** | 0.1 | - | 0.0 | **0.0** | 0.0 |
-| float array, 150 KB | 0.4 | 2.0 | **0.3** | 0.4 | 0.7 | - | **0.3** | 0.3 | 0.3 |
-| API reply with text, 647 KB | **0.0** | **0.0** | **0.0** | **0.0** | 3.0 | - | **0.0** | **0.0** | 0.7 |
-| catalog, 1.8 MB | **0.0** | **0.0** | **0.0** | **0.0** | 1.2 | - | **0.0** | **0.0** | **0.0** |
-| coordinates, 2.2 MB | 1.3 | 4.9 | 2.5 | **1.2** | 9.8 | - | 4.2 | 3.9 | 3.1 |
-| 3D mesh, 3.0 MB | 0.3 | 16.2 | 0.8 | **0.0** | 13.9 | - | 0.2 | 0.4 | 0.8 |
-| uniform records, 4.9 MB | 8.7 | **3.5** | 4.7 | 7.2 | 34.9 | - | 8.3 | 6.1 | 7.0 |
+| small config, 34 KB | 0.1 | - | - | - | 0.1 | - | <0.1 | - | <0.1 |
+| float array, 150 KB | 0.4 | 2.0 | 0.3 | 0.4 | 0.7 | - | 0.3 | 0.3 | 0.3 |
+| API reply with text, 647 KB | - | - | - | - | 3.0 | - | - | - | 0.7 |
+| catalog, 1.8 MB | - | - | - | - | 1.2 | - | - | - | - |
+| coordinates, 2.2 MB | 1.3 | 4.9 | 2.5 | 1.2 | 9.8 | - | 4.2 | 3.9 | 3.1 |
+| 3D mesh, 3.0 MB | 0.3 | 16.2 | 0.8 | - | 13.9 | - | 0.2 | 0.4 | 0.8 |
+| uniform records, 4.9 MB | 8.7 | 3.5 | 4.7 | 7.2 | 34.9 | - | 8.3 | 6.1 | 7.0 |
 
 ## Python 3.14.0rc1, Windows AMD64
 
@@ -321,26 +333,26 @@ CPU: AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD
 | 3D mesh, 3.0 MB | **3.06 ms** | 4.93 ms | 6.93 ms | 3.33 ms | 12.21 ms | 36.53 ms | 35.93 ms |
 | uniform records, 4.9 MB | **5.94 ms** | 6.25 ms | 8.86 ms | 5.96 ms | 27.71 ms | 28.54 ms | 46.14 ms |
 
-### Peak memory growth in loads, MB
+### Historical process peak delta in loads, MiB
 
 | document | oxjson | orjson | msgspec | ssrjson | ujson | rapidjson | json |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| small config, 34 KB | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** |
-| float array, 150 KB | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** |
-| API reply with text, 647 KB | **0.0** | 4.5 | **0.0** | **0.0** | **0.0** | 1.3 | 1.4 |
-| catalog, 1.8 MB | 1.7 | 20.7 | **0.0** | 7.9 | 7.7 | 7.8 | 4.8 |
-| coordinates, 2.2 MB | 6.7 | 31.5 | **6.1** | 16.3 | 14.4 | 10.6 | 9.1 |
-| 3D mesh, 3.0 MB | 10.2 | 43.1 | **9.2** | 24.8 | 22.9 | 15.1 | 12.6 |
-| uniform records, 4.9 MB | **31.0** | 92.7 | 37.3 | 60.3 | 60.8 | 40.1 | 35.5 |
+| small config, 34 KB | - | - | - | - | - | - | - |
+| float array, 150 KB | - | - | - | - | - | - | - |
+| API reply with text, 647 KB | - | 4.5 | - | - | - | 1.3 | 1.4 |
+| catalog, 1.8 MB | 1.7 | 20.7 | <0.1 | 7.9 | 7.7 | 7.8 | 4.8 |
+| coordinates, 2.2 MB | 6.7 | 31.5 | 6.1 | 16.3 | 14.4 | 10.6 | 9.1 |
+| 3D mesh, 3.0 MB | 10.2 | 43.1 | 9.2 | 24.8 | 22.9 | 15.1 | 12.6 |
+| uniform records, 4.9 MB | 31.0 | 92.7 | 37.3 | 60.3 | 60.8 | 40.1 | 35.5 |
 
-### Peak memory growth in dumps, MB
+### Historical process peak delta in dumps, MiB
 
 | document | oxjson | orjson | msgspec | ssrjson | ujson | rapidjson | json |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| small config, 34 KB | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** |
-| float array, 150 KB | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** |
-| API reply with text, 647 KB | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** |
-| catalog, 1.8 MB | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | **0.0** | 0.1 |
-| coordinates, 2.2 MB | **0.2** | 3.3 | 3.5 | 1.7 | 1.7 | 2.7 | 2.6 |
-| 3D mesh, 3.0 MB | **0.0** | 16.2 | 3.3 | **0.0** | 0.6 | 0.5 | 1.4 |
-| uniform records, 4.9 MB | 7.4 | **3.9** | 4.7 | 7.0 | 10.0 | 6.4 | 5.6 |
+| small config, 34 KB | - | - | - | - | - | - | - |
+| float array, 150 KB | - | - | - | - | - | - | - |
+| API reply with text, 647 KB | - | - | - | - | - | - | - |
+| catalog, 1.8 MB | - | - | - | - | - | - | 0.1 |
+| coordinates, 2.2 MB | 0.2 | 3.3 | 3.5 | 1.7 | 1.7 | 2.7 | 2.6 |
+| 3D mesh, 3.0 MB | - | 16.2 | 3.3 | - | 0.6 | 0.5 | 1.4 |
+| uniform records, 4.9 MB | 7.4 | 3.9 | 4.7 | 7.0 | 10.0 | 6.4 | 5.6 |

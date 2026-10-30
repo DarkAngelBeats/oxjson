@@ -1,0 +1,1300 @@
+{
+  "schema_version": 2,
+  "started_utc": "2026-10-28T21:13:32.815447+00:00",
+  "audit_script_sha256": "38dfcae33f0cbf65adfabbe270ae872d127b221ead95cd843d0c7ed5ae4dc099",
+  "metrics_script_sha256": "57e1e8fdcb344af4ff2bcf59b2d9f06e9cafc6a37183317cfc1a03bc1836e79d",
+  "python": "3.11.4 (tags/v3.11.4:d2340ef, Jun  7 2023, 05:45:37) [MSC v.1934 64 bit (AMD64)]",
+  "executable": "F:\\Repositories\\json-parsers\\json_parser_nasm\\build\\current-audit-env\\Scripts\\python.exe",
+  "command": [
+    "bench/memory_audit.py",
+    "--docs",
+    "testdata/bench/large_50k.json",
+    "--operations",
+    "loads",
+    "--repeats",
+    "3",
+    "--rounds",
+    "30",
+    "--calls",
+    "30",
+    "--retain",
+    "6",
+    "--output",
+    "bench/results/memory-current-large-soak-20261029.json"
+  ],
+  "processor": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "metric": "private_commit_bytes",
+  "portable_requested": false,
+  "gc_enabled_in_workers": true,
+  "settings": {
+    "output": "bench\\results\\memory-current-large-soak-20261029.json",
+    "libs": [
+      "oxjson",
+      "orjson"
+    ],
+    "docs": [
+      "testdata/bench/large_50k.json"
+    ],
+    "operations": [
+      "loads"
+    ],
+    "repeats": 3,
+    "rounds": 30,
+    "calls": 30,
+    "retain": 6,
+    "portable": false,
+    "worker": null
+  },
+  "samples": [
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads",
+      "workload": "document",
+      "malformed_input_sha256": null,
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "509f71bb202c4d1f2e2fa7dde927966f3327c64c1bb9b046273e1bfdd577daff"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 17313792,
+        "peak_bytes": 17313792,
+        "python_blocks": 41965
+      },
+      "held": {
+        "current_bytes": 52387840,
+        "peak_bytes": 52387840,
+        "python_blocks": 541463
+      },
+      "released": {
+        "current_bytes": 19673088,
+        "peak_bytes": 52387840,
+        "python_blocks": 41980
+      },
+      "warm": {
+        "current_bytes": 20729856,
+        "peak_bytes": 223539200,
+        "python_blocks": 41995
+      },
+      "held_many": {
+        "current_bytes": 222572544,
+        "peak_bytes": 223539200,
+        "python_blocks": 3038915
+      },
+      "released_many": {
+        "current_bytes": 20545536,
+        "peak_bytes": 223539200,
+        "python_blocks": 41990
+      },
+      "retain_count": 6,
+      "rounds": [
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42002
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42008
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42013
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42018
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42023
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42028
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42033
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42038
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42043
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42048
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42053
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42058
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42063
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42068
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42073
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42078
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42083
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42088
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42093
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42098
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42103
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42108
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42113
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42118
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42123
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42128
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42133
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42138
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42143
+        },
+        {
+          "current_bytes": 20729856,
+          "peak_bytes": 223539200,
+          "python_blocks": 42148
+        }
+      ],
+      "calls_per_round": 30,
+      "first_call_peak_delta_bytes": 35074048,
+      "post_warm_growth_bytes": 0,
+      "maximum_post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads",
+      "workload": "document",
+      "malformed_input_sha256": null,
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "509f71bb202c4d1f2e2fa7dde927966f3327c64c1bb9b046273e1bfdd577daff"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 17473536,
+        "peak_bytes": 17473536,
+        "python_blocks": 41965
+      },
+      "held": {
+        "current_bytes": 51499008,
+        "peak_bytes": 52162560,
+        "python_blocks": 541463
+      },
+      "released": {
+        "current_bytes": 19587072,
+        "peak_bytes": 52162560,
+        "python_blocks": 41980
+      },
+      "warm": {
+        "current_bytes": 20733952,
+        "peak_bytes": 223322112,
+        "python_blocks": 41995
+      },
+      "held_many": {
+        "current_bytes": 222736384,
+        "peak_bytes": 223322112,
+        "python_blocks": 3038915
+      },
+      "released_many": {
+        "current_bytes": 20725760,
+        "peak_bytes": 223322112,
+        "python_blocks": 41990
+      },
+      "retain_count": 6,
+      "rounds": [
+        {
+          "current_bytes": 20733952,
+          "peak_bytes": 223322112,
+          "python_blocks": 42002
+        },
+        {
+          "current_bytes": 20733952,
+          "peak_bytes": 223322112,
+          "python_blocks": 42008
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42013
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42018
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42023
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42028
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42033
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42038
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42043
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42048
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42053
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42058
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42063
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42068
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42073
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42078
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42083
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42088
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42093
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42098
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42103
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42108
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42113
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42118
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42123
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42128
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42133
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42138
+        },
+        {
+          "current_bytes": 21778432,
+          "peak_bytes": 223322112,
+          "python_blocks": 42143
+        },
+        {
+          "current_bytes": 20733952,
+          "peak_bytes": 223322112,
+          "python_blocks": 42148
+        }
+      ],
+      "calls_per_round": 30,
+      "first_call_peak_delta_bytes": 34689024,
+      "post_warm_growth_bytes": 0,
+      "maximum_post_warm_growth_bytes": 1044480,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads",
+      "workload": "document",
+      "malformed_input_sha256": null,
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "509f71bb202c4d1f2e2fa7dde927966f3327c64c1bb9b046273e1bfdd577daff"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 17485824,
+        "peak_bytes": 17485824,
+        "python_blocks": 41965
+      },
+      "held": {
+        "current_bytes": 52154368,
+        "peak_bytes": 52154368,
+        "python_blocks": 541463
+      },
+      "released": {
+        "current_bytes": 19570688,
+        "peak_bytes": 52154368,
+        "python_blocks": 41980
+      },
+      "warm": {
+        "current_bytes": 20643840,
+        "peak_bytes": 223313920,
+        "python_blocks": 41995
+      },
+      "held_many": {
+        "current_bytes": 222654464,
+        "peak_bytes": 223313920,
+        "python_blocks": 3038915
+      },
+      "released_many": {
+        "current_bytes": 20627456,
+        "peak_bytes": 223313920,
+        "python_blocks": 41990
+      },
+      "retain_count": 6,
+      "rounds": [
+        {
+          "current_bytes": 20643840,
+          "peak_bytes": 223313920,
+          "python_blocks": 42002
+        },
+        {
+          "current_bytes": 20643840,
+          "peak_bytes": 223313920,
+          "python_blocks": 42008
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42013
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42018
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42023
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42028
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42033
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42038
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42043
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42048
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42053
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42058
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42063
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42068
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42073
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42078
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42083
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42088
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42093
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42098
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42103
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42108
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42113
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42118
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42123
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42128
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42133
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42138
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42143
+        },
+        {
+          "current_bytes": 21700608,
+          "peak_bytes": 223313920,
+          "python_blocks": 42148
+        }
+      ],
+      "calls_per_round": 30,
+      "first_call_peak_delta_bytes": 34668544,
+      "post_warm_growth_bytes": 1056768,
+      "maximum_post_warm_growth_bytes": 1056768,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "orjson",
+      "version": "3.13.0",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads",
+      "workload": "document",
+      "malformed_input_sha256": null,
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\build\\current-audit-env\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "947606ff10516f290ca3f8a3dd6077510a2ac7845161369fbc197ff3750a3c5b"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 17952768,
+        "peak_bytes": 17952768,
+        "python_blocks": 52104
+      },
+      "held": {
+        "current_bytes": 62484480,
+        "peak_bytes": 121602048,
+        "python_blocks": 701604
+      },
+      "released": {
+        "current_bytes": 20008960,
+        "peak_bytes": 121602048,
+        "python_blocks": 52121
+      },
+      "warm": {
+        "current_bytes": 21078016,
+        "peak_bytes": 341065728,
+        "python_blocks": 52136
+      },
+      "held_many": {
+        "current_bytes": 281948160,
+        "peak_bytes": 341065728,
+        "python_blocks": 3949056
+      },
+      "released_many": {
+        "current_bytes": 21065728,
+        "peak_bytes": 341065728,
+        "python_blocks": 52131
+      },
+      "retain_count": 6,
+      "rounds": [
+        {
+          "current_bytes": 21073920,
+          "peak_bytes": 341065728,
+          "python_blocks": 52143
+        },
+        {
+          "current_bytes": 21078016,
+          "peak_bytes": 341065728,
+          "python_blocks": 52149
+        },
+        {
+          "current_bytes": 21073920,
+          "peak_bytes": 341065728,
+          "python_blocks": 52154
+        },
+        {
+          "current_bytes": 21073920,
+          "peak_bytes": 341065728,
+          "python_blocks": 52159
+        },
+        {
+          "current_bytes": 21078016,
+          "peak_bytes": 341065728,
+          "python_blocks": 52164
+        },
+        {
+          "current_bytes": 21073920,
+          "peak_bytes": 341065728,
+          "python_blocks": 52169
+        },
+        {
+          "current_bytes": 21078016,
+          "peak_bytes": 341065728,
+          "python_blocks": 52174
+        },
+        {
+          "current_bytes": 21073920,
+          "peak_bytes": 341065728,
+          "python_blocks": 52179
+        },
+        {
+          "current_bytes": 21078016,
+          "peak_bytes": 341065728,
+          "python_blocks": 52184
+        },
+        {
+          "current_bytes": 21078016,
+          "peak_bytes": 341065728,
+          "python_blocks": 52189
+        },
+        {
+          "current_bytes": 21078016,
+          "peak_bytes": 341065728,
+          "python_blocks": 52194
+        },
+        {
+          "current_bytes": 21073920,
+          "peak_bytes": 341065728,
+          "python_blocks": 52199
+        },
+        {
+          "current_bytes": 21078016,
+          "peak_bytes": 341065728,
+          "python_blocks": 52204
+        },
+        {
+          "current_bytes": 21078016,
+          "peak_bytes": 341065728,
+          "python_blocks": 52209
+        },
+        {
+          "current_bytes": 21078016,
+          "peak_bytes": 341065728,
+          "python_blocks": 52214
+        },
+        {
+          "current_bytes": 21073920,
+          "peak_bytes": 341065728,
+          "python_blocks": 52219
+        },
+        {
+          "current_bytes": 21078016,
+          "peak_bytes": 341065728,
+          "python_blocks": 52224
+        },
+        {
+          "current_bytes": 21078016,
+          "peak_bytes": 341065728,
+          "python_blocks": 52229
+        },
+        {
+          "current_bytes": 21078016,
+          "peak_bytes": 341065728,
+          "python_blocks": 52234
+        },
+        {
+          "current_bytes": 21078016,
+          "peak_bytes": 341065728,
+          "python_blocks": 52239
+        },
+        {
+          "current_bytes": 21073920,
+          "peak_bytes": 341065728,
+          "python_blocks": 52244
+        },
+        {
+          "current_bytes": 21078016,
+          "peak_bytes": 341065728,
+          "python_blocks": 52249
+        },
+        {
+          "current_bytes": 21078016,
+          "peak_bytes": 341065728,
+          "python_blocks": 52254
+        },
+        {
+          "current_bytes": 21073920,
+          "peak_bytes": 341065728,
+          "python_blocks": 52259
+        },
+        {
+          "current_bytes": 21078016,
+          "peak_bytes": 341065728,
+          "python_blocks": 52264
+        },
+        {
+          "current_bytes": 20959232,
+          "peak_bytes": 341065728,
+          "python_blocks": 52269
+        },
+        {
+          "current_bytes": 20959232,
+          "peak_bytes": 341065728,
+          "python_blocks": 52274
+        },
+        {
+          "current_bytes": 20959232,
+          "peak_bytes": 341065728,
+          "python_blocks": 52279
+        },
+        {
+          "current_bytes": 20959232,
+          "peak_bytes": 341065728,
+          "python_blocks": 52284
+        },
+        {
+          "current_bytes": 20959232,
+          "peak_bytes": 341065728,
+          "python_blocks": 52289
+        }
+      ],
+      "calls_per_round": 30,
+      "first_call_peak_delta_bytes": 103649280,
+      "post_warm_growth_bytes": -118784,
+      "maximum_post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "orjson",
+      "version": "3.13.0",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads",
+      "workload": "document",
+      "malformed_input_sha256": null,
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\build\\current-audit-env\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "947606ff10516f290ca3f8a3dd6077510a2ac7845161369fbc197ff3750a3c5b"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 17833984,
+        "peak_bytes": 17833984,
+        "python_blocks": 52104
+      },
+      "held": {
+        "current_bytes": 62365696,
+        "peak_bytes": 121487360,
+        "python_blocks": 701604
+      },
+      "released": {
+        "current_bytes": 19902464,
+        "peak_bytes": 121487360,
+        "python_blocks": 52121
+      },
+      "warm": {
+        "current_bytes": 20975616,
+        "peak_bytes": 340955136,
+        "python_blocks": 52136
+      },
+      "held_many": {
+        "current_bytes": 281833472,
+        "peak_bytes": 340955136,
+        "python_blocks": 3949056
+      },
+      "released_many": {
+        "current_bytes": 20967424,
+        "peak_bytes": 340955136,
+        "python_blocks": 52131
+      },
+      "retain_count": 6,
+      "rounds": [
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52143
+        },
+        {
+          "current_bytes": 20979712,
+          "peak_bytes": 340955136,
+          "python_blocks": 52149
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52154
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52159
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52164
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52169
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52174
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52179
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52184
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52189
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52194
+        },
+        {
+          "current_bytes": 20979712,
+          "peak_bytes": 340955136,
+          "python_blocks": 52199
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52204
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52209
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52214
+        },
+        {
+          "current_bytes": 20979712,
+          "peak_bytes": 340955136,
+          "python_blocks": 52219
+        },
+        {
+          "current_bytes": 20979712,
+          "peak_bytes": 340955136,
+          "python_blocks": 52224
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52229
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52234
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52239
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52244
+        },
+        {
+          "current_bytes": 20979712,
+          "peak_bytes": 340955136,
+          "python_blocks": 52249
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52254
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52259
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52264
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52269
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52274
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52279
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52284
+        },
+        {
+          "current_bytes": 20975616,
+          "peak_bytes": 340955136,
+          "python_blocks": 52289
+        }
+      ],
+      "calls_per_round": 30,
+      "first_call_peak_delta_bytes": 103653376,
+      "post_warm_growth_bytes": 0,
+      "maximum_post_warm_growth_bytes": 4096,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "orjson",
+      "version": "3.13.0",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads",
+      "workload": "document",
+      "malformed_input_sha256": null,
+      "input_sha256": "9fdbb2d0f6b63dd71925438385d8eea8fc37342910b716848b3c75e94548ba3d",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\build\\current-audit-env\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "947606ff10516f290ca3f8a3dd6077510a2ac7845161369fbc197ff3750a3c5b"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 18059264,
+        "peak_bytes": 18059264,
+        "python_blocks": 52103
+      },
+      "held": {
+        "current_bytes": 62595072,
+        "peak_bytes": 121716736,
+        "python_blocks": 701603
+      },
+      "released": {
+        "current_bytes": 20127744,
+        "peak_bytes": 121716736,
+        "python_blocks": 52120
+      },
+      "warm": {
+        "current_bytes": 21598208,
+        "peak_bytes": 341172224,
+        "python_blocks": 52135
+      },
+      "held_many": {
+        "current_bytes": 282050560,
+        "peak_bytes": 341172224,
+        "python_blocks": 3949055
+      },
+      "released_many": {
+        "current_bytes": 21196800,
+        "peak_bytes": 341172224,
+        "python_blocks": 52130
+      },
+      "retain_count": 6,
+      "rounds": [
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52142
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52148
+        },
+        {
+          "current_bytes": 21602304,
+          "peak_bytes": 341172224,
+          "python_blocks": 52153
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52158
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52163
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52168
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52173
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52178
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52183
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52188
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52193
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52198
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52203
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52208
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52213
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52218
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52223
+        },
+        {
+          "current_bytes": 21602304,
+          "peak_bytes": 341172224,
+          "python_blocks": 52228
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52233
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52238
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52243
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52248
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52253
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52258
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52263
+        },
+        {
+          "current_bytes": 21602304,
+          "peak_bytes": 341172224,
+          "python_blocks": 52268
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52273
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52278
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52283
+        },
+        {
+          "current_bytes": 21598208,
+          "peak_bytes": 341172224,
+          "python_blocks": 52288
+        }
+      ],
+      "calls_per_round": 30,
+      "first_call_peak_delta_bytes": 103657472,
+      "post_warm_growth_bytes": 0,
+      "maximum_post_warm_growth_bytes": 4096,
+      "growth_flag": false,
+      "repeat": 2
+    }
+  ],
+  "summaries": [
+    {
+      "library": "oxjson",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads",
+      "peak_delta_min": 34668544,
+      "peak_delta_median": 34689024,
+      "peak_delta_max": 35074048,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "orjson",
+      "document": "testdata/bench/large_50k.json",
+      "operation": "loads",
+      "peak_delta_min": 103649280,
+      "peak_delta_median": 103653376,
+      "peak_delta_max": 103657472,
+      "peak_delta_inconclusive": false
+    }
+  ],
+  "errors": [],
+  "interpretation": "Process-level measurements include runtime and results. Zero HWM delta is inconclusive. Growth flags require investigation; absence of a flag does not prove no leaks. Threshold: 8 MiB at any sampled round after warmup.",
+  "finished_utc": "2026-10-28T21:18:39.152680+00:00",
+  "elapsed_s": 306.34400000000096,
+  "status": "NO_GROWTH_FLAG"
+}

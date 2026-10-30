@@ -7,7 +7,6 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#define JL_OK 1
 #define JL_E_MEMORY (-4)
 #define JL_E_INVALID (-5)
 #define JL_E_NUMBER (-14)

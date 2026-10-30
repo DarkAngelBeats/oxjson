@@ -1,0 +1,11 @@
+--- a/include/json_f64_fmt.h
++++ b/include/json_f64_fmt.h
+@@ -194,7 +194,7 @@
+ /* "e+XX" / "e-X" / "e-XXX" at o, as orjson 3.13 writes it: no zero padding
+  * (e-6, e-10). A positive exponent only comes after the decimal range, so it
+  * always has two or three digits (e+16). Returns the end. */
+-static inline char *jf64_exp(char *o, int x)
++__attribute__((noinline)) static char *jf64_exp(char *o, int x)
+ {
+     o[0] = 'e';
+     o[1] = '+';

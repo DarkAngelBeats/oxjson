@@ -1,0 +1,2116 @@
+{
+  "schema_version": 2,
+  "started_utc": "2026-10-28T21:18:39.285589+00:00",
+  "audit_script_sha256": "38dfcae33f0cbf65adfabbe270ae872d127b221ead95cd843d0c7ed5ae4dc099",
+  "metrics_script_sha256": "57e1e8fdcb344af4ff2bcf59b2d9f06e9cafc6a37183317cfc1a03bc1836e79d",
+  "python": "3.11.4 (tags/v3.11.4:d2340ef, Jun  7 2023, 05:45:37) [MSC v.1934 64 bit (AMD64)]",
+  "executable": "F:\\Repositories\\json-parsers\\json_parser_nasm\\build\\current-audit-env\\Scripts\\python.exe",
+  "command": [
+    "bench/memory_audit.py",
+    "--docs",
+    "testdata/diverse/canada.json",
+    "--operations",
+    "dumps",
+    "--repeats",
+    "5",
+    "--rounds",
+    "30",
+    "--calls",
+    "100",
+    "--retain",
+    "6",
+    "--output",
+    "bench/results/memory-current-canada-soak-20261029.json"
+  ],
+  "processor": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "metric": "private_commit_bytes",
+  "portable_requested": false,
+  "gc_enabled_in_workers": true,
+  "settings": {
+    "output": "bench\\results\\memory-current-canada-soak-20261029.json",
+    "libs": [
+      "oxjson",
+      "orjson"
+    ],
+    "docs": [
+      "testdata/diverse/canada.json"
+    ],
+    "operations": [
+      "dumps"
+    ],
+    "repeats": 5,
+    "rounds": 30,
+    "calls": 100,
+    "retain": 6,
+    "portable": false,
+    "worker": null
+  },
+  "samples": [
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "workload": "document",
+      "malformed_input_sha256": null,
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "509f71bb202c4d1f2e2fa7dde927966f3327c64c1bb9b046273e1bfdd577daff"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 23552000,
+        "peak_bytes": 25550848,
+        "python_blocks": 265195
+      },
+      "held": {
+        "current_bytes": 26697728,
+        "peak_bytes": 27803648,
+        "python_blocks": 265201
+      },
+      "released": {
+        "current_bytes": 24592384,
+        "peak_bytes": 27803648,
+        "python_blocks": 265205
+      },
+      "warm": {
+        "current_bytes": 24592384,
+        "peak_bytes": 38785024,
+        "python_blocks": 265220
+      },
+      "held_many": {
+        "current_bytes": 38752256,
+        "peak_bytes": 38785024,
+        "python_blocks": 265218
+      },
+      "released_many": {
+        "current_bytes": 24592384,
+        "peak_bytes": 38785024,
+        "python_blocks": 265215
+      },
+      "retain_count": 6,
+      "rounds": [
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265227
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265233
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265238
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265243
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265248
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265253
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265258
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265263
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265268
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265273
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265278
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265283
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265288
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265293
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265298
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265303
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265308
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265313
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265318
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265323
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265328
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265333
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265338
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265343
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265348
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265353
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265358
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265363
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265368
+        },
+        {
+          "current_bytes": 24592384,
+          "peak_bytes": 38785024,
+          "python_blocks": 265373
+        }
+      ],
+      "calls_per_round": 100,
+      "first_call_peak_delta_bytes": 2252800,
+      "post_warm_growth_bytes": 0,
+      "maximum_post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "workload": "document",
+      "malformed_input_sha256": null,
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "509f71bb202c4d1f2e2fa7dde927966f3327c64c1bb9b046273e1bfdd577daff"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 24068096,
+        "peak_bytes": 25882624,
+        "python_blocks": 265195
+      },
+      "held": {
+        "current_bytes": 26210304,
+        "peak_bytes": 27283456,
+        "python_blocks": 265201
+      },
+      "released": {
+        "current_bytes": 24104960,
+        "peak_bytes": 27283456,
+        "python_blocks": 265205
+      },
+      "warm": {
+        "current_bytes": 24104960,
+        "peak_bytes": 38289408,
+        "python_blocks": 265220
+      },
+      "held_many": {
+        "current_bytes": 38264832,
+        "peak_bytes": 38289408,
+        "python_blocks": 265218
+      },
+      "released_many": {
+        "current_bytes": 24104960,
+        "peak_bytes": 38289408,
+        "python_blocks": 265215
+      },
+      "retain_count": 6,
+      "rounds": [
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265227
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265233
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265238
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265243
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265248
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265253
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265258
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265263
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265268
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265273
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265278
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265283
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265288
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265293
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265298
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265303
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265308
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265313
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265318
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265323
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265328
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265333
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265338
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265343
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265348
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265353
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265358
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265363
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265368
+        },
+        {
+          "current_bytes": 24104960,
+          "peak_bytes": 38289408,
+          "python_blocks": 265373
+        }
+      ],
+      "calls_per_round": 100,
+      "first_call_peak_delta_bytes": 1400832,
+      "post_warm_growth_bytes": 0,
+      "maximum_post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "workload": "document",
+      "malformed_input_sha256": null,
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "509f71bb202c4d1f2e2fa7dde927966f3327c64c1bb9b046273e1bfdd577daff"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 23617536,
+        "peak_bytes": 25554944,
+        "python_blocks": 265195
+      },
+      "held": {
+        "current_bytes": 25763840,
+        "peak_bytes": 26845184,
+        "python_blocks": 265201
+      },
+      "released": {
+        "current_bytes": 23658496,
+        "peak_bytes": 26845184,
+        "python_blocks": 265205
+      },
+      "warm": {
+        "current_bytes": 23658496,
+        "peak_bytes": 37830656,
+        "python_blocks": 265220
+      },
+      "held_many": {
+        "current_bytes": 37818368,
+        "peak_bytes": 37830656,
+        "python_blocks": 265218
+      },
+      "released_many": {
+        "current_bytes": 23658496,
+        "peak_bytes": 37830656,
+        "python_blocks": 265215
+      },
+      "retain_count": 6,
+      "rounds": [
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265227
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265233
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265238
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265243
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265248
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265253
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265258
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265263
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265268
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265273
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265278
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265283
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265288
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265293
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265298
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265303
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265308
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265313
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265318
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265323
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265328
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265333
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265338
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265343
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265348
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265353
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265358
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265363
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265368
+        },
+        {
+          "current_bytes": 23658496,
+          "peak_bytes": 37830656,
+          "python_blocks": 265373
+        }
+      ],
+      "calls_per_round": 100,
+      "first_call_peak_delta_bytes": 1290240,
+      "post_warm_growth_bytes": 0,
+      "maximum_post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "workload": "document",
+      "malformed_input_sha256": null,
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "509f71bb202c4d1f2e2fa7dde927966f3327c64c1bb9b046273e1bfdd577daff"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 23961600,
+        "peak_bytes": 25894912,
+        "python_blocks": 265195
+      },
+      "held": {
+        "current_bytes": 27111424,
+        "peak_bytes": 28213248,
+        "python_blocks": 265201
+      },
+      "released": {
+        "current_bytes": 25006080,
+        "peak_bytes": 28213248,
+        "python_blocks": 265205
+      },
+      "warm": {
+        "current_bytes": 25006080,
+        "peak_bytes": 39182336,
+        "python_blocks": 265220
+      },
+      "held_many": {
+        "current_bytes": 39165952,
+        "peak_bytes": 39182336,
+        "python_blocks": 265218
+      },
+      "released_many": {
+        "current_bytes": 25006080,
+        "peak_bytes": 39182336,
+        "python_blocks": 265215
+      },
+      "retain_count": 6,
+      "rounds": [
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265227
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265233
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265238
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265243
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265248
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265253
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265258
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265263
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265268
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265273
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265278
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265283
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265288
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265293
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265298
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265303
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265308
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265313
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265318
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265323
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265328
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265333
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265338
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265343
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265348
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265353
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265358
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265363
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265368
+        },
+        {
+          "current_bytes": 25006080,
+          "peak_bytes": 39182336,
+          "python_blocks": 265373
+        }
+      ],
+      "calls_per_round": 100,
+      "first_call_peak_delta_bytes": 2318336,
+      "post_warm_growth_bytes": 0,
+      "maximum_post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 3
+    },
+    {
+      "library": "oxjson",
+      "version": "0.4.1",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "workload": "document",
+      "malformed_input_sha256": null,
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\oxjson\\oxjson.cp311-win_amd64.pyd",
+          "sha256": "509f71bb202c4d1f2e2fa7dde927966f3327c64c1bb9b046273e1bfdd577daff"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 24133632,
+        "peak_bytes": 26034176,
+        "python_blocks": 265195
+      },
+      "held": {
+        "current_bytes": 27283456,
+        "peak_bytes": 28360704,
+        "python_blocks": 265201
+      },
+      "released": {
+        "current_bytes": 25178112,
+        "peak_bytes": 28360704,
+        "python_blocks": 265205
+      },
+      "warm": {
+        "current_bytes": 25178112,
+        "peak_bytes": 39358464,
+        "python_blocks": 265220
+      },
+      "held_many": {
+        "current_bytes": 39337984,
+        "peak_bytes": 39358464,
+        "python_blocks": 265218
+      },
+      "released_many": {
+        "current_bytes": 25178112,
+        "peak_bytes": 39358464,
+        "python_blocks": 265215
+      },
+      "retain_count": 6,
+      "rounds": [
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265227
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265233
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265238
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265243
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265248
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265253
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265258
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265263
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265268
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265273
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265278
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265283
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265288
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265293
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265298
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265303
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265308
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265313
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265318
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265323
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265328
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265333
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265338
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265343
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265348
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265353
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265358
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265363
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265368
+        },
+        {
+          "current_bytes": 25178112,
+          "peak_bytes": 39358464,
+          "python_blocks": 265373
+        }
+      ],
+      "calls_per_round": 100,
+      "first_call_peak_delta_bytes": 2326528,
+      "post_warm_growth_bytes": 0,
+      "maximum_post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 4
+    },
+    {
+      "library": "orjson",
+      "version": "3.13.0",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "workload": "document",
+      "malformed_input_sha256": null,
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\build\\current-audit-env\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "947606ff10516f290ca3f8a3dd6077510a2ac7845161369fbc197ff3750a3c5b"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 25317376,
+        "peak_bytes": 27213824,
+        "python_blocks": 275333
+      },
+      "held": {
+        "current_bytes": 29483008,
+        "peak_bytes": 31440896,
+        "python_blocks": 275339
+      },
+      "released": {
+        "current_bytes": 25317376,
+        "peak_bytes": 31440896,
+        "python_blocks": 275343
+      },
+      "warm": {
+        "current_bytes": 25366528,
+        "peak_bytes": 52400128,
+        "python_blocks": 275358
+      },
+      "held_many": {
+        "current_bytes": 50376704,
+        "peak_bytes": 52400128,
+        "python_blocks": 275356
+      },
+      "released_many": {
+        "current_bytes": 25382912,
+        "peak_bytes": 52400128,
+        "python_blocks": 275353
+      },
+      "retain_count": 6,
+      "rounds": [
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275365
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275371
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275376
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275381
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275386
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275391
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275396
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275401
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275406
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275411
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275416
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275421
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275426
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275431
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275436
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275441
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275446
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275451
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275456
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275461
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275466
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275471
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275476
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275481
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275486
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275491
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275496
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275501
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275506
+        },
+        {
+          "current_bytes": 25366528,
+          "peak_bytes": 52400128,
+          "python_blocks": 275511
+        }
+      ],
+      "calls_per_round": 100,
+      "first_call_peak_delta_bytes": 4227072,
+      "post_warm_growth_bytes": 0,
+      "maximum_post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 0
+    },
+    {
+      "library": "orjson",
+      "version": "3.13.0",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "workload": "document",
+      "malformed_input_sha256": null,
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\build\\current-audit-env\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "947606ff10516f290ca3f8a3dd6077510a2ac7845161369fbc197ff3750a3c5b"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 25284608,
+        "peak_bytes": 27181056,
+        "python_blocks": 275333
+      },
+      "held": {
+        "current_bytes": 29483008,
+        "peak_bytes": 31498240,
+        "python_blocks": 275339
+      },
+      "released": {
+        "current_bytes": 25317376,
+        "peak_bytes": 31498240,
+        "python_blocks": 275343
+      },
+      "warm": {
+        "current_bytes": 25309184,
+        "peak_bytes": 52297728,
+        "python_blocks": 275358
+      },
+      "held_many": {
+        "current_bytes": 50302976,
+        "peak_bytes": 52297728,
+        "python_blocks": 275356
+      },
+      "released_many": {
+        "current_bytes": 25309184,
+        "peak_bytes": 52297728,
+        "python_blocks": 275353
+      },
+      "retain_count": 6,
+      "rounds": [
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275365
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275371
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275376
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275381
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275386
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275391
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275396
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275401
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275406
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275411
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275416
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275421
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275426
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275431
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275436
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275441
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275446
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275451
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275456
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275461
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275466
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275471
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275476
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275481
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275486
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275491
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275496
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275501
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275506
+        },
+        {
+          "current_bytes": 25309184,
+          "peak_bytes": 52297728,
+          "python_blocks": 275511
+        }
+      ],
+      "calls_per_round": 100,
+      "first_call_peak_delta_bytes": 4317184,
+      "post_warm_growth_bytes": 0,
+      "maximum_post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 1
+    },
+    {
+      "library": "orjson",
+      "version": "3.13.0",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "workload": "document",
+      "malformed_input_sha256": null,
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\build\\current-audit-env\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "947606ff10516f290ca3f8a3dd6077510a2ac7845161369fbc197ff3750a3c5b"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 25067520,
+        "peak_bytes": 27041792,
+        "python_blocks": 275332
+      },
+      "held": {
+        "current_bytes": 29200384,
+        "peak_bytes": 31236096,
+        "python_blocks": 275338
+      },
+      "released": {
+        "current_bytes": 25034752,
+        "peak_bytes": 31236096,
+        "python_blocks": 275342
+      },
+      "warm": {
+        "current_bytes": 25100288,
+        "peak_bytes": 52039680,
+        "python_blocks": 275357
+      },
+      "held_many": {
+        "current_bytes": 50028544,
+        "peak_bytes": 52039680,
+        "python_blocks": 275355
+      },
+      "released_many": {
+        "current_bytes": 25034752,
+        "peak_bytes": 52039680,
+        "python_blocks": 275352
+      },
+      "retain_count": 6,
+      "rounds": [
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275364
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275370
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275375
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275380
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275385
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275390
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275395
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275400
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275405
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275410
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275415
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275420
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275425
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275430
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275435
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275440
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275445
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275450
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275455
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275460
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275465
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275470
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275475
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275480
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275485
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275490
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275495
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275500
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275505
+        },
+        {
+          "current_bytes": 25100288,
+          "peak_bytes": 52039680,
+          "python_blocks": 275510
+        }
+      ],
+      "calls_per_round": 100,
+      "first_call_peak_delta_bytes": 4194304,
+      "post_warm_growth_bytes": 0,
+      "maximum_post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 2
+    },
+    {
+      "library": "orjson",
+      "version": "3.13.0",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "workload": "document",
+      "malformed_input_sha256": null,
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\build\\current-audit-env\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "947606ff10516f290ca3f8a3dd6077510a2ac7845161369fbc197ff3750a3c5b"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 25100288,
+        "peak_bytes": 26980352,
+        "python_blocks": 275334
+      },
+      "held": {
+        "current_bytes": 29241344,
+        "peak_bytes": 31244288,
+        "python_blocks": 275340
+      },
+      "released": {
+        "current_bytes": 25075712,
+        "peak_bytes": 31244288,
+        "python_blocks": 275344
+      },
+      "warm": {
+        "current_bytes": 25116672,
+        "peak_bytes": 52019200,
+        "python_blocks": 275359
+      },
+      "held_many": {
+        "current_bytes": 50044928,
+        "peak_bytes": 52019200,
+        "python_blocks": 275357
+      },
+      "released_many": {
+        "current_bytes": 25051136,
+        "peak_bytes": 52019200,
+        "python_blocks": 275354
+      },
+      "retain_count": 6,
+      "rounds": [
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275366
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275372
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275377
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275382
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275387
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275392
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275397
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275402
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275407
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275412
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275417
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275422
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275427
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275432
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275437
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275442
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275447
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275452
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275457
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275462
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275467
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275472
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275477
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275482
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275487
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275492
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275497
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275502
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275507
+        },
+        {
+          "current_bytes": 25116672,
+          "peak_bytes": 52019200,
+          "python_blocks": 275512
+        }
+      ],
+      "calls_per_round": 100,
+      "first_call_peak_delta_bytes": 4263936,
+      "post_warm_growth_bytes": 0,
+      "maximum_post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 3
+    },
+    {
+      "library": "orjson",
+      "version": "3.13.0",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "workload": "document",
+      "malformed_input_sha256": null,
+      "input_sha256": "bfbc12b8b6da35cdcc15046304be1739a82a335de17ef9959ea3dd75225467a4",
+      "binaries": [
+        {
+          "path": "F:\\Repositories\\json-parsers\\json_parser_nasm\\build\\current-audit-env\\Lib\\site-packages\\orjson\\orjson.cp311-win_amd64.pyd",
+          "sha256": "947606ff10516f290ca3f8a3dd6077510a2ac7845161369fbc197ff3750a3c5b"
+        }
+      ],
+      "baseline": {
+        "current_bytes": 25042944,
+        "peak_bytes": 27017216,
+        "python_blocks": 275334
+      },
+      "held": {
+        "current_bytes": 29270016,
+        "peak_bytes": 31244288,
+        "python_blocks": 275340
+      },
+      "released": {
+        "current_bytes": 25104384,
+        "peak_bytes": 31244288,
+        "python_blocks": 275344
+      },
+      "warm": {
+        "current_bytes": 25092096,
+        "peak_bytes": 52072448,
+        "python_blocks": 275359
+      },
+      "held_many": {
+        "current_bytes": 50085888,
+        "peak_bytes": 52072448,
+        "python_blocks": 275357
+      },
+      "released_many": {
+        "current_bytes": 25092096,
+        "peak_bytes": 52072448,
+        "python_blocks": 275354
+      },
+      "retain_count": 6,
+      "rounds": [
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275366
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275372
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275377
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275382
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275387
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275392
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275397
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275402
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275407
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275412
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275417
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275422
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275427
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275432
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275437
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275442
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275447
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275452
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275457
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275462
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275467
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275472
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275477
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275482
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275487
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275492
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275497
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275502
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275507
+        },
+        {
+          "current_bytes": 25092096,
+          "peak_bytes": 52072448,
+          "python_blocks": 275512
+        }
+      ],
+      "calls_per_round": 100,
+      "first_call_peak_delta_bytes": 4227072,
+      "post_warm_growth_bytes": 0,
+      "maximum_post_warm_growth_bytes": 0,
+      "growth_flag": false,
+      "repeat": 4
+    }
+  ],
+  "summaries": [
+    {
+      "library": "oxjson",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "peak_delta_min": 1290240,
+      "peak_delta_median": 2252800,
+      "peak_delta_max": 2326528,
+      "peak_delta_inconclusive": false
+    },
+    {
+      "library": "orjson",
+      "document": "testdata/diverse/canada.json",
+      "operation": "dumps",
+      "peak_delta_min": 4194304,
+      "peak_delta_median": 4227072,
+      "peak_delta_max": 4317184,
+      "peak_delta_inconclusive": false
+    }
+  ],
+  "errors": [],
+  "interpretation": "Process-level measurements include runtime and results. Zero HWM delta is inconclusive. Growth flags require investigation; absence of a flag does not prove no leaks. Threshold: 8 MiB at any sampled round after warmup.",
+  "finished_utc": "2026-10-28T21:20:11.019181+00:00",
+  "elapsed_s": 91.73399999999674,
+  "status": "NO_GROWTH_FLAG"
+}

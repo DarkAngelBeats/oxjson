@@ -59,8 +59,14 @@ def main():
             no_avx = dict(env, OXJSON_NO_AVX2="1")
             ok &= step(log, "portable path: loads against orjson", [PY, "tests/check_versions.py"], no_avx)
             ok &= step(log, "portable path: dumps against orjson", [PY, "tests/check_dumps_orjson.py"], no_avx)
-        step(log, "benchmark", [PY, "bench/bench.py"], env)
-        step(log, "benchmark tables", [PY, "bench/report.py"], env)
+        ok &= step(log, "memory measurement self-tests", [PY, "tests/check_memory_measurements.py"], env)
+        ok &= step(log, "memory audit", [PY, "bench/memory_audit.py"], env)
+        if platform.machine().lower() in ("amd64", "x86_64"):
+            ok &= step(log, "portable memory audit", [PY, "bench/memory_audit.py", "--portable", "--output", "bench/results/memory-audit-portable.json"], env)
+        benchmark_ok = step(log, "benchmark", [PY, "bench/bench.py"], env)
+        ok &= benchmark_ok
+        if benchmark_ok:
+            ok &= step(log, "benchmark tables", [PY, "bench/report.py"], env)
     print("\n%s. Report: %s" % ("ALL STEPS PASSED" if ok else "SOME STEPS FAILED", report))
     return 0 if ok else 1
 

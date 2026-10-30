@@ -20,7 +20,7 @@ text = oxjson.dumps(obj, option=oxjson.OPT_INDENT_2 | oxjson.OPT_SORT_KEYS)
 pip install oxjson
 ```
 
-Needs CPython 3.10–3.14. Prebuilt wheels, each for Python 3.10 – 3.14:
+Needs CPython 3.10–3.14. The wheel build configuration targets Python 3.10–3.14 on:
 
 | platform | wheel |
 |---|---|
@@ -29,30 +29,33 @@ Needs CPython 3.10–3.14. Prebuilt wheels, each for Python 3.10 – 3.14:
 | macOS | arm64, x86-64 |
 | Windows x86-64 | win_amd64 |
 
-The full set is on PyPI since 0.4.1 (0.4.0 had only Linux x86-64 manylinux, macOS arm64 and Windows
-with Python 3.12). Anything else (Windows ARM64, 32-bit) needs a source build, see [Build](#build).
+Version 0.4.1 expands the configured wheel matrix. This table describes build targets; it is not a verification of every published artifact. Other targets require a source build and separate validation, see [Build](#build).
 
 ## Performance
 
-x86-64 AVX2 path vs `orjson` 3.13 — Python 3.12, real documents.
-Full tables (more libs, memory, other Pythons): [docs/benchmarks.md](docs/benchmarks.md).
+**oxjson 0.4.1** (the 0.4.2 sources before the float format change) versus **orjson 3.13.0**, measured 29 October 2026 on Windows AMD64, Ryzen 9 5900X, CPython 3.11.4. Median of seven fresh-process speed samples per library/document, GC enabled. oxjson has lower medians in 11 of 14 tested scenarios; the summary includes all three losses. On 30 October `dumps` of 0.4.2 was compared with that build on this machine and on Linux: no change in speed or memory ([report](bench/results/dumps-remeasure-20261030/report.md)).
 
-| | oxjson | orjson |
+| Scenario | oxjson | orjson |
 |---|---:|---:|
-| installed size | **~250 KB** | ~315 KB |
-| loads, catalog 1.8 MB | **2.1 ms** | 4.0 ms |
-| loads, records 4.9 MB | **30.5 ms** | 44.9 ms |
-| dumps, coords 2.2 MB | **2.3 ms** | 3.5 ms |
-| peak mem loads, records 4.9 MB | **32 MB** | 96 MB |
+| loads, catalog 1.8 MB | **2.176 ms** | 3.334 ms |
+| loads, records 4.9 MB | **38.911 ms** | 52.784 ms |
+| dumps, coords 2.2 MB | **1.922 ms** | 3.028 ms |
+| dumps, config 34 KB | 21.69 us | **19.31 us** |
+| dumps, catalog 1.8 MB | 476.92 us | **401.64 us** |
+| dumps, records 4.9 MB | 6.657 ms | **6.001 ms** |
 
-*Machine: Windows AMD64 (same NASM AVX2 kernel as Linux x86-64). Not comparable to macOS arm64 numbers.*
+[Full current comparison and raw evidence](docs/current-comparison.md) include ranges, all seven documents, and 653 memory-test processes. Memory results are process private-commit measurements, not allocation totals; neither a universal memory advantage nor leak freedom is established. See [memory methodology](docs/memory-testing.md).
+
+[Historical multi-platform tables](docs/benchmarks.md) retain their recorded versions and environments. These Windows results do not establish Linux or macOS performance or a before/after release regression.
 
 ## Status
 
-Young project. It passes the public conformance suites and agrees with `orjson` on the checks listed under
-[Tests](#tests). GitHub Actions builds wheels and runs the package checks
-(`.github/workflows/wheels.yml`). It has **not been fuzzed**. Do not feed it untrusted input in
-production before that is done.
+Young project. The repository includes public conformance-suite checks and regression comparisons with `orjson`, listed under
+[Tests](#tests). The locally verified scope for the current build is recorded in [current results](docs/current-comparison.md). GitHub Actions builds wheels and runs the package checks
+(`.github/workflows/wheels.yml`). The differential fuzzer `tests/fuzz.py` ran 1.42 million cases (`loads` and `dumps`,
+assembly and portable path, 20 minutes, Windows AMD64, Python 3.13.5, orjson 3.13.0) with no findings; it found one
+`dumps` depth-limit bug before that, now fixed. It is not coverage-guided and has not run for long on Linux or macOS.
+The project remains experimental for untrusted production inputs.
 
 ## Interface
 
@@ -64,7 +67,7 @@ production before that is done.
 
 `dumps` writes `str`, `int` (−2^63 … 2^64−1), `float`, `bool`, `None`, `list`, `tuple`, `dict`, dataclasses,
 `datetime` / `date` / `time`, `enum.Enum`, `uuid.UUID`, and numpy arrays and scalars with `OPT_SERIALIZE_NUMPY`.
-Anything else goes to `default`.
+Other unsupported values are passed to `default` when provided.
 
 Supported options: `OPT_APPEND_NEWLINE`, `OPT_INDENT_2`, `OPT_NAIVE_UTC`, `OPT_NON_STR_KEYS`,
 `OPT_OMIT_MICROSECONDS`, `OPT_PASSTHROUGH_DATACLASS`, `OPT_PASSTHROUGH_DATETIME`, `OPT_PASSTHROUGH_SUBCLASS`,
@@ -72,9 +75,9 @@ Supported options: `OPT_APPEND_NEWLINE`, `OPT_INDENT_2`, `OPT_NAIVE_UTC`, `OPT_N
 
 ### Differences from orjson
 
-- Floats are written the way Python prints them: `1e-05`, `1e+16`. orjson writes `1e-5`, `1e16`. The values are the same.
 - `loads` has no nesting limit; orjson stops at 1024 levels. `dumps` without layout options has no limit either;
-  with `OPT_INDENT_2`, `OPT_SORT_KEYS`, `OPT_NON_STR_KEYS` or `OPT_STRICT_INTEGER` it stops at 254 levels, as orjson does.
+  with `OPT_INDENT_2`, `OPT_SORT_KEYS`, `OPT_NON_STR_KEYS` or `OPT_STRICT_INTEGER` a container 254 levels deep
+  (the 255th nested one) is refused, as in orjson. Tuples count as containers here; orjson counts them inconsistently.
 - No `orjson.Fragment`.
 - `dumps(..., allow_nan=False)` raises `ValueError` for NaN and infinities instead of writing `null`.
 - Errors from `dumps` are `TypeError`, not `orjson.JSONEncodeError` (which is a subclass of `TypeError`).
@@ -95,7 +98,7 @@ Set `OXJSON_NO_AVX2=1` before the import to force the portable path.
 
 ## Build
 
-Needs `gcc` and, on x86-64, `nasm` 2.16 or newer.
+Needs a GCC-compatible C compiler (GCC or Clang) and, on Windows/Linux x86-64, `nasm` 2.16 or newer.
 
 ```bash
 python make_ext.py
@@ -117,7 +120,7 @@ configured for this repo (see [PyPI docs](https://docs.pypi.org/trusted-publishe
 
 ## Checking a new machine
 
-One script builds the extension, runs every test and the benchmark, and writes a single report file:
+One script builds the extension, runs the standard regression checks and benchmark, and writes a single report file:
 
 ```bash
 python -m pip install -r requirements-dev.txt
@@ -137,13 +140,14 @@ python tests/check_versions.py
 ```
 
 Compares `loads` with orjson on the files in `testdata/` and on 30 000 random documents, and checks that
-repeated calls do not leak.
+repeated calls show no growth above the test thresholds. This is a leak regression check, not proof of leak freedom.
 
 ```bash
 python tests/check_dumps_orjson.py
 ```
 
-Compares `dumps` with orjson byte for byte over the supported types and option combinations.
+Compares `dumps` with orjson byte for byte on the tested types and option combinations, float text included
+(every exponent, float keys, numpy float64 / float32 / float16).
 
 ```bash
 python tests/check_portable.py
@@ -164,9 +168,29 @@ Runs [JSONTestSuite](https://github.com/nst/JSONTestSuite),
 
 `tests/check_loads.py` and `tests/check_dumps.py` compare with the standard `json` module on random data.
 
+```bash
+python tests/fuzz.py
+```
+
+Differential fuzzer for `loads` and `dumps` against orjson, on the assembly and the portable path; one minute by
+default, `--seconds N` for longer. Every batch runs
+in its own process; a crash, a hang or a result that differs from orjson is saved in `fuzz-out/` and makes the exit
+code 1. Part of the `loads` inputs end right before an inaccessible memory page, so a read past the end of the
+input crashes. `--replay` and `--replay-case` reproduce a saved finding. CI runs it for one minute per machine on every push
+(`.github/workflows/fuzz.yml`), with a new seed each time.
+
+Memory regression checks and raw evidence:
+
+```bash
+python tests/check_memory_measurements.py
+python bench/memory_audit.py --output bench/results/memory-audit.json
+```
+
+See [memory methodology](docs/memory-testing.md). The audit records successful calls, rejected inputs, callback failures, an observer control, held/released results and repeated rounds. Passing finite checks does not prove leak freedom or a universal memory advantage. Conformance suites and the differential fuzzer are separate commands.
+
 ## Benchmarks
 
-The numbers that matter are in [docs/benchmarks.md](docs/benchmarks.md): speed, peak memory and
+The numbers that matter are in [docs/benchmarks.md](docs/benchmarks.md): speed, historical process peak-memory deltas and
 installed size against orjson, msgspec, ssrjson, yyjson, pysimdjson, ujson, python-rapidjson and the
 standard library, on real documents (tens of KB to several MB) and Python 3.10 – 3.14. Each section
 names its machine; numbers from different machines are not comparable.
