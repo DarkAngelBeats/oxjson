@@ -1,0 +1,8 @@
+testdata/engine/atlas.json done
+testdata/diverse/numbers.json done
+testdata/diverse/twitter.json done
+testdata/diverse/citm_catalog.json done
+testdata/diverse/canada.json done
+testdata/diverse/marine_ik.json done
+testdata/bench/large_50k.json done
+OK /tmp/oxj/rel/out/speed-1.json

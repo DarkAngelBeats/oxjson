@@ -1,0 +1,8 @@
+2026-10-30T16:11:14Z start load: 1.43 1.28 1.27 1/345 492468
+2026-10-30T16:11:14Z check_dumps_orjson NO_AVX2= rc=0
+2026-10-30T16:11:15Z check_dumps_orjson NO_AVX2=1 rc=0
+2026-10-30T16:11:16Z check_portable rc=0
+2026-10-30T16:11:46Z speed series 1 rc=0
+2026-10-30T16:12:16Z speed series 2 rc=0
+2026-10-30T16:14:31Z memory rc=0
+2026-10-30T16:14:31Z done load: 1.14 1.19 1.24 5/347 492860
