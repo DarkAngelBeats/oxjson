@@ -45,6 +45,7 @@ def main():
     with open(report, "w", encoding="utf-8") as log:
         log.write("machine: %s %s, %s\npython: %s\n" % (platform.system(), platform.machine(),
                                                          platform.processor() or "?", sys.version))
+        ok &= step(log, "conformance harness self-tests", [PY, "tests/check_conformance_harness.py"], env)
         ok &= step(log, "vector helpers: compile", [cc, "-O2", "-Iinclude", "tests/vec16_selftest.c", "-o", exe])
         ok &= step(log, "vector helpers: self-test", [exe])
         if not step(log, "build the extension", [PY, "make_ext.py"]):

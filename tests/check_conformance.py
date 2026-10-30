@@ -10,6 +10,12 @@ public JSON test suites. The suites are data only; nothing from them is executed
 
 Each library runs in its own process, so a crash is recorded for the file that
 caused it and the run continues with the next file.
+
+Exit 1 on oxjson conformance failures, differences from orjson, failed value
+roundtrips, worker failures, or an empty corpus. Standard-library semantic
+differences and byte formatting on roundtrip inputs remain informational.
+The one documented difference, oxjson dumps without a depth limit where orjson
+raises 'Recursion limit reached', is reported but does not fail the run.
 """
 import hashlib
 import json
@@ -148,36 +154,63 @@ def run_lib(lib, listfile, n, tmp):
     res = {}
     start = 0
     while start < n:
+        # Read only this attempt; an old DONE must never mask a later failure.
+        Path(outfile).write_text('', encoding='utf-8')
         p = subprocess.run([sys.executable, "-I", __file__, "--worker", lib, listfile, outfile, str(start)],
                            capture_output=True, text=True, timeout=3600)
         last = -1
         done = False
-        for line in open(outfile, encoding="utf-8"):
+        for line in Path(outfile).read_text(encoding="utf-8").splitlines():
             if line.startswith("START "):
                 last = int(line[6:])
             elif line.startswith("R "):
                 r = json.loads(line[2:])
+                if (type(r.get('i')) is not int or not start <= r['i'] < n
+                        or r['i'] in res or type(r.get('ok')) is not bool
+                        or (r['ok'] and ('val' not in r or
+                            ('back' not in r and 'dumperr' not in r)))
+                        or (not r['ok'] and 'err' not in r)):
+                    raise RuntimeError('invalid worker record from %s' % lib)
                 res[r["i"]] = r
             elif line.startswith("DONE"):
                 done = True
         if done:
+            if p.returncode != 0 or any(i not in res for i in range(n)):
+                raise RuntimeError('incomplete or failed worker %s (exit %s)' % (lib, p.returncode))
             break
         if last < 0:
             raise SystemExit("worker %s did not start: %s" % (lib, p.stderr[-400:]))
         if last not in res:
             res[last] = {"i": last, "ok": None, "err": "CRASH exit=%s" % p.returncode}
+        else:
+            # A worker that exits after its last record but without DONE failed
+            # too, even if it managed to emit all results first.
+            raise RuntimeError('worker %s exited without DONE (exit %s)' % (lib, p.returncode))
+        if not start <= last < n:
+            raise RuntimeError('invalid worker progress from %s' % lib)
         start = last + 1
     return res
+
+
+def documented_depth_difference(ox, orj):
+    """dumps without layout options has no depth limit in oxjson, while orjson
+    refuses containers nested deeper than 254 levels (see README, differences)."""
+    return ('dumperr' not in ox
+            and str(orj.get('dumperr', '')).startswith('TypeError: Recursion limit reached'))
 
 
 def main():
     base = Path(sys.argv[1]).resolve()
     report = sys.argv[2] if len(sys.argv) > 2 else None
     cs = cases(base)
+    if not cs:
+        print('FAIL: no conformance files found in', base)
+        return 1
     tmp = str(base / "_run")
     os.makedirs(tmp, exist_ok=True)
     listfile = os.path.join(tmp, "list.json")
-    json.dump([c[1] for c in cs], open(listfile, "w", encoding="utf-8"))
+    with open(listfile, "w", encoding="utf-8") as f:
+        json.dump([c[1] for c in cs], f)
     res = {lib: run_lib(lib, listfile, len(cs), tmp) for lib in LIBS}
 
     sys.path.insert(0, str(ROOT))
@@ -276,13 +309,32 @@ def main():
                 print("      value changed %-48s" % rel(cs[i][1]))
 
     if report:
-        json.dump({"cases": [(c[0], rel(c[1]), c[2]) for c in cs],
-                   "results": {lib: [res[lib][i] for i in range(len(cs))] for lib in LIBS}},
-                  open(report, "w", encoding="utf-8"), indent=0)
+        with open(report, "w", encoding="utf-8") as f:
+            json.dump({"cases": [(c[0], rel(c[1]), c[2]) for c in cs],
+                       "results": {lib: [res[lib][i] for i in range(len(cs))] for lib in LIBS}}, f, indent=0)
+
+    failed = bool(fails['oxjson'])
+    for i in range(len(cs)):
+        for lib in ('oxjson', 'orjson'):  # the standard library is only a reference
+            r = res[lib][i]
+            if r['ok'] is None or (r['ok'] and
+                    (not isinstance(r.get('val'), str) or r['val'].startswith('canon-fail'))):
+                failed = True
+        a, b = res['oxjson'][i], res['orjson'][i]
+        if a['ok'] != b['ok']:
+            failed = True
+        elif a['ok'] and b['ok']:
+            if a['val'] != b['val'] or (('dumperr' in a) != ('dumperr' in b)
+                                        and not documented_depth_difference(a, b)):
+                failed = True
+        if a['ok'] and 'dumperr' not in a and not a.get('back'):
+            failed = True
+    print('\nFAIL' if failed else '\nPASS')
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "--worker":
         worker(sys.argv[2], sys.argv[3], sys.argv[4], int(sys.argv[5]))
     else:
-        main()
+        sys.exit(main())
