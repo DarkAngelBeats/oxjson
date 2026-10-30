@@ -17,7 +17,7 @@ Each section names its machine; numbers from different machines are not comparab
 
 ## Current local build
 
-See the [current oxjson 0.4.1 comparison](current-comparison.md) for the new speed repeats, expanded memory matrix, exact versions and raw evidence. The multi-platform tables below retain their recorded historical versions.
+See the [comparison with orjson 3.13.0, 29 October 2026](current-comparison.md) for the new speed repeats, expanded memory matrix, exact versions and raw evidence. The multi-platform tables below retain their recorded historical versions.
 
 ## Sustained Linux run
 

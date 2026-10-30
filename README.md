@@ -20,7 +20,7 @@ text = oxjson.dumps(obj, option=oxjson.OPT_INDENT_2 | oxjson.OPT_SORT_KEYS)
 pip install oxjson
 ```
 
-Needs CPython 3.10–3.14. The wheel build configuration targets Python 3.10–3.14 on:
+Needs CPython 3.10–3.14. Prebuilt wheels for Python 3.10–3.14:
 
 | platform | wheel |
 |---|---|
@@ -29,11 +29,13 @@ Needs CPython 3.10–3.14. The wheel build configuration targets Python 3.10–3
 | macOS | arm64, x86-64 |
 | Windows x86-64 | win_amd64 |
 
-Version 0.4.1 expands the configured wheel matrix. This table describes build targets; it is not a verification of every published artifact. Other targets require a source build and separate validation, see [Build](#build).
+Other platforms (Windows ARM64, 32-bit) need a source build, see [Build](#build).
 
 ## Performance
 
-**oxjson 0.4.1** (the 0.4.2 sources before the float format change) versus **orjson 3.13.0**, measured 29 October 2026 on Windows AMD64, Ryzen 9 5900X, CPython 3.11.4. Median of seven fresh-process speed samples per library/document, GC enabled. oxjson has lower medians in 11 of 14 tested scenarios; the summary includes all three losses. On 30 October `dumps` of 0.4.2 was compared with that build on this machine and on Linux: no change in speed or memory ([report](bench/results/dumps-remeasure-20261030/report.md)).
+**oxjson 0.4.2** versus **orjson 3.13.0** on Windows AMD64 (Ryzen 9 5900X, CPython 3.11.4): median of seven fresh processes per library and document, GC enabled. oxjson is faster in 11 of 14 scenarios; the table includes all three losses.
+
+The numbers were measured on 29 October 2026, before 0.4.2 changed how floats are written. On 30 October `dumps` of the released code was compared with that build on this machine and on Linux: speed and memory did not change ([report](bench/results/dumps-remeasure-20261030/report.md)); `loads` was not touched.
 
 | Scenario | oxjson | orjson |
 |---|---:|---:|
@@ -44,7 +46,7 @@ Version 0.4.1 expands the configured wheel matrix. This table describes build ta
 | dumps, catalog 1.8 MB | 476.92 us | **401.64 us** |
 | dumps, records 4.9 MB | 6.657 ms | **6.001 ms** |
 
-[Full current comparison and raw evidence](docs/current-comparison.md) include ranges, all seven documents, and 653 memory-test processes. Memory results are process private-commit measurements, not allocation totals; neither a universal memory advantage nor leak freedom is established. See [memory methodology](docs/memory-testing.md).
+[Full comparison and raw data](docs/current-comparison.md) include ranges, all seven documents, and 653 memory-test processes. Memory results are process private-commit measurements, not allocation totals; neither a universal memory advantage nor leak freedom is established. See [memory methodology](docs/memory-testing.md).
 
 [Historical multi-platform tables](docs/benchmarks.md) retain their recorded versions and environments. These Windows results do not establish Linux or macOS performance or a before/after release regression.
 

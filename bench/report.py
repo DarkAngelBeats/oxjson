@@ -65,7 +65,7 @@ def main():
           "Each section names its machine; numbers from different machines are not comparable.",
           ""]
     name = lambda r: "Python %s, %s %s" % (r["python"], r["system"], r["machine"])
-    md += ["## Current local build", "", "See the [current oxjson 0.4.1 comparison](current-comparison.md) for the new speed repeats, expanded memory matrix, exact versions and raw evidence. The multi-platform tables below retain their recorded historical versions.", ""]
+    md += ["## Current local build", "", "See the [comparison with orjson 3.13.0, 29 October 2026](current-comparison.md) for the new speed repeats, expanded memory matrix, exact versions and raw evidence. The multi-platform tables below retain their recorded historical versions.", ""]
     md += ["## Sustained Linux run", "",
            "Two 30-minute runs on 14 October 2026 used json_parser 0.4.0 and orjson 3.13.0 on Python 3.12.3, Linux x86-64 (Intel Core i3-13100). The report, metadata and raw samples of both runs are in [`bench/results/linux-30m-20261014`](../bench/results/linux-30m-20261014/report.md). They are separate from both the current local Windows comparison and the historical short-process tables below; no current 0.4.1 Linux memory result is claimed here.", ""]
     md += ["## Library versions", "", "| run | " + " | ".join(ORDER) + " |", "|---|" + "---|" * len(ORDER)]
