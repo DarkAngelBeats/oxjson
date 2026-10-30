@@ -6,7 +6,7 @@ public JSON test suites. The suites are data only; nothing from them is executed
     git clone --depth 1 https://github.com/miloyip/nativejson-benchmark <dir>/nativejson
     git clone --depth 1 https://github.com/nlohmann/json_test_data      <dir>/nlohmann
 
-    .venv\\Scripts\\python.exe -I tools\\conformance.py <dir> [report.json]
+    python tests/check_conformance.py <dir> [report.json]
 
 Each library runs in its own process, so a crash is recorded for the file that
 caused it and the run continues with the next file.

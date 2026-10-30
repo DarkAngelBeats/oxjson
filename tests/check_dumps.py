@@ -38,3 +38,4 @@ for n in range(0, 300):
         s = 'x' * n + ch
         if j.dumps(s) != std(s): bad += 1; print('LEN', n, ch)
 print('bad', bad)
+sys.exit(1 if bad else 0)

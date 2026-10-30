@@ -117,7 +117,6 @@ static void *jl_mk_utf8(const uint8_t *p, size_t n)
 #ifndef JL_PORTABLE
         __m256i vmax = _mm256_setzero_si256();
         __m256i acc = _mm256_setzero_si256();
-        const __m256i c40 = _mm256_set1_epi8(0x40);
         int iters = 0;
         for (; i + 32 <= n; i += 32) {
             __m256i v = _mm256_loadu_si256((const __m256i *)(p + i));
@@ -133,7 +132,6 @@ static void *jl_mk_utf8(const uint8_t *p, size_t n)
                 iters = 0;
             }
         }
-        (void)c40;
         {
             __m256i sad = _mm256_sad_epu8(acc, _mm256_setzero_si256());
             cont += (size_t)_mm256_extract_epi64(sad, 0) + (size_t)_mm256_extract_epi64(sad, 1) +

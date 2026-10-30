@@ -931,12 +931,10 @@ static int rec_value(Ctx *restrict c, PyObject *o, int depth);
 
 static int rec_deep(Ctx *restrict c, PyObject *o)
 {
-    Py_ssize_t base = c->sp;
     if (write_any(c, o, 0) < 0) {
         return -1;
     }
-    /* walk() runs until the stack is empty; it only ever sees frames above base (base is 0 here) */
-    (void)base;
+    /* The iterative walk drains the stack created by write_any(). */
     return walk(c);
 }
 
