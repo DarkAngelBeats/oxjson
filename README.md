@@ -20,7 +20,7 @@ text = oxjson.dumps(obj, option=oxjson.OPT_INDENT_2 | oxjson.OPT_SORT_KEYS)
 pip install oxjson
 ```
 
-Needs CPython 3.10–3.14. The wheel build configuration targets Python 3.10–3.14 on:
+Needs CPython 3.10–3.14. Prebuilt wheels for Python 3.10–3.14:
 
 | platform | wheel |
 |---|---|
@@ -29,24 +29,27 @@ Needs CPython 3.10–3.14. The wheel build configuration targets Python 3.10–3
 | macOS | arm64, x86-64 |
 | Windows x86-64 | win_amd64 |
 
-Version 0.4.1 expands the configured wheel matrix. This table describes build targets; it is not a verification of every published artifact. Other targets require a source build and separate validation, see [Build](#build).
+Other platforms (Windows ARM64, 32-bit) need a source build, see [Build](#build).
 
 ## Performance
 
-**oxjson 0.4.1** (the 0.4.2 sources before the float format change) versus **orjson 3.13.0**, measured 29 October 2026 on Windows AMD64, Ryzen 9 5900X, CPython 3.11.4. Median of seven fresh-process speed samples per library/document, GC enabled. oxjson has lower medians in 11 of 14 tested scenarios; the summary includes all three losses. On 30 October `dumps` of 0.4.2 was compared with that build on this machine and on Linux: no change in speed or memory ([report](bench/results/dumps-remeasure-20261030/report.md)).
+**oxjson 0.4.2** versus **orjson 3.13.0** on Linux x86-64 (Intel Core i3-13100, CPython 3.12.3, gcc 13.3), measured on 30 October 2026 from the `v0.4.2` tag. Median of 14 fresh processes per library, document and operation, GC enabled. oxjson is faster in all 14 scenarios: `loads` by 8–39%, `dumps` by 5–36%.
 
-| Scenario | oxjson | orjson |
-|---|---:|---:|
-| loads, catalog 1.8 MB | **2.176 ms** | 3.334 ms |
-| loads, records 4.9 MB | **38.911 ms** | 52.784 ms |
-| dumps, coords 2.2 MB | **1.922 ms** | 3.028 ms |
-| dumps, config 34 KB | 21.69 us | **19.31 us** |
-| dumps, catalog 1.8 MB | 476.92 us | **401.64 us** |
-| dumps, records 4.9 MB | 6.657 ms | **6.001 ms** |
+| Document | Size | loads oxjson | loads orjson | dumps oxjson | dumps orjson |
+|---|---:|---:|---:|---:|---:|
+| atlas (config) | 34 KB | **42.7 us** | 46.5 us | **10.8 us** | 14.2 us |
+| numbers | 150 KB | **103 us** | 131 us | **137 us** | 145 us |
+| twitter | 647 KB | **672 us** | 818 us | **110 us** | 172 us |
+| citm_catalog | 1.8 MB | **1.56 ms** | 2.16 ms | **268 us** | 324 us |
+| canada | 2.3 MB | **4.35 ms** | 5.26 ms | **1.64 ms** | 1.74 ms |
+| marine_ik | 3.0 MB | **5.53 ms** | 8.99 ms | **2.28 ms** | 2.63 ms |
+| large_50k | 4.9 MB | **22.2 ms** | 31.0 ms | **3.51 ms** | 3.84 ms |
 
-[Full current comparison and raw evidence](docs/current-comparison.md) include ranges, all seven documents, and 653 memory-test processes. Memory results are process private-commit measurements, not allocation totals; neither a universal memory advantage nor leak freedom is established. See [memory methodology](docs/memory-testing.md).
+Memory (process RSS, five processes per cell): `loads` with one result held is within 0.15 MiB of orjson on six documents and 6.8 MiB lower on large_50k; with six results held it is lower on six of seven. `dumps` with one result held is higher on five of seven, because glibc keeps the freed output buffer; with six held it is equal or lower except +0.008 MiB on citm_catalog. No growth after warmup above 2 MiB. [Report, ranges and raw data](bench/results/linux-0.4.2-20261030/report.md).
 
-[Historical multi-platform tables](docs/benchmarks.md) retain their recorded versions and environments. These Windows results do not establish Linux or macOS performance or a before/after release regression.
+On Windows AMD64 (Ryzen 9 5900X, CPython 3.11.4, 29 October) oxjson is faster in 11 of 14 scenarios and slower on `dumps` of atlas, citm_catalog and large_50k: [comparison and raw data](docs/current-comparison.md), with 653 memory-test processes. Memory figures are process measurements, not allocation totals; neither a universal memory advantage nor leak freedom is established. See [memory methodology](docs/memory-testing.md).
+
+[Historical multi-platform tables](docs/benchmarks.md) retain their recorded versions and environments. Results apply to the measured machines; macOS and ARM were not measured for 0.4.2.
 
 ## Status
 

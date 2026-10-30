@@ -1,0 +1,5 @@
+layout depth limit: 0 differ from orjson
+float text: 57613 objects, 0 differ from orjson
+dumps vs orjson 3.13.0: 48138 calls, 0 differ (numpy 2.5.4)
+memory: blocks left after 5 / 20 / 80 sweeps: [49, 45, 12]
+RESULT OK
