@@ -193,8 +193,11 @@ __attribute__((always_inline)) static inline JzmDec jzm_dec_of(uint64_t bits)
 
 /* "e+XX" / "e-X" / "e-XXX" at o, as orjson 3.13 writes it: no zero padding
  * (e-6, e-10). A positive exponent only comes after the decimal range, so it
- * always has two or three digits (e+16). Returns the end. */
-static inline char *jf64_exp(char *o, int x)
+ * always has two or three digits (e+16). Returns the end.
+ * Not inlined: exponent form is rare, and inlining this into every float
+ * write site made gcc 15 lay out rec_list / rec_value worse (canada.json
+ * dumps 8-9% slower on Windows, bench/results/dumps-remeasure-20261030). */
+__attribute__((noinline)) static char *jf64_exp(char *o, int x)
 {
     o[0] = 'e';
     o[1] = '+';
