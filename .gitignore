@@ -33,7 +33,6 @@ __pycache__/
 # editors
 .idea/
 .vscode/
-.cursor/
 .vs/
 
 # test suites cloned for tests/check_conformance.py
