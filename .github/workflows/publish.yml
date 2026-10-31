@@ -50,7 +50,7 @@ jobs:
         include:
           - { name: linux-x86_64, os: ubuntu-latest, kind: cibw }
           - { name: linux-aarch64, os: ubuntu-24.04-arm, kind: cibw }
-          - { name: macos, os: macos-14, kind: cibw }
+          - { name: macos, os: macos-15, kind: cibw }
           - { name: windows-py3.10, os: windows-latest, kind: win, python: "3.10" }
           - { name: windows-py3.11, os: windows-latest, kind: win, python: "3.11" }
           - { name: windows-py3.12, os: windows-latest, kind: win, python: "3.12" }
