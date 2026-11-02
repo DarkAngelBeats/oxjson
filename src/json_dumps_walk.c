@@ -78,6 +78,7 @@ typedef struct {
     int flo;      /* decimal float range of write_float: JF64_* or, inside numpy */
     int fhi;      /* float32 / float16 content, JF32_* (include/json_f64_fmt.h) */
     int np_narrow; /* set by ext_try: the numpy value it converted was float32 / float16 */
+    size_t pycalls; /* calls into Python code (default=, ext_try) made so far */
     Ent small[STACK_INIT];
 } Ctx;
 
@@ -529,37 +530,64 @@ static inline char *write_u32(char *d, uint32_t u)
     return d + n;
 }
 
-/* Compact int (|v| < 2^30 on 3.12) written into reserved room (>= 24).
- * Returns 0 when o is not compact. */
+/* An int of at most two 30-bit digits (|v| < 2^60), read from the object
+ * without a call: 3.12+ keep the digit count and sign in lv_tag, older
+ * versions in ob_size. Returns 0 for a longer int. */
+static inline int jd_small_int(PyObject *o, int64_t *v)
+{
+#if PY_VERSION_HEX >= 0x030C0000 && PY_VERSION_HEX < 0x030F0000
+    uintptr_t tag = ((PyLongObject *)o)->long_value.lv_tag;
+    const digit *dg = ((PyLongObject *)o)->long_value.ob_digit;
+    Py_ssize_t nd = (Py_ssize_t)(tag >> 3); /* bits 0-1: 0 positive, 1 zero, 2 negative */
+    int64_t a;
+    if (nd > 2) {
+        return 0;
+    }
+    a = nd == 2 ? ((int64_t)dg[0] | ((int64_t)dg[1] << PyLong_SHIFT)) : (nd == 1 ? (int64_t)dg[0] : 0);
+    *v = (tag & 2u) ? -a : a;
+    return 1;
+#elif PY_VERSION_HEX < 0x030C0000
+    Py_ssize_t sz = Py_SIZE(o);
+    const digit *dg = ((PyLongObject *)o)->ob_digit;
+    int64_t a;
+    if (sz > 2 || sz < -2) {
+        return 0;
+    }
+    a = (sz == 2 || sz == -2) ? ((int64_t)dg[0] | ((int64_t)dg[1] << PyLong_SHIFT)) : (sz ? (int64_t)dg[0] : 0);
+    *v = sz < 0 ? -a : a;
+    return 1;
+#else
+    (void)o;
+    (void)v;
+    return 0;
+#endif
+}
+
+/* Small int (jd_small_int) written into reserved room (>= 24).
+ * Returns 0 when o needs the general path. */
 static inline int put_compact_int(Ctx *restrict c, PyObject *o)
 {
-#if PY_VERSION_HEX >= 0x030C0000
-    if (PyUnstable_Long_IsCompact((PyLongObject *)o)) {
-        Py_ssize_t v = PyUnstable_Long_CompactValue((PyLongObject *)o);
+    int64_t v;
+    if (jd_small_int(o, &v)) {
         char *d = c->cur;
+        uint64_t u = (uint64_t)v;
         if (v < 0) {
             *d++ = '-';
-            v = -v;
+            u = (uint64_t)0 - u;
         }
-        c->cur = write_u32(d, (uint32_t)v);
+        if (u >= (1ULL << 32)) {
+            return 0; /* write_int: its digit loops stay out of the inline path */
+        }
+        c->cur = write_u32(d, (uint32_t)u);
         return 1;
     }
-#else
-    (void)c;
-    (void)o;
-#endif
     return 0;
 }
 
 static int write_int(Ctx *restrict c, PyObject *o)
 {
     int64_t v;
-#if PY_VERSION_HEX >= 0x030C0000
-    if (PyUnstable_Long_IsCompact((PyLongObject *)o)) {
-        v = (int64_t)PyUnstable_Long_CompactValue((PyLongObject *)o);
-    } else
-#endif
-    {
+    if (!jd_small_int(o, &v)) {
         int overflow = 0;
         long long ll = PyLong_AsLongLongAndOverflow(o, &overflow);
         if (overflow > 0) {
@@ -639,12 +667,16 @@ static int stack_push(Ctx *restrict c, PyObject *o, int kind, int owned)
             }
         }
     }
+    if (!owned) {
+        /* held while on the stack: a value's Python code could drop it (rec_dict) */
+        Py_INCREF(o);
+    }
     e = &c->stk[c->sp++];
     e->obj = o;
     e->pos = 0;
     e->cnt = 0;
     e->kind = kind;
-    e->owned = owned;
+    e->owned = 1;
     return 0;
 }
 
@@ -772,6 +804,7 @@ static int write_slow(Ctx *restrict c, PyObject *o, int owned)
                 PyErr_SetString(PyExc_TypeError, "default serializer exceeds recursion limit");
                 rc = -1;
             } else {
+                c->pycalls++;
                 conv = PyObject_CallOneArg(c->default_fn, o);
                 if (owned) {
                     Py_DECREF(o);
@@ -1004,9 +1037,12 @@ static inline __attribute__((always_inline)) int put_small_numeric_list(Ctx *res
     return 1;
 }
 
+/* Callers hold o (Py_INCREF) while it is written: Python code run by one of
+ * its values could otherwise drop the last reference to it (see rec_dict). */
 static int rec_list(Ctx *restrict c, PyObject *o, int is_list, int depth)
 {
     Py_ssize_t i;
+    size_t calls0 = c->pycalls;
     RESERVE(c, 2);
     *c->cur++ = '[';
     for (i = 0;; i++) {
@@ -1050,8 +1086,14 @@ static int rec_list(Ctx *restrict c, PyObject *o, int is_list, int depth)
                 if (rec_deep(c, v) < 0) {
                     return -1;
                 }
-            } else if (rec_list(c, v, 1, depth + 1) < 0) {
-                return -1;
+            } else {
+                int rc;
+                Py_INCREF(v); /* held while written, see rec_value */
+                rc = rec_list(c, v, 1, depth + 1);
+                Py_DECREF(v);
+                if (rc < 0) {
+                    return -1;
+                }
             }
         } else if (t == &PyDict_Type || t == &PyTuple_Type || v == Py_None || t == &PyBool_Type) {
             if (v == Py_None || t == &PyBool_Type) {
@@ -1065,11 +1107,12 @@ static int rec_list(Ctx *restrict c, PyObject *o, int is_list, int depth)
     }
     RESERVE(c, 1);
     *c->cur++ = ']';
-    return 0;
+    return c->pycalls != calls0;
 }
 
-#if PY_VERSION_HEX >= 0x030C0000 && PY_VERSION_HEX < 0x030D0000 && !defined(Py_GIL_DISABLED)
-/* CPython 3.12 combined-table layout (Include/internal/pycore_dict.h). */
+#if PY_VERSION_HEX >= 0x030B0000 && PY_VERSION_HEX < 0x030F0000 && !defined(Py_GIL_DISABLED)
+/* CPython 3.11 - 3.14 combined-table layout (Include/internal/pycore_dict.h);
+ * the free-threaded build adds a mutex to the keys object and is left out. */
 #define JD_DIRECT 1
 typedef struct {
     Py_ssize_t dk_refcnt;
@@ -1128,7 +1171,29 @@ static inline int rec_item(Ctx *restrict c, PyObject *v, int depth)
     return rec_value(c, v, depth);
 }
 
+/* One key and value of the generic dict loop, out of line: the direct loop
+ * below is the only inlined copy of rec_key / rec_item. */
+static int rec_key(Ctx *restrict c, PyObject *k, int comma);
+static __attribute__((noinline)) int rec_pair_generic(Ctx *restrict c, PyObject *k, PyObject *v, int depth, int comma)
+{
+    if (Py_TYPE(k) == &PyUnicode_Type) {
+        if (rec_key(c, k, comma) < 0) {
+            return -1;
+        }
+    } else {
+        if (comma) {
+            RESERVE(c, 1);
+            *c->cur++ = ',';
+        }
+        if (write_key(c, k) < 0) {
+            return -1;
+        }
+    }
+    return rec_item(c, v, depth);
+}
+
 /* ,"key": for an exact-str key (comma optional). */
+static inline __attribute__((always_inline)) int rec_key(Ctx *restrict c, PyObject *k, int comma);
 static inline __attribute__((always_inline)) int rec_key(Ctx *restrict c, PyObject *k, int comma)
 {
     if (PyUnicode_IS_COMPACT_ASCII(k)) {
@@ -1171,105 +1236,81 @@ static int rec_dict(Ctx *restrict c, PyObject *o, int depth)
     PyObject *k;
     PyObject *v;
     Py_ssize_t pos = 0;
+    size_t calls0 = c->pycalls;
     int first = 1;
     RESERVE(c, 2);
     *c->cur++ = '{';
 #ifdef JD_DIRECT
-    if (!c->default_fn && ((PyDictObject *)o)->ma_values == NULL &&
-        ((JDictKeys *)((PyDictObject *)o)->ma_keys)->dk_kind != 0) {
-        /* Unicode-key combined table and no default=: no Python code can run
-         * while this dict is written, so its entry table stays put. */
+    if (((PyDictObject *)o)->ma_values == NULL && ((JDictKeys *)((PyDictObject *)o)->ma_keys)->dk_kind != 0) {
+        /* Unicode-key combined table: keys are exact str. A value can run
+         * Python code even without default= (a tzinfo, an enum or dataclass
+         * property), and that code may change this dict and move or free its
+         * entry table. rec_item returns 1 when that happened inside the value
+         * (c->pycalls counts such calls): the rest of the dict is then written
+         * through PyDict_Next, which reads the table afresh. */
         JDictKeys *dk = (JDictKeys *)((PyDictObject *)o)->ma_keys;
-        JUEnt *ent = (JUEnt *)(dk->dk_indices + ((size_t)1 << dk->dk_log2_index_bytes));
-        JUEnt *eend = ent + dk->dk_nentries;
+        JUEnt *ent0 = (JUEnt *)(dk->dk_indices + ((size_t)1 << dk->dk_log2_index_bytes));
+        JUEnt *ent = ent0;
+        JUEnt *eend = ent0 + dk->dk_nentries;
         for (; ent < eend; ent++) {
+            int rc;
             v = ent->v;
             if (!v) {
                 continue;
             }
-            if (rec_key(c, ent->k, !first) < 0) {
-                return -1;
-            }
+            rc = rec_pair_generic(c, ent->k, v, depth, !first);
             first = 0;
-            if (rec_item(c, v, depth) < 0) {
-                return -1;
-            }
-        }
-        RESERVE(c, 1);
-        *c->cur++ = '}';
-        return 0;
-    }
-    if (((PyDictObject *)o)->ma_values == NULL && ((JDictKeys *)((PyDictObject *)o)->ma_keys)->dk_kind != 0) {
-        /* unicode-key combined table: keys are exact str */
-        Py_ssize_t i;
-        for (i = 0;; i++) {
-            JDictKeys *dk = (JDictKeys *)((PyDictObject *)o)->ma_keys;
-            JUEnt *ent;
-            if (((PyDictObject *)o)->ma_values != NULL || dk->dk_kind == 0) {
-                pos = i; /* table changed shape under a default= call: finish generically */
+            if (__builtin_expect(rc != 0, 0)) {
+                if (rc < 0) {
+                    return -1;
+                }
+                pos = (ent - ent0) + 1;
                 goto generic;
             }
-            if (i >= dk->dk_nentries) {
-                break;
-            }
-            ent = (JUEnt *)(dk->dk_indices + ((size_t)1 << dk->dk_log2_index_bytes)) + i;
-            v = ent->v;
-            if (!v) {
-                continue;
-            }
-            if (rec_key(c, ent->k, !first) < 0) {
-                return -1;
-            }
-            first = 0;
-            if (rec_item(c, v, depth) < 0) {
-                return -1;
-            }
         }
         RESERVE(c, 1);
         *c->cur++ = '}';
-        return 0;
+        return c->pycalls != calls0;
     }
 generic:
 #endif
     while (PyDict_Next(o, &pos, &k, &v)) {
-        if (Py_TYPE(k) == &PyUnicode_Type) {
-            if (rec_key(c, k, !first) < 0) {
-                return -1;
-            }
-        } else {
-            if (!first) {
-                RESERVE(c, 1);
-                *c->cur++ = ',';
-            }
-            if (write_key(c, k) < 0) {
-                return -1;
-            }
-        }
-        first = 0;
-        if (rec_item(c, v, depth) < 0) {
+        if (rec_pair_generic(c, k, v, depth, !first) < 0) {
             return -1;
         }
+        first = 0;
     }
     RESERVE(c, 1);
     *c->cur++ = '}';
-    return 0;
+    return c->pycalls != calls0;
 }
 
-/* Any value at nesting `depth` (containers recurse with depth + 1). */
+/* rec_deep with the return convention of rec_value */
+static int rec_deep_signal(Ctx *restrict c, PyObject *o)
+{
+    size_t calls0 = c->pycalls;
+    if (rec_deep(c, o) < 0) {
+        return -1;
+    }
+    return c->pycalls != calls0;
+}
+
+/* Any value at nesting `depth` (containers recurse with depth + 1).
+ * Returns 0 done, 1 done and Python code ran inside (default=, a tzinfo,
+ * a property: the caller's own container may have changed), -1 error. */
 static int rec_value(Ctx *restrict c, PyObject *o, int depth)
 {
     PyTypeObject *t = Py_TYPE(o);
-    if (t == &PyDict_Type) {
+    if (t == &PyDict_Type || t == &PyList_Type || t == &PyTuple_Type) {
+        int rc;
         if (depth >= REC_LIMIT) {
-            return rec_deep(c, o);
+            return rec_deep_signal(c, o);
         }
-        return rec_dict(c, o, depth + 1);
-    }
-    if (t == &PyList_Type || t == &PyTuple_Type) {
-        if (depth >= REC_LIMIT) {
-            return rec_deep(c, o);
-        }
-        return rec_list(c, o, t == &PyList_Type, depth + 1);
+        /* held while written: a value's Python code could drop it */
+        Py_INCREF(o);
+        rc = t == &PyDict_Type ? rec_dict(c, o, depth + 1) : rec_list(c, o, t == &PyList_Type, depth + 1);
+        Py_DECREF(o);
+        return rc;
     }
     if (t == &PyUnicode_Type) {
         return write_str(c, o);
@@ -1285,7 +1326,7 @@ static int rec_value(Ctx *restrict c, PyObject *o, int depth)
         return rec_true_false_none(c, o);
     }
     /* subclasses and default=: one value through the iterative machinery */
-    return rec_deep(c, o);
+    return rec_deep_signal(c, o);
 }
 
 static int dumps_tail(Ctx *restrict c)
@@ -1338,6 +1379,7 @@ static PyObject *dumps_obj(PyObject *obj, PyObject *default_fn, int allow_nan, u
     c.flo = JF64_LO;
     c.fhi = JF64_HI;
     c.np_narrow = 0;
+    c.pycalls = 0;
 #ifdef JD_PORTABLE
 #ifdef JV16
     c.avx2 = 1; /* the short-string paths exist in their 16-byte form */
@@ -1348,7 +1390,7 @@ static PyObject *dumps_obj(PyObject *obj, PyObject *default_fn, int allow_nan, u
     c.avx2 = g_jsonHasAvx2;
 #endif
 
-    if (((opt & JOPT_GENERAL) ? opt_value(&c, obj, 0) : rec_value(&c, obj, 0)) == 0 && dumps_tail(&c) == 0) {
+    if (((opt & JOPT_GENERAL) ? opt_value(&c, obj, 0) : rec_value(&c, obj, 0)) >= 0 && dumps_tail(&c) == 0) {
         size_t len = (size_t)(c.cur - c.base);
         if (c.bytes) {
             size_t cap = (size_t)PyBytes_GET_SIZE(c.bytes);
