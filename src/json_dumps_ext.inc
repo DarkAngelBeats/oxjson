@@ -302,7 +302,21 @@ static PyObject *ext_numpy(PyObject *o, int *narrow)
  * 3 = same, a dict of dataclass fields (never sorted); 4 = same, from numpy
  * (strict-integer and datetime passthrough do not apply to it);
  * 0 = not one of ours; -1 = error. */
+static int ext_try_impl(Ctx *restrict c, PyObject *o, PyObject **conv);
+
+/* o is held across the Python code this can run (utcoffset, a property,
+ * __instancecheck__): that code may remove o from the container being written. */
 static int ext_try(Ctx *restrict c, PyObject *o, PyObject **conv)
+{
+    int rc;
+    c->pycalls++;
+    Py_INCREF(o);
+    rc = ext_try_impl(c, o, conv);
+    Py_DECREF(o);
+    return rc;
+}
+
+static int ext_try_impl(Ctx *restrict c, PyObject *o, PyObject **conv)
 {
     PyTypeObject *t = Py_TYPE(o);
     char buf[48];
@@ -437,6 +451,7 @@ static PyObject *opt_key_str(Ctx *restrict c, PyObject *k, int depth)
     if (ext_init() < 0) {
         return NULL;
     }
+    c->pycalls++;
     n = PyObject_IsInstance(k, g_ext_enum);
     if (n < 0) {
         return NULL;
@@ -712,6 +727,7 @@ static int opt_value(Ctx *restrict c, PyObject *o, int depth)
             PyErr_SetString(PyExc_TypeError, "default serializer exceeds recursion limit");
             rc = -1;
         } else {
+            c->pycalls++;
             conv = PyObject_CallOneArg(c->default_fn, o);
             if (!conv) {
                 rc = -1;

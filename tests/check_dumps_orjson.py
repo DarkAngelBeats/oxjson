@@ -252,6 +252,124 @@ def check_layout_depth():
     return bad
 
 
+def check_int_boundaries():
+    """ints around the digit boundaries of the int object (2^30, 2^60) and of
+    the 64-bit range: the same text as orjson, in a list, as a dict value and
+    inside a short numeric list."""
+    bad = 0
+    edges = [0, 1, 9, 10, 2 ** 30 - 1, 2 ** 30, 2 ** 31, 2 ** 32 - 1, 2 ** 32, 10 ** 15, 2 ** 60 - 1, 2 ** 60,
+             2 ** 63 - 1, 2 ** 63, 2 ** 64 - 1]
+    vals = edges + [-v for v in edges if v and v <= 2 ** 63]
+    for v in vals:
+        for obj in ([v], {"k": v}, [1.5, v, 2], {"a": {"b": [v, v]}}):
+            a, b = run(jp, obj), run(orjson, obj)
+            if a != b:
+                bad += 1
+                if bad <= 5:
+                    print("   INT %s: ours %s, orjson %s" % (ascii(obj)[:60], a, b))
+    for v in (2 ** 64, -(2 ** 63) - 1):
+        a, b = run(jp, [v]), run(orjson, [v])
+        if a[0] != "err" or b[0] != "err":
+            bad += 1
+            print("   INT %d: ours %s, orjson %s" % (v, a[0], b[0]))
+    print("int boundaries: %d of %d differ from orjson" % (bad, 4 * len(vals) + 2))
+    return bad
+
+
+def check_mutation_during_dumps():
+    """Python code that runs while a container is written (a tzinfo, an enum
+    property, default=) may change that container. dumps must not read freed
+    memory: no crash, the output is JSON, and it is the same on every call."""
+    import gc
+    import json
+
+    class Mutating(dt.tzinfo):
+        def __init__(self, target):
+            self.target = target
+
+        def utcoffset(self, d):
+            t = self.target
+            t.clear()
+            if isinstance(t, dict):
+                t.update({"k%d" % i: i for i in range(3000)})
+            else:
+                t.extend(range(3000))
+            gc.collect()
+            return dt.timedelta(0)
+
+        def dst(self, d):
+            return None
+
+    holder = {}
+
+    class E(enum.Enum):
+        A = 1
+
+        @property
+        def value(self):
+            holder.clear()
+            holder.update({"k%d" % i: i for i in range(3000)})
+            gc.collect()
+            return 7
+
+    def dict_case():
+        d = {"a": 1}
+        d["t"] = dt.datetime(2020, 1, 1, tzinfo=Mutating(d))
+        d.update({"x%d" % i: "v" * 40 for i in range(20)})
+        return d
+
+    def list_case():
+        l = [1, dt.datetime(2020, 1, 1, tzinfo=Mutating(None))]
+        l[1] = dt.datetime(2020, 1, 1, tzinfo=Mutating(l))
+        l.extend(["v" * 40] * 20)
+        return l
+
+    def nested_case():
+        outer = {}
+        inner = {"a": 1, "t": dt.datetime(2020, 1, 1, tzinfo=Mutating(outer))}
+        inner.update({"x%d" % i: "v" * 40 for i in range(20)})
+        outer["inner"] = inner
+        outer["z"] = [1, 2, 3]
+        return outer
+
+    def enum_case():
+        holder.clear()
+        holder["e"] = E.A
+        holder.update({"x%d" % i: "v" * 40 for i in range(20)})
+        return holder
+
+    def default_case():
+        d = {"a": object()}
+        d.update({"x%d" % i: "v" * 40 for i in range(20)})
+
+        def dflt(o):
+            d.clear()
+            d.update({"k%d" % i: i for i in range(3000)})
+            gc.collect()
+            return 1
+
+        return d, dflt
+
+    bad = 0
+    for name, make in (("dict", dict_case), ("list", list_case), ("nested", nested_case), ("enum", enum_case),
+                       ("default", default_case)):
+        outs = set()
+        for _ in range(30):
+            made = make()
+            obj, kw = (made[0], {"default": made[1]}) if isinstance(made, tuple) else (made, {})
+            try:
+                out = jp.dumps(obj, **kw)
+                json.loads(out)
+                outs.add(out)
+            except (TypeError, ValueError) as e:
+                outs.add(type(e).__name__)
+        if len(outs) != 1:
+            bad += 1
+            print("   MUTATION %s: %d different outcomes" % (name, len(outs)))
+    print("mutation during dumps: %d of 5 cases unstable" % bad)
+    return bad
+
+
 def main():
     bits = [orjson.OPT_INDENT_2, orjson.OPT_NAIVE_UTC, orjson.OPT_NON_STR_KEYS, orjson.OPT_OMIT_MICROSECONDS,
             orjson.OPT_SERIALIZE_NUMPY, orjson.OPT_SORT_KEYS, orjson.OPT_STRICT_INTEGER, orjson.OPT_UTC_Z,
@@ -296,6 +414,8 @@ def main():
                             opt, bool(d), ascii(obj)[:90], ascii(a[1])[:150], ascii(b[1])[:150]))
     bad += check_layout_depth()
     bad += check_float_text()
+    bad += check_int_boundaries()
+    bad += check_mutation_during_dumps()
     # positional form and bad options
     assert jp.dumps([1], None, orjson.OPT_INDENT_2) == orjson.dumps([1], None, orjson.OPT_INDENT_2)
     for badopt in (-1, 4096, 1.5, "1", True):
